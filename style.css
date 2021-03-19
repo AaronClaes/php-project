@@ -1,36 +1,152 @@
+*{
+    
+}
+
+.wrapper {
+    margin-right: auto; /* 1 */
+    margin-left:  auto; /* 1 */
+  
+    max-width: 960px; /* 2 */
+  
+    padding-right: 10px; /* 3 */
+    padding-left:  10px; /* 3 */
+  }
+
 @media  screen and (max-width: 767px) {
 .form{
-    margin-top: -100%;
+    margin-top: -150%;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    flex-wrap: wrap;
+   text-align: center;
     z-index: 10;
     color: azure;
+    
+
+
+}
+.formTitleEmail{
+    
+    
+    
+}
+.formTitlePassword{
+   
+   
+}
+.formTitleUsername{
+    
 
 }
 .formEmail{
-    
-   
-}
-.formPassword{
-    
-    margin-left: 5%;
+    margin-left: 30%;
+    width:  40%;
+    padding: 1.5%;
+    margin-bottom: 1%;
 }
 .formUsername{
-    
-    margin-left: 3.5%;
+    margin-left: 30%;
+    width:  40%;
+    padding: 1.5%;
+    margin-bottom: 1%;
+}
+.formPassword{
+    margin-left: 30%;
+    width:  40%;
+    padding: 1.5%;
+    margin-bottom: 5%;
+}
+
+.btn-primary{
+    margin-left: 35%;
+    width:  30%;
+    padding: 5%;
+    margin-bottom: 1%;
 }
 
 .hero_bg{
     background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
-    background-size: 120%;
+    
     background-repeat: no-repeat;
-    padding-bottom: 200%;
-    width: 200%; 
+    padding-bottom: 210%;
+    height: 300%;
+    width: 100%; 
+    background-size: 360%;
 
-  
+    overflow-x: visible;
 }
-
+.footer {
+    margin-top: 64%; 
+    z-index: 12;
+}
    
   }
+  @media  screen and (min-width: 768px) {
+    .form{
+        margin-top: -115%;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+       text-align: center;
+        z-index: 10;
+        color: azure;
+        
+    
+    
+    }
+    .formTitleEmail{
+        
+        
+        
+    }
+    .formTitlePassword{
+       
+       
+    }
+    .formTitleUsername{
+        
+    
+    }
+    .formEmail{
+        margin-left: 25%;
+        width:  50%;
+        padding: 2%;
+        margin-bottom: 1%;
+    }
+    .formUsername{
+        margin-left: 25%;
+        width:  50%;
+        padding: 2%;
+        margin-bottom: 1%;
+    }
+    .formPassword{
+        margin-left: 25%;
+        width:  50%;
+        padding: 2%;
+        margin-bottom: 5%;
+    }
+    
+    .btn-primary{
+        margin-left: 32%;
+        width:  35%;
+        height: 20%;
+        margin-bottom: 1%;
+    }
+    
+    .hero_bg{
+        background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+        
+        background-repeat: no-repeat;
+        padding-bottom: 140%;
+        height: 300%;
+        width: 100%; 
+        background-size: 260%;
+    
+        overflow-x: visible;
+    }
+    .footer {
+        margin-top: 64%; 
+        z-index: 12;
+    }
+       
+      }

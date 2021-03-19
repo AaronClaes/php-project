@@ -35,20 +35,27 @@ $conn = Db::getConnection();
 <body>
     
    <div class="hero_bg"></div>
-   <div class="form">
-<div>
-  <label  class="formTitleEmail">Email address</label>
-  <input type="email" class="formEmail"  placeholder="name@example.com">
-</div>
-<div>
-  <label  class="formTitleUsername">Username</label>
-  <input type="name" class="formUsername"  placeholder="Username">
-</div><div>
-  <label  class="formTitlePassword">Password</label>
-  <input type="password" class="formPassword"  placeholder="password">
-</div>
-</div>
+   <div class="form wrapper">
 
+  <label  class="formTitleEmail"><h2>Email:</h2> </label>
+  <input type="email" class="formEmail"  placeholder="name@example.com">
+
+  <label  class="formTitleUsername"><h2>Username:</h2></label>
+  <input type="name" class="formUsername"  placeholder="Username">
+
+  <label  class="formTitlePassword"><h2>Password:</h2></label>
+  <input type="password" class="formPassword"  placeholder="password">
+  <button type="button" class="btn btn-primary">Log in</button>
+
+</div>
+<footer class="footer bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 </body>
 
 </html>
