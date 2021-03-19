@@ -1,0 +1,36 @@
+@media  screen and (max-width: 767px) {
+.form{
+    margin-top: -100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: 10;
+    color: azure;
+
+}
+.formEmail{
+    
+   
+}
+.formPassword{
+    
+    margin-left: 5%;
+}
+.formUsername{
+    
+    margin-left: 3.5%;
+}
+
+.hero_bg{
+    background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+    background-size: 120%;
+    background-repeat: no-repeat;
+    padding-bottom: 200%;
+    width: 200%; 
+
+  
+}
+
+   
+  }

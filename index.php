@@ -33,7 +33,8 @@ $conn = Db::getConnection();
   </div>
 </nav>
 <body>
-   <img class="hero-bg" src="https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg" alt="">
+    
+   <div class="hero_bg"></div>
    <div class="form">
 <div>
   <label  class="formTitleEmail">Email address</label>
@@ -41,7 +42,7 @@ $conn = Db::getConnection();
 </div>
 <div>
   <label  class="formTitleUsername">Username</label>
-  <input type="name" class="formusername"  placeholder="Username">
+  <input type="name" class="formUsername"  placeholder="Username">
 </div><div>
   <label  class="formTitlePassword">Password</label>
   <input type="password" class="formPassword"  placeholder="password">
