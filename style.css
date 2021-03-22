@@ -71,6 +71,18 @@
 
     overflow-x: visible;
 }
+.hero_bg2{
+    background-image: url("https://th.bing.com/th/id/R2da215d71466325c9a995488470b9095?rik=GN6f4DftHDlYUA&riu=http%3a%2f%2f78.media.tumblr.com%2f89dd324a1d3188c3f451d18ee6a41ae0%2ftumblr_onpj4ipBsG1syx6l9o2_1280.png&ehk=kvDUrxzYdKvXx8knIgyAHcetOjZKNQKBIAfUZ%2fzI9zY%3d&risl=&pid=ImgRaw");
+    
+    
+    background-repeat: no-repeat;
+    padding-bottom: 200%;
+    height: 300%;
+    width: 100%; 
+    background-size: 120%;
+
+    overflow-x: visible;
+}
 .footer {
     
     z-index: 12;
@@ -136,6 +148,17 @@
     
         overflow-x: visible;
     }
+    .hero_bg2{
+        background-image: url("https://th.bing.com/th/id/R2da215d71466325c9a995488470b9095?rik=GN6f4DftHDlYUA&riu=http%3a%2f%2f78.media.tumblr.com%2f89dd324a1d3188c3f451d18ee6a41ae0%2ftumblr_onpj4ipBsG1syx6l9o2_1280.png&ehk=kvDUrxzYdKvXx8knIgyAHcetOjZKNQKBIAfUZ%2fzI9zY%3d&risl=&pid=ImgRaw");
+        
+        background-repeat: no-repeat;
+        padding-bottom: 128%;
+        height: 200%;
+        width: 100%; 
+        background-size: 100%;
+    
+        overflow-x: visible;
+    }
     .footer {
         
         z-index: 12;
@@ -187,7 +210,9 @@
             
             margin-bottom: 1%;
         }
-        
+        .sign_up{
+            font-size: 0.2rem;
+        }
         .hero_bg{
             background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
             
@@ -196,6 +221,17 @@
             height: 100%;
             width: 100%; 
             background-size: 160%;
+        
+            overflow-x: visible;
+        }
+        .hero_bg2{
+            background-image: url("https://wallpapercave.com/wp/wp3277296.jpg");
+            
+            background-repeat: no-repeat;
+             padding-bottom: 82%;
+            height: 100%;
+            width: 100%; 
+            background-size: 140%;
         
             overflow-x: visible;
         }
@@ -246,9 +282,22 @@
                 
                 margin-bottom: 1%;
             }
-            
+            .sign_up{
+                font-size: 1.2rem;
+            }
             .hero_bg{
                 background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+                
+                background-repeat: no-repeat;
+                padding-bottom: 52%;
+                height: 100%;
+                width: 100%; 
+                background-size: 100%;
+            
+                overflow-x: visible;
+            }
+            .hero_bg2{
+                background-image: url("https://wallpapercave.com/wp/wp3277296.jpg");
                 
                 background-repeat: no-repeat;
                 padding-bottom: 52%;
