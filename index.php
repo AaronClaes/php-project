@@ -11,9 +11,10 @@ $conn = Db::getConnection();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,21 +34,21 @@ $conn = Db::getConnection();
   </div>
 </nav>
 <body>
-    
-   <div class="hero_bg"></div>
-   <div class="form wrapper">
+<div class="form wrapper">
 
-  <label  class="formTitleEmail"><h2>Email:</h2> </label>
-  <input type="email" class="formEmail"  placeholder="name@example.com">
+<label  class="formTitleEmail"><h2>Email:</h2> </label>
+<input type="email" class="formEmail"  placeholder="name@example.com">
 
-  <label  class="formTitleUsername"><h2>Username:</h2></label>
-  <input type="name" class="formUsername"  placeholder="Username">
+<label  class="formTitleUsername"><h2>Username:</h2></label>
+<input type="name" class="formUsername"  placeholder="Username">
 
-  <label  class="formTitlePassword"><h2>Password:</h2></label>
-  <input type="password" class="formPassword"  placeholder="password">
-  <button type="button" class="btn btn-primary">Log in</button>
+<label  class="formTitlePassword"><h2>Password:</h2></label>
+<input type="password" class="formPassword"  placeholder="password">
+<button type="button" class="btn btn-primary">Log in</button>
 
 </div>
+   <div class="hero_bg"></div>
+   
 <footer class="footer bg-light text-center text-lg-start">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
