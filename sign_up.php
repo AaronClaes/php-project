@@ -1,14 +1,7 @@
-<?php
-include_once(__DIR__ . "/classes/Db.php");
-
-$conn = Db::getConnection();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -45,13 +38,11 @@ $conn = Db::getConnection();
 <label  class="formTitlePassword"><h2>Password:</h2></label>
 
 <input type="password" class="formPassword"  placeholder="password">
-<div class="sign_up">
-<p>Nog geen account? <a href="sign_up.php">Maak er één aan</a></p>
-</div>
-<button type="button" class="btn btn-primary">Log in</button>
+
+<button type="button" class="btn btn-primary">Sign up</button>
 
 </div>
-   <div class="hero_bg"></div>
+   <div class="hero_bg2"></div>
    
 <footer class="footer bg-light text-center text-lg-start">
   <!-- Copyright -->
@@ -62,5 +53,4 @@ $conn = Db::getConnection();
   <!-- Copyright -->
 </footer>
 </body>
-
 </html>
