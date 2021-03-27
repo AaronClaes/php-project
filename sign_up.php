@@ -1,11 +1,21 @@
 <?php
 include_once(__DIR__ . "/classes/Db.php");
+include_once(__DIR__ . "/classes/User.php");
 
 if (!empty($_POST)) {
-  $conn = Db::getConnection();
+  try {
+    $user = new User();
+    $user->setEmail($_POST["email"]);
+    $user->setFirstname($_POST["firstName"]);
+    $user->setLastname($_POST["lastName"]);
+    $user->setUsername($_POST["username"]);
+    $user->setPassword($_POST["password"]);
+  } catch (\Throwable $th) {
+    $error = $th->getMessage();
+  }
 }
 
-
+$conn = Db::getConnection();
 
 
 
@@ -41,37 +51,44 @@ if (!empty($_POST)) {
 </nav>
 
 <body>
-  <div class="form wrapper">
+  <?php if (isset($error)) : ?>
+    <div class="error">
+      <h3><?php echo $error ?></h3>
+    </div>
+  <?php endif; ?>
+  <form action="" method="POST">
+    <div class="form wrapper">
 
-    <label class="formTitleEmail">
-      <h2>Email:</h2>
-    </label>
-    <input type="email" class="formEmail" name="email" placeholder="name@example.com">
+      <label class="formTitleEmail">
+        <h2>Email:</h2>
+      </label>
+      <input type="email" class="formEmail" name="email" placeholder="name@example.com">
 
-    <label class="formTitleFirstName">
-      <h2>First Name:</h2>
-    </label>
-    <input type="text" class="formFirstName" name="firstName" placeholder="First Name">
+      <label class="formTitleFirstName">
+        <h2>First Name:</h2>
+      </label>
+      <input type="text" class="formFirstName" name="firstName" placeholder="First Name">
 
-    <label class="formTitleLastName">
-      <h2>Last Name:</h2>
-    </label>
-    <input type="text" class="formLastName" name="lastName" placeholder="Last Name">
+      <label class="formTitleLastName">
+        <h2>Last Name:</h2>
+      </label>
+      <input type="text" class="formLastName" name="lastName" placeholder="Last Name">
 
 
-    <label class="formTitleUsername">
-      <h2>Username:</h2>
-    </label>
-    <input type="name" class="formUsername" name="username" placeholder="Username">
+      <label class="formTitleUsername">
+        <h2>Username:</h2>
+      </label>
+      <input type="name" class="formUsername" name="username" placeholder="Username">
 
-    <label class="formTitlePassword">
-      <h2>Password:</h2>
-    </label>
-    <input type="password" class="formPassword" name="password" placeholder="password">
+      <label class="formTitlePassword">
+        <h2>Password:</h2>
+      </label>
+      <input type="password" class="formPassword" name="password" placeholder="password">
 
-    <button type="button" class="btn btn-primary">Sign up</button>
+      <button type="submit" class="btn btn-primary">Sign up</button>
 
-  </div>
+    </div>
+  </form>
   <div class="hero_bg2"></div>
 
   <footer class="footer bg-light text-center text-lg-start">
