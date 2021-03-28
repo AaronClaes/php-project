@@ -28,7 +28,7 @@ class User
     {
         //CHECK IF EMPTY
         if (empty($username)) {
-            throw new Exception("username may not be empty!");
+            throw new Exception("Username may not be empty!");
         }
         //CHECK IF USERNAME IS AVAILABLE
         $conn = Db::getConnection();
@@ -37,7 +37,7 @@ class User
         $statement->execute();
         $result = $statement->fetch();
         if ($result != false) {
-            throw new Exception("username is already being used, please try a different one");
+            throw new Exception("Username is already being used, please try a different one");
         }
         $this->username = $username;
 
@@ -61,6 +61,9 @@ class User
      */
     public function setFirstname($firstname)
     {
+        if (empty($firstname)) {
+            throw new Exception("First name may not be empty!");
+        }
         $this->firstname = $firstname;
 
         return $this;
@@ -81,6 +84,9 @@ class User
      */
     public function setLastname($lastname)
     {
+        if (empty($lastname)) {
+            throw new Exception("Last name may not be empty!");
+        }
         $this->lastname = $lastname;
 
         return $this;
@@ -101,6 +107,9 @@ class User
      */
     public function setPassword($password)
     {
+        if (empty($password)) {
+            throw new Exception("Password may not be empty!");
+        }
         $this->password = $password;
 
         return $this;
@@ -121,6 +130,17 @@ class User
      */
     public function setEmail($email)
     {
+        if (empty($email)) {
+            throw new Exception("Email may not be empty!");
+        }
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindValue(":email", $email);
+        $statement->execute();
+        $result = $statement->fetch();
+        if ($result != false) {
+            throw new Exception("Email is already being used, please try a different one");
+        }
         $this->email = $email;
 
         return $this;
