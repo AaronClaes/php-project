@@ -10,14 +10,14 @@ if (!empty($_POST)) {
     $user->setLastname($_POST["lastName"]);
     $user->setUsername($_POST["username"]);
     $user->setPassword($_POST["password"]);
+    $user->save();
+    session_start();
+    $_SESSION["username"] = $user->getUsername();
+    header("Location: index.php");
   } catch (\Throwable $th) {
     $error = $th->getMessage();
   }
 }
-
-$conn = Db::getConnection();
-
-
 
 ?>
 <!DOCTYPE html>

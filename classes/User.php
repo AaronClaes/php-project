@@ -110,7 +110,11 @@ class User
         if (empty($password)) {
             throw new Exception("Password may not be empty!");
         }
-        $this->password = $password;
+        $options = [
+            'cost' => 14,
+        ];
+        $this->password = password_hash($password, PASSWORD_DEFAULT, $options);
+
 
         return $this;
     }
@@ -144,5 +148,26 @@ class User
         $this->email = $email;
 
         return $this;
+    }
+
+    public function save()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "INSERT INTO users (email, firstname, lastname, username, password) VALUES (:email, :firstname, :lastname, :username, :password)";
+        $statement = $conn->prepare($sql);
+        $email = $this->getEmail();
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $username = $this->getUsername();
+        $password = $this->getPassword();
+        var_dump($email, $firstname, $lastname, $username, $password);
+
+        $statement->bindValue(":email", $email);
+        $statement->bindValue(":firstname", $firstname);
+        $statement->bindValue(":lastname", $lastname);
+        $statement->bindValue(":username", $username);
+        $statement->bindValue(":password", $password);
+        $result = $statement->execute();
     }
 }
