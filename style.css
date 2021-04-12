@@ -21,6 +21,24 @@
 .form{
     color: white;
 }
+.formEmail{
+    
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+.formFirstName{
+    border-radius: 10px;
+}
+.formLastName{
+    border-radius: 10px;
+}
+.formUsername{
+    border-radius: 10px;
+}
+.formPassword{
+    border-radius: 10px;
+    margin-bottom: 5%;
+}
 @media  screen and (max-width: 767px) {
 .form{
     float: right;
@@ -46,16 +64,7 @@
    
 }
 
-.formEmail{
-    
-    border-radius: 10px;
-    margin-bottom: 2%;
-}
 
-.formPassword{
-    border-radius: 10px;
-    margin-bottom: 5%;
-}
 
 .btn-primary{
     margin-left: 18%;
@@ -138,12 +147,12 @@
     }
    
     .formEmail{
-        border-radius: 10px;
+      
         margin-bottom: 1%;
     }
    
     .formPassword{
-        border-radius: 10px;
+        
         margin-bottom: 5%;
     }
     
@@ -211,12 +220,12 @@
         }
        
         .formEmail{
-            border-radius: 10px;
+           
             margin-bottom: 1%;
         }
       
         .formPassword{
-            border-radius: 10px;
+           
             margin-bottom: 5%;
         }
         
@@ -259,7 +268,7 @@
             .form{
                 float: right;
               margin-right: 30% ;
-              margin-top: 20% ;
+              margin-top: 5% ;
                 display: flex;
                 justify-content: flex-end;
                 flex-direction: column;
