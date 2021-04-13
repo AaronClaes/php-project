@@ -34,7 +34,7 @@
 <body>
     <div class="row" style="--bs-gutter-x: 0rem;">
         <div class="bg-image p-3 text-center shadow-1-strong col-md  text-white flex-item-left" style="background-color:#7a7f84 ;
-      height: 85vh; width: 80vh; background-size: 110%; background-repeat: no-repeat; ">
+       width: 80vh; background-size: 110%; background-repeat: no-repeat; ">
             <h1 class="mb-3 h2">About us!</h1>
 
             <p>Hello! we are 3 student from Thomas more making a social media platform for gamer. </p>

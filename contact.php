@@ -34,7 +34,7 @@
 <body>
     <div class="row" style="--bs-gutter-x: 0rem;">
         <div class="bg-image p-3 text-center shadow-1-strong col-md  text-white flex-item-left" style="background-color:#7a7f84 ;
-      height: 85vh; width: 80vh; background-size: 110%; background-repeat: no-repeat; ">
+       width: 80vh; background-size: 50%; background-repeat: no-repeat; ">
             <h1 class="mb-3 h2">Contact us</h1>
 
             <p>you can contact us using the form or calling us on this number </p>
@@ -43,9 +43,9 @@
 
 
 
-        <div class="col-md wrapper">
+        <div class="col-md wrapper" ">
             <form action="mailto:elias.valienne@hotmail.com" method="POST">
-                <div class="form-outline">
+                <div class="form-outline" style="margin-top: 2%;">
                     <label class="form-label" for="typeText">Name input</label>
                     <input placeholder="Your name" type="text" name="name" method="POST" enctype="multipart/form-data" name="EmailForm" type="text" id="typeText" size="19" class="form-control" required />
 
@@ -63,13 +63,13 @@
                     <textarea placeholder="Type your Message Here...." class="form-control" id="textAreaExample" rows="4" required></textarea>
 
                 </div>
-                <button data-submit="...Sending" name="submit" type="submit" class="btn btn-outline-secondary" data-mdb-ripple-color="dark" value="send">
+                <button id="submit" data-submit="...Sending" name="submit" type="submit" class="btn btn-outline-secondary" data-mdb-ripple-color="dark" value="send">
                     Submit
                 </button>
             </form>
         </div>
 
-        <footer class="footer bg-light text-center text-lg-start">
+        <footer class="footer bg-light text-center text-lg-start top">
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2020 Copyright:

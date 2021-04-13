@@ -117,6 +117,9 @@
 .center{
     margin-left: 25%;
 }
+.top{
+    margin-top: 20%;
+}
    
   }
   @media  screen and (max-width: 376px) {
@@ -138,6 +141,9 @@
     }
     .center{
         margin-left: 25%;
+    }
+    .top{
+        margin-top: 20%;
     }
 }
   @media  screen and (min-width: 768px) {
@@ -219,6 +225,7 @@
     .center{
         margin-left: 25%;
     }
+   
 }
       @media  screen and (min-width: 1024px) {
         .form{
@@ -295,6 +302,10 @@
     }
     .center{
         margin-left: 25%;
+    }
+    .bg-image{
+        
+        height: 89vh;
     }
         @media  screen and (min-width: 1600px) {
             .form{
@@ -373,5 +384,9 @@
         }
         .center{
             margin-left: 30%;
+        }
+        .bg-image{
+        
+            height: 86vh;
         }
     
