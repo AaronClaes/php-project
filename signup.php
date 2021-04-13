@@ -44,9 +44,9 @@ if (!empty($_POST)) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+        <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
         <a class="nav-link" href="#">Login</a>
-        <a class="nav-link" href="#">About Us</a>
+        <a class="nav-link" href="about.php">About Us</a>
 
       </div>
     </div>
