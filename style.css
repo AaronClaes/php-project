@@ -11,6 +11,7 @@
     padding-right: 10px; /* 3 */
     padding-left:  10px; /* 3 */
   }
+ 
 .navbar{
     background-color: #e0e0e0;
     
@@ -21,6 +22,30 @@
 .form{
     color: white;
 }
+.formEmail{
+    
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+.formFirstName{
+    border-radius: 10px;
+}
+.formLastName{
+    border-radius: 10px;
+}
+.formUsername{
+    border-radius: 10px;
+}
+.formPassword{
+    border-radius: 10px;
+    margin-bottom: 5%;
+}
+.row {
+    
+    --bs-gutter-x: 0rem;
+    --bs-gutter-y: 0;
+}
+
 @media  screen and (max-width: 767px) {
 .form{
     float: right;
@@ -46,16 +71,7 @@
    
 }
 
-.formEmail{
-    
-    border-radius: 10px;
-    margin-bottom: 2%;
-}
 
-.formPassword{
-    border-radius: 10px;
-    margin-bottom: 5%;
-}
 
 .btn-primary{
     margin-left: 18%;
@@ -95,6 +111,15 @@
 .logo{
     width: 20%;
 }
+.offset-md-2{
+    margin-left: 15%;
+}
+.center{
+    margin-left: 25%;
+}
+.top{
+    margin-top: 20%;
+}
    
   }
   @media  screen and (max-width: 376px) {
@@ -110,6 +135,15 @@
       
     
     
+    }
+    .offset-md-2{
+        margin-left: 15%;
+    }
+    .center{
+        margin-left: 25%;
+    }
+    .top{
+        margin-top: 20%;
     }
 }
   @media  screen and (min-width: 768px) {
@@ -127,6 +161,7 @@
     
     
     }
+    
     .formTitleEmail{
         font-family: azo-sans-web, sans-serif;   
         
@@ -138,12 +173,12 @@
     }
    
     .formEmail{
-        border-radius: 10px;
+      
         margin-bottom: 1%;
     }
    
     .formPassword{
-        border-radius: 10px;
+        
         margin-bottom: 5%;
     }
     
@@ -184,6 +219,13 @@
     .logo{
         width: 10%;
     }
+    .offset-md-2{
+        margin-left: 15%;
+    }
+    .center{
+        margin-left: 25%;
+    }
+   
 }
       @media  screen and (min-width: 1024px) {
         .form{
@@ -211,12 +253,12 @@
         }
        
         .formEmail{
-            border-radius: 10px;
+           
             margin-bottom: 1%;
         }
       
         .formPassword{
-            border-radius: 10px;
+           
             margin-bottom: 5%;
         }
         
@@ -255,11 +297,21 @@
             overflow-x: visible;
         }
     }
+    .offset-md-2{
+        margin-left: 15%;
+    }
+    .center{
+        margin-left: 25%;
+    }
+    .bg-image{
+        
+        height: 89vh;
+    }
         @media  screen and (min-width: 1600px) {
             .form{
                 float: right;
               margin-right: 30% ;
-              margin-top: 20% ;
+              margin-top: 5% ;
                 display: flex;
                 justify-content: flex-end;
                 flex-direction: column;
@@ -330,3 +382,11 @@
                 width: 9%;
             }
         }
+        .center{
+            margin-left: 30%;
+        }
+        .bg-image{
+        
+            height: 86vh;
+        }
+    
