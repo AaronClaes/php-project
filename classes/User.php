@@ -24,24 +24,25 @@ class User
      *
      * @return  self
      */
-    public function setUsername($username)
+    public function setUsername($username, $action)
     {
         //CHECK IF EMPTY
         if (empty($username)) {
             throw new Exception("Username may not be empty!");
         }
         //CHECK IF USERNAME IS AVAILABLE
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from users where username = :username");
-        $statement->bindValue(":username", $username);
-        $statement->execute();
-        $result = $statement->fetch();
-        if ($result != false) {
-            throw new Exception("Username is already being used, please try a different one");
+        if($action === "signup"){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where username = :username");
+            $statement->bindValue(":username", $username);
+            $statement->execute();
+            $result = $statement->fetch();
+            if ($result != false) {
+                throw new Exception("Username is already being used, please try a different one");
+            }
+            $this->username = $username;
         }
-        $this->username = $username;
-
-        return $this;
+        return $this; 
     }
 
 
@@ -161,7 +162,7 @@ class User
         $lastname = $this->getLastname();
         $username = $this->getUsername();
         $password = $this->getPassword();
-        var_dump($email, $firstname, $lastname, $username, $password);
+        
 
         $statement->bindValue(":email", $email);
         $statement->bindValue(":firstname", $firstname);
@@ -170,4 +171,25 @@ class User
         $statement->bindValue(":password", $password);
         $result = $statement->execute();
     }
+
+    public function login()
+    {
+        $conn = Db::getConnection();
+        
+        $sql = "SELECT username, password FROM users WHERE username = :username AND password = :password ";
+        $statement = $conn->prepare($sql);
+        
+        $username = $this->getUsername();
+        $password = $this->getPassword();
+
+        $statement->bindValue(":username", $username);
+        $statement->bindValue(":password", $password);
+        $result = $statement->execute();
+        var_dump($result);
+
+        if ($result != true) {
+            throw new Exception("Username or password is incorrect!");
+        }
+    }
+
 }

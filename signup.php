@@ -8,7 +8,7 @@ if (!empty($_POST)) {
     $user->setEmail($_POST["email"]);
     $user->setFirstname($_POST["firstName"]);
     $user->setLastname($_POST["lastName"]);
-    $user->setUsername($_POST["username"]);
+    $user->setUsername($_POST["username"],"signup");
     $user->setPassword($_POST["password"]);
     $user->save();
     session_start();
