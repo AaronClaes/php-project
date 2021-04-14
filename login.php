@@ -3,43 +3,21 @@ include_once("bootstrap.php");
 
 $conn = Db::getConnection();
 
-
-
-function canLogin($username,$password) 
-{
-    $conn = Db::getConnection();
-    $statement = $conn->prepare('select * from user where email = :email');
-    $statement->bindValue(":email", $username);
-    $statement->execute();
-    $user = $statement->fetch();
-
-    if (!$user) {
-        return false;
-    }
-
-    $hash = $user['password'];
-    if (password_verify($password, $hash)){
-        return true; 
-    } else {
-        return false; 
-    }
-}
 if (!empty($_POST)) {
     try {
-      $user = new User();
-      
-      $user->setUsername($_POST["username"],"login");
-      $user->setPassword($_POST["password"]);
-      $user->login();
-      session_start();
-      $_SESSION["username"] = $user->getUsername();
-     //$_SESSION["username"] = "abc";
-     header("Location: index.php");
-     var_dump(  $user->getUsername());
+        $user = new User();
+
+        $user->setUsername($_POST["username"], "login");
+        $user->setPassword($_POST["password"], "login");
+        $user->login();
+        session_start();
+        $_SESSION["username"] = $user->getUsername();
+        var_dump($_SESSION["username"]);
+        header("Location: index.php");
     } catch (\Throwable $th) {
-      $error = $th->getMessage();
+        $error = $th->getMessage();
     }
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +54,7 @@ if (!empty($_POST)) {
         <?php if (isset($error)) : ?>
             <div class="user-messages-area">
                 <div class="alert alert-danger">
-                    
+
                     <ul>
                         <li><?php echo $error ?></li>
                     </ul>
@@ -98,7 +76,7 @@ if (!empty($_POST)) {
     </div>
     </form>
     <div class="hero_bg"></div>
-    
+
     <footer class="footer  text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

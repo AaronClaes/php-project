@@ -6,8 +6,8 @@ spl_autoload_register(function () {
     include_once("classes/User.php");
 });
 
-
+session_start();
 if (isset($_SESSION["username"]) || preg_match('(signup.php|login.php)', $_SERVER['SCRIPT_NAME'])) {
 } else {
-    header("Location: about.php");
+    header("Location: signup.php");
 }

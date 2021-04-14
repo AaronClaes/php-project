@@ -8,8 +8,8 @@ if (!empty($_POST)) {
     $user->setEmail($_POST["email"]);
     $user->setFirstname($_POST["firstName"]);
     $user->setLastname($_POST["lastName"]);
-    $user->setUsername($_POST["username"],"signup");
-    $user->setPassword($_POST["password"]);
+    $user->setUsername($_POST["username"], "signup");
+    $user->setPassword($_POST["password"], "signup");
     $user->save();
     session_start();
     $_SESSION["username"] = $user->getUsername();
@@ -35,9 +35,9 @@ if (!empty($_POST)) {
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-  <img class="logo" src="img/gg-logo.png" alt="logo">
+    <img class="logo" src="img/gg-logo.png" alt="logo">
 
-    
+
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
