@@ -47,19 +47,19 @@
 
             <h1 class=" p-3 text-center">Who are we?</h1>
            <div class="offset-md-2">
-           <img src="img/pfElias.png" style="width: 15%; margin-left: 30%" alt="profilePic">
+           <img src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
 
             <div class="offset-md-2">
-                <img src="img/pfElias.png" style="width: 15%; margin-left: 30%" alt="profilePic">
+                <img src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
 
             <div class="offset-md-2">
-                <img  src="img/pfElias.png" style="width: 15%; margin-left: 30%" alt="profilePic">
+                <img  src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
