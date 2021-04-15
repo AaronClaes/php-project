@@ -1,11 +1,10 @@
 <?php
-include_once("bootstrap.php");
-$conn = Db::getConnection();
-
+  include_once("bootstrap.php");
+  $conn = Db::getConnection();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +12,10 @@ $conn = Db::getConnection();
   <link rel="stylesheet" href="https://use.typekit.net/zbb0stp.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <title>Feed</title>
+
 </head>
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
@@ -24,9 +25,8 @@ $conn = Db::getConnection();
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Contact</a>
-        <a class="nav-link" href="#">Login</a>
-        <a class="nav-link" href="#">About </a>
+        <a class="nav-link" href="Profile.php">Profile</a>
+        <a class="nav-link justify-content-end" href="logout.php">Logout</a>
 
       </div>
     </div>
@@ -34,20 +34,37 @@ $conn = Db::getConnection();
 </nav>
 
 <body>
-  <div class="form wrapper">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <div id="content" class="content content-full-width">
+            <div class="profile">
+               <div class="profile-header">
+                  <div class="profile-header-cover"></div>
+                  <div class="profile-header-content">
+                     <div class="profile-header-img">
+                        <img src="https://tinyurl.com/abzdvtrz" alt="">
+                     </div>
+                     
+                     <div class="profile-header-info">
+                        <h4 class="m-t-10 m-b-5">Schankah</h4>
+                        <p class="m-b-10">Rank 5 - Backseat Gamer</p>
+                     </div>
 
-    <label class="formTitleEmail">
-      <h1>Login</h1>
-    </label>
-    <input type="email" class="formEmail" placeholder="name@example.com">
-    <input type="password" class="formPassword" placeholder="password">
-    <div class="sign_up">
-      <p>Nog geen account? <a href="sign_up.php">Maak er één aan</a></p>
-    </div>
-    <button type="button" class="btn btn-primary">Log in</button>
-
-  </div>
-  <div class="hero_bg"></div>
+                  </div>
+                  <ul class="profile-header-tab nav nav-tabs">
+                     <li class="nav-item"><a href="#" class="nav-link active show" data-toggle="tab">POSTS</a></li>
+                     <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">FRIENDS</a></li>
+                     <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">ABOUT</a></li>
+                     <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">SCREENSHOTS</a></li>
+                     <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">SCREENCAPTURES</a></li>
+                  </ul>
+               </div>
+            </div>
+      </div>
+   </div>
+</div>
 
   <footer class="footer  text-center text-lg-start">
     <!-- Copyright -->

@@ -3,6 +3,7 @@ include_once(__DIR__ . "/Db.php");
 
 class User
 {
+    private $user_ID;
     private $username;
     private $firstname;
     private $lastname;
@@ -10,6 +11,34 @@ class User
     private $email;
     private $picture;
     private $description;
+    
+        /**
+     * Get the value of username
+     */
+    public function getUserID()
+    {
+        return $this->user_ID;
+    }
+
+    /**
+     * Set the value of User_ID
+     *
+     * @return  self
+     */
+    public function setuserID($username, $user_ID)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT ID FROM users WHERE username = :username");
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $result = $statement->fetch();
+        if ($result != false) {
+            throw new Exception("Email is already being used, please try a different one");
+        }
+        $this->user_ID = $user_ID;
+
+        return $this;
+    }
 
     /**
      * Get the value of username
