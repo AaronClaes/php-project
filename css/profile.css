@@ -201,3 +201,8 @@
 .profile-section .title small {
     font-weight: 400
 }
+
+
+.form-spacing {
+    margin: 5px;
+}

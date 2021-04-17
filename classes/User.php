@@ -21,26 +21,6 @@ class User
     }
 
     /**
-     * Set the value of User_ID
-     *
-     * @return  self
-     */
-    public function setuserID($username, $user_ID)
-    {
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT ID FROM users WHERE username = :username");
-        $statement->bindValue(":username", $username);
-        $statement->execute();
-        $result = $statement->fetch();
-        if ($result != false) {
-            throw new Exception("Email is already being used, please try a different one");
-        }
-        $this->user_ID = $user_ID;
-
-        return $this;
-    }
-
-    /**
      * Get the value of username
      */
     public function getUsername()
@@ -69,12 +49,20 @@ class User
             if ($result != false) {
                 throw new Exception("Username is already being used, please try a different one");
             }
+        if($action === "edit"){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where username = :username");
+            $statement->bindValue(":username", $username);
+            $statement->execute();
+            $result= $statement->fetch();
+            if ($result != true) {
+                throw new Exception("You are already using this username");
+            }
+            $this->username = $username;
+            return $this;
         }
-        $this->username = $username;
-        return $this;
-    }
-
-
+    }    
+}
 
     /**
      * Get the value of firstname
@@ -183,6 +171,46 @@ class User
         return $this;
     }
 
+        /**
+     * Get the value of description
+     */ 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of picture
+     */ 
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */ 
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }  
+
     public function save()
     {
         $conn = Db::getConnection();
@@ -201,7 +229,7 @@ class User
         $statement->bindValue(":lastname", $lastname);
         $statement->bindValue(":username", $username);
         $statement->bindValue(":password", $password);
-        $result = $statement->execute();
+        $statement->execute();
     }
 
     public function login()
@@ -223,4 +251,61 @@ class User
             throw new Exception("Username or password is incorrect!");
         }
     }
+
+
+    //Get current active user
+    public static function getLoggedUser($username)
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
+            $statement->bindValue(":username", $username);
+            $statement->execute();
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if(empty($user)){
+                throw new Exception(" No user is logged in.");
+        }
+        return $user;
+    }
+
+    public function update($username, $firstname, $lastname, $email, $picture, $description, $id)
+{
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("UPDATE users set username = '$username', firstname = '$firstname', lastname = '$lastname' , description='$description', email='$email', ,Picture='$picture' where id = $id");
+    $statement->execute();
+    $result = $statement->fetch();
+        if($result)
+        {
+		return true;
+	}
+        else{
+		return false;
+	}
+}
+
+public function updateInfo($userId){
+
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname', lastname = :lastname , description = :description, email = :email, Picture = :picture WHERE userId = :userId");
+
+
+    $username = $this->getUsername();
+    $firstname = $this->getFirstname();
+    $lastname = $this->getLastname();
+    $description = $this->getDescription();
+    $email = $this->getEmail(); 
+    $picture = $this->getPicture();
+
+    $statement->bindValue(":userId", $userId);
+    $statement->bindValue(":username", $username);
+    $statement->bindValue(":firstname", $firstname);
+    $statement->bindValue(":lastname", $lastname);
+    $statement->bindValue(":description", $description);
+    $statement->bindValue(":description", $description);
+    $statement->bindValue(":email", $email);
+
+    $result = $statement->execute() ;
+
+    return $result;
+
+}
 }

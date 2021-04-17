@@ -1,6 +1,14 @@
 <?php
   include_once("bootstrap.php");
   $conn = Db::getConnection();
+
+  try{
+    $user = User::getLoggedUser($_SESSION['username']);
+    }
+    catch(\Throwable $th){
+      $error = $th->getMessage();
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +56,7 @@
                      </div>
                      
                      <div class="profile-header-info">
-                        <h4 class="m-t-10 m-b-5">Schankah</h4>
+                        <h4 class="m-t-10 m-b-5"> <?php echo $user["username"] ?> </h4>
                         <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                      </div>
 

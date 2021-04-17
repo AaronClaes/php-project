@@ -1,8 +1,33 @@
 <?php
 include_once("bootstrap.php");
 $conn = Db::getConnection();
+try{
+    $user = User::getLoggedUser($_SESSION['username']);
+    }
+    catch(\Throwable $th){
+      $error = $th->getMessage();
+  }
 
 
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    try {
+        $info = User::getLoggedUser($_SESSION['username']);
+        $info->setUsername ($_POST['username'], 'edit');
+        $info->setFirstname ($_POST['firstname']);
+        $info->setLastname ($_POST['lastname']);
+        $info->setEmail ($_POST['email']);
+        $info->setDescription ($_POST['description']);
+        $info->setPicture ($_POST['picture']);
+
+        $result = $info->updateInfo($userId);
+        // If the result from the save is success, redirect to the index.
+        if(!empty($result)) {
+            $success = "Preferences are up to date";
+        }
+  } catch (\Throwable $th) {
+    $error =$th->getMessage();
+  }       
+}
 
 
 ?>
@@ -18,7 +43,7 @@ $conn = Db::getConnection();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Profile.css">
+    <link rel="stylesheet" href="css/profile.css">
 
     <title>Profile</title>
 
@@ -53,36 +78,48 @@ $conn = Db::getConnection();
                         <img src="https://tinyurl.com/abzdvtrz" alt="">
                      </div>
                      <div class="profile-header-info">
-                        <h4 class="m-t-10 m-b-5">Schankah</h4>
+                        <h4 class="m-t-10 m-b-5"><?php echo $user["username"]; ?></h4>
                         <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                      </div>
 
-                  </div>
-                  <ul class="profile-header-tab nav nav-tabs">
-                     <li class="nav-item"><a href="#profile-post" class="nav-link active show" data-toggle="tab">EDIT Profile</a></li>
-                  </ul>
+                    </div>
+                    <ul class="profile-header-tab nav nav-tabs">
+                        <li class="nav-item"><a href="#profile-post" class="nav-link active show" data-toggle="tab">EDIT Profile</a></li>
+                     </ul>
                   
-               </div>
-
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">User info</h4>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Username</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">About me</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <form method="POST">
+                    <div class="form-row form-spacing">
+                        <div class="form-group col-md-6">
+                            <label for="Username">Edit Username</label>
+                            <input type="text" class="form-control" name="username" id="Username" placeholder="Username">
+                        </div>
+                        <div class="form-group col-md-6">
+                             <label for="Firstname">Edit Firstname</label>
+                            <input type="text" class="form-control" name ="firstname" id="Firstname" placeholder="Firstname">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Email">Edit Email</label>
+                            <input type="email" class="form-control" name="email" id="Email" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Lastname">Edit Lastname</label>
+                            <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Description">Edit Description</label>
+                            <textarea class="form-control" id="Description" name="description" placeholder="Description" rows="4" cols="50"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Password">Edit Password</label>
+                            <input type="password" class="form-control" name="password" id="Password">
+                            <label for="Password">Confirm Password</label>
+                            <input type="password" class="form-control" id="Password" name="password_conf">
+                            <small id="passwordHelpBlock" class="form-text text-muted">please verify by entering your current password</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
             </div>
         </div>
     </div>

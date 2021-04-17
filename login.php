@@ -17,7 +17,8 @@ if (!empty($_POST)) {
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
-}
+}   
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

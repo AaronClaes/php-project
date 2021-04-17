@@ -19,8 +19,6 @@ if (!empty($_POST)) {
   }
 }
 
-var_dump($user_ID)
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
