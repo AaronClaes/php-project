@@ -1,35 +1,27 @@
 <?php
 include_once("bootstrap.php");
 $conn = Db::getConnection();
-try{
-    $user = User::getLoggedUser($_SESSION['username']);
-    }
-    catch(\Throwable $th){
-      $error = $th->getMessage();
-  }
-
-
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    try {
-        $info = User::getLoggedUser($_SESSION['username']);
-        $info->setUsername ($_POST['username'], 'edit');
-        $info->setFirstname ($_POST['firstname']);
-        $info->setLastname ($_POST['lastname']);
-        $info->setEmail ($_POST['email']);
-        $info->setDescription ($_POST['description']);
-        $info->setPicture ($_POST['picture']);
-
-        $result = $info->updateInfo($userId);
+try {
+    $user = new User();
+    $currentuser = $user->getLoggedUser($_SESSION['username']);
+    /*if($_SERVER['REQUEST_METHOD'] == 'POST'){   */
+    if(isset($_POST)){
+        $user->setUsername ($_POST['username'], 'edit');
+        $user->setFirstname ($_POST['firstname']);
+        $user->setLastname ($_POST['lastname']);
+        $user->setEmail ($_POST['email']);
+        $user->setDescription ($_POST['description']);
+        $user->setPicture ($_POST['picture']);
+        $result = $user->updateInfo($_SESSION['username']);
         // If the result from the save is success, redirect to the index.
         if(!empty($result)) {
-            $success = "Preferences are up to date";
+            $success = "";
         }
-  } catch (\Throwable $th) {
-    $error =$th->getMessage();
-  }       
-}
-
-
+    }
+    } catch (\Throwable $th) {
+        $error =$th->getMessage();
+    }    
+    var_dump($_POST)
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +70,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <img src="https://tinyurl.com/abzdvtrz" alt="">
                      </div>
                      <div class="profile-header-info">
-                        <h4 class="m-t-10 m-b-5"><?php echo $user["username"]; ?></h4>
+                        <h4 class="m-t-10 m-b-5"><?php echo $currentuser['username']; ?></h4>
                         <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                      </div>
 
@@ -93,19 +85,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <div class="form-row form-spacing">
                         <div class="form-group col-md-6">
                             <label for="Username">Edit Username</label>
-                            <input type="text" class="form-control" name="username" id="Username" placeholder="Username">
+                            <input type="text" class="form-control" name="username" id="Username" placeholder="Username" value = <?php echo $currentuser['username']; ?>>
                         </div>
                         <div class="form-group col-md-6">
                              <label for="Firstname">Edit Firstname</label>
-                            <input type="text" class="form-control" name ="firstname" id="Firstname" placeholder="Firstname">
+                            <input type="text" class="form-control" name ="firstname" id="Firstname" placeholder="Firstname" value = <?php echo $currentuser['firstname']; ?>>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Email">Edit Email</label>
-                            <input type="email" class="form-control" name="email" id="Email" placeholder="Email">
+                            <input type="email" class="form-control" name="email" id="Email" placeholder="Email" value = <?php echo $currentuser['email']; ?>>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Lastname">Edit Lastname</label>
-                            <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname">
+                            <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname" value = <?php echo $currentuser['lastname']; ?>>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Description">Edit Description</label>

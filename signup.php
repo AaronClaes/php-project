@@ -17,6 +17,8 @@ if (!empty($_POST)) {
   } catch (\Throwable $th) {
     $error = $th->getMessage();
   }
+  
+  var_dump($_POST);
 }
 
 ?>

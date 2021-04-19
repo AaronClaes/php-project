@@ -2,13 +2,6 @@
   include_once("bootstrap.php");
   $conn = Db::getConnection();
 
-  try{
-    $user = User::getLoggedUser($_SESSION['username']);
-    }
-    catch(\Throwable $th){
-      $error = $th->getMessage();
-  }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +26,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="Profile.php">Profile</a>
+        <a class="nav-link" href="profile.php">Profile</a>
         <a class="nav-link justify-content-end" href="logout.php">Logout</a>
 
       </div>
@@ -56,7 +49,7 @@
                      </div>
                      
                      <div class="profile-header-info">
-                        <h4 class="m-t-10 m-b-5"> <?php echo $user["username"] ?> </h4>
+                        <h4 class="m-t-10 m-b-5"> <?php echo $_SESSION['username']; ?> </h4>
                         <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                      </div>
 

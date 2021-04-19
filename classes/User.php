@@ -20,6 +20,19 @@ class User
         return $this->user_ID;
     }
 
+        /**
+     * Set the value of user_ID
+     *
+     * @return  self
+     */ 
+    public function setUser_ID($user_ID)
+    {
+        $_SESSION["id"] = $user_ID;
+        $this->user_ID = $user_ID;
+
+        return $this;
+    }
+
     /**
      * Get the value of username
      */
@@ -58,9 +71,9 @@ class User
             if ($result != true) {
                 throw new Exception("You are already using this username");
             }
-            $this->username = $username;
-            return $this;
         }
+        $this->username = $username;
+        return $this;
     }    
 }
 
@@ -254,7 +267,7 @@ class User
 
 
     //Get current active user
-    public static function getLoggedUser($username)
+    public function getLoggedUser($username)
         {
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
@@ -267,27 +280,10 @@ class User
         return $user;
     }
 
-    public function update($username, $firstname, $lastname, $email, $picture, $description, $id)
-{
-    $conn = Db::getConnection();
-    $statement = $conn->prepare("UPDATE users set username = '$username', firstname = '$firstname', lastname = '$lastname' , description='$description', email='$email', ,Picture='$picture' where id = $id");
-    $statement->execute();
-    $result = $statement->fetch();
-        if($result)
-        {
-		return true;
-	}
-        else{
-		return false;
-	}
-}
-
-public function updateInfo($userId){
+public function updateInfo($currentUsername){
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname', lastname = :lastname , description = :description, email = :email, Picture = :picture WHERE userId = :userId");
-
-
+    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, Picture = :picture WHERE username = :currentUsername");
     $username = $this->getUsername();
     $firstname = $this->getFirstname();
     $lastname = $this->getLastname();
@@ -295,17 +291,21 @@ public function updateInfo($userId){
     $email = $this->getEmail(); 
     $picture = $this->getPicture();
 
-    $statement->bindValue(":userId", $userId);
+    //$statement->bindValue(":userId", $userId);
+    $statement->bindValue(":currentUsername", $currentUsername);
     $statement->bindValue(":username", $username);
     $statement->bindValue(":firstname", $firstname);
     $statement->bindValue(":lastname", $lastname);
     $statement->bindValue(":description", $description);
     $statement->bindValue(":description", $description);
     $statement->bindValue(":email", $email);
+    $statement->bindValue(":picture", $picture);
 
     $result = $statement->execute() ;
 
     return $result;
+    var_dump($result);
 
+    }
 }
-}
+
