@@ -11,26 +11,27 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <img class="logo" src="img/gg-logo.png" alt="logo">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+    <div class="container-fluid text-center ">
+    <img class="logo" src="img/gg-logo.png" alt="logo">
 
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
             <div class="navbar-nav">
+            <a class="nav-link " aria-current="page" href="home.php">Home</a>
+            
                 <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
-                <a class="nav-link" href="#">Login</a>
-                <a class="nav-link" href="about.php">About Us</a>
-
+                
+                <a class="nav-link " href="about.php">About Us</a>
+                <a class="nav-link" href="login.php">Login</a>
             </div>
         </div>
     </div>
 </nav>
-
 <body>
     <div class="row" style="--bs-gutter-x: 0rem;">
         <div class="bg-image p-3 text-center shadow-1-strong col-md  text-white flex-item-left" style="background-color:#7a7f84 ;
@@ -41,7 +42,9 @@
             <p>0495429542</p>
         </div>
 
-
+        
+        
+      
 
         <div class="col-md wrapper" ">
             <form action="mailto:elias.valienne@hotmail.com" method="POST">
