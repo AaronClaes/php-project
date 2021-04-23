@@ -142,7 +142,17 @@ font-size: 0.7rem;
     border: 5px solid #7a7f84;
     margin-bottom: 1%;
 }
+.hero{
+   
+    
+    background-repeat: no-repeat;
+    padding-bottom: 200%;
+    height: 300%;
+    width: 100%; 
+    background-size: 360%;
 
+    overflow-x: visible;
+}
 .hero_bg{
     background-color: #2c2f33;
     
@@ -354,7 +364,17 @@ font-size: 0.7rem;
     
     
     }
+    .hero{
+        
+        
+        background-repeat: no-repeat;
+        padding-bottom: 200%;
+        height: 300%;
+        width: 100%; 
+        background-size: 360%;
     
+        overflow-x: visible;
+    }
     
     .formTitleEmail{
         font-family: azo-sans-web, sans-serif;
@@ -493,6 +513,17 @@ font-size: 0.7rem;
         
             overflow-x: visible;
         }
+        .hero{
+            
+            
+            background-repeat: no-repeat;
+            padding-bottom: 128%;
+            height: 100%;
+            width: 100%; 
+            background-size: 250%;
+        
+            overflow-x: visible;
+        }
         .hero_bg2{
             background-image: url("https://wallpapercave.com/wp/wp3277296.jpg");
             
@@ -577,13 +608,16 @@ font-size: 0.7rem;
                 
                 
             }
-            .formTitlePassword{
+            .hero{
                
-               
-            }
-         .formTitleUsername{
                 
+                background-repeat: no-repeat;
+                padding-bottom: 52%;
+                height: 100%;
+                width: 100%; 
+                background-size: 100%;
             
+                overflow-x: visible;
             }
             
             .formEmail{
