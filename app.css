@@ -1,0 +1,58 @@
+@media  screen and (max-width: 415px) {
+    .logo{
+        width: 20%;
+    }
+    .profile-pic{
+        width: 20%;
+        margin-left: 10%;
+        margin-right: 5%;
+    }
+
+}
+
+
+
+
+@media  screen and (min-width: 768px) {
+
+    .logo{
+        width: 20%;
+    }
+
+
+
+}
+
+
+
+
+
+@media  screen and (min-width: 1024px) {
+
+    .logo{
+        width: 20%;
+    }
+
+
+
+}
+
+
+
+
+
+
+@media  screen and (min-width: 1600px) {
+
+    .logo{
+        width: 25%;
+      
+    }
+    .profile-pic{
+        width: 20%;
+        margin-left: 10%;
+        margin-right: 5%;
+    }
+
+
+}
