@@ -33,9 +33,9 @@ if (!empty($_POST)) {
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="box-shadow: 0px 0px 6px grey; background-color:#1d1d1b;">
     <div class="container-fluid text-center ">
-    <img class="logo" src="img/gg-logo.png" alt="logo">
+        <img class="logo" src="img/gg-logo.png" alt="logo">
 
 
 
@@ -44,10 +44,10 @@ if (!empty($_POST)) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
             <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-            
+                <a class="nav-link " aria-current="page" href="home.php">Home</a>
+
                 <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
-                
+
                 <a class="nav-link " href="about.php">About Us</a>
                 <a class="nav-link active" href="login.php">Login</a>
             </div>
@@ -55,15 +55,16 @@ if (!empty($_POST)) {
     </div>
 </nav>
 
-<body>
+<body style="background-color: #23272a;">
   <?php if (isset($error)) : ?>
     <div class="error">
       <h3><?php echo $error ?></h3>
     </div>
   <?php endif; ?>
   <form action="" method="POST">
-    <div class="form-contact wrapper">
-
+    
+    <div class="form wrapper ">
+<div class="hero_bg">
       
         <h2 class="formTitleEmail">Email:</h2>
       
@@ -93,8 +94,9 @@ if (!empty($_POST)) {
       <button type="submit" class="btn btn-mobile">Sign up</button>
 
     </div>
+    </div>
   </form>
-  <div class="hero_bg2"></div>
+  
 
   <footer class="footer bg-light text-center text-lg-start">
     <!-- Copyright -->

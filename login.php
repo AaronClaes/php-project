@@ -32,7 +32,7 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="box-shadow: 0px 0px 6px grey; background-color:#1d1d1b;">
     <div class="container-fluid text-center ">
         <img class="logo" src="img/gg-logo.png" alt="logo">
 
@@ -54,7 +54,7 @@ if (!empty($_POST)) {
     </div>
 </nav>
 
-<body>
+<body style="background-color: #23272a;">
     <div class="form wrapper">
         <?php if (isset($error)) : ?>
             <div class="user-messages-area">
@@ -66,7 +66,7 @@ if (!empty($_POST)) {
                 </div>
             </div>
         <?php endif; ?>
-
+ <div class="hero_bg">
         <form action="" method="POST">
 
             <h1 class="formTitleEmail">Username</h1>
@@ -80,7 +80,7 @@ if (!empty($_POST)) {
 
     </div>
     </form>
-    <div class="hero_bg"></div>
+   </div>
 
     <footer class="footer  text-center text-lg-start">
         <!-- Copyright -->

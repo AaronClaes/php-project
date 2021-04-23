@@ -12,6 +12,7 @@
 font-weight: 400;
 
 font-style: normal;
+font-size: 0.7rem;
 
 }
 .hero-title{
@@ -91,8 +92,8 @@ font-style: normal;
 
 @media  screen and (max-width: 767px) {
 .form{
-    float: right;
-  margin-right: 18% ;
+    
+  
   margin-top: 50% ;
     display: flex;
     justify-content: flex-end;
@@ -105,7 +106,7 @@ font-style: normal;
 
 }
 .form-contact{
-    float: right;
+    
   margin-right: 18% ;
   margin-top: 50% ;
     display: flex;
@@ -143,25 +144,20 @@ font-style: normal;
 }
 
 .hero_bg{
-    background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+    background-color: #2c2f33;
     
     background-repeat: no-repeat;
-    padding-bottom: 200%;
-    height: 300%;
-    width: 100%; 
-    background-size: 360%;
-
+    padding: 20%;
+   
+    border-radius: 25px;
     overflow-x: visible;
 }
 .hero_bg2{
-    background-image: url("https://images.hdqwalls.com/download/the-legend-of-zelda-breath-of-the-wild-4k-po-800x1280.jpg");
+    background-color: #2c2f33;
     
     
     background-repeat: no-repeat;
-    padding-bottom: 163%;
-    height: 300%;
-    width: 100%; 
-    background-size: 120%;
+    
 
     overflow-x: visible;
 }
@@ -241,9 +237,10 @@ font-style: normal;
   }
   @media  screen and (max-width: 415px) {
     .form{
-        float: right;
-      margin-right: 14% ;
-      margin-top: 30% ;
+       
+      
+      margin-top: 20% ;
+      margin-bottom: 45%;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
@@ -254,7 +251,7 @@ font-style: normal;
     
     }
     .form-contact{
-        float: right;
+        
       margin-right: 19% ;
       margin-top: 30% ;
         display: flex;
@@ -313,8 +310,10 @@ font-style: normal;
     }
     .btn-mobile{
         color: white;
-        border: 2px solid white;
+        border: 2px solid #FD3939;
+        background-color: #FD3939;
         margin-top: 2%;
+        
     }
     .btn-mobile:hover{
         color: black;
@@ -324,17 +323,20 @@ font-style: normal;
     
 }
   @media  screen and (min-width: 768px) {
+      #MA-text{
+          font-size: 1rem;
+      }
     .form{
-        float: right;
-      margin-right: 15% ;
-      margin-top: 40% ;
+       
+        margin-bottom: 45%;
+      margin-top: 20% ;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
        text-align: center;
         z-index: 10;
-       
-        font-size: 2rem;
+        
+        font-size: 1.5rem;
     
     
     }
@@ -382,7 +384,8 @@ font-style: normal;
     }
     .btn-mobile{
         color: white;
-        border: 2px solid white;
+        border: 2px solid #FD3939;
+        background-color: #FD3939;
         margin-top: 2%;
         font-size: 1.5rem;
         padding-right: 50px;
@@ -394,18 +397,15 @@ font-style: normal;
         
     }
     .hero_bg{
-        background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
-        
+        background-color: #2c2f33;
+        border-radius: 25px;
         background-repeat: no-repeat;
-        padding-bottom: 200%;
-        height: 300%;
-        width: 100%; 
-        background-size: 360%;
+       padding: 5%;
     
-        overflow-x: visible;
+        
     }
     .hero_bg2{
-        background-image: url("https://images.hdqwalls.com/download/the-legend-of-zelda-breath-of-the-wild-4k-po-800x1280.jpg");
+        background-color: #2c2f33;
         
         background-repeat: no-repeat;
         padding-bottom: 128%;
@@ -433,7 +433,7 @@ font-style: normal;
 }
       @media  screen and (min-width: 1024px) {
         .form{
-            float: right;
+            
           margin-right: 30% ;
           margin-top: 20% ;
             display: flex;
@@ -483,7 +483,7 @@ font-style: normal;
             font-size: 1.2rem;
         }
         .hero_bg{
-            background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+            background-color: #23272a;
             
             background-repeat: no-repeat;
             padding-bottom: 128%;
@@ -545,8 +545,8 @@ font-style: normal;
     }
         @media  screen and (min-width: 1600px) {
             .form{
-                float: right;
-              margin-right: 35% ;
+                margin-bottom: 8%;
+              margin-right: 25% ;
               margin-top: 5% ;
                 display: flex;
                 justify-content: flex-end;
@@ -607,13 +607,11 @@ font-style: normal;
                 font-size: 1.2rem;
             }
             .hero_bg{
-                background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
+                background-color: #2c2f33;
                 
                 background-repeat: no-repeat;
-                padding-bottom: 52%;
-                height: 100%;
-                width: 100%; 
-                background-size: 100%;
+                padding: 20%;
+              
             
                 overflow-x: visible;
             }
@@ -663,12 +661,13 @@ font-style: normal;
             }
             .btn-mobile{
                 color: white;
-                border: 2px solid #fff;
+                border: 2px solid #FD3939;
+        background-color: #FD3939;
                 margin-top: 2%;
             }
             .btn-mobile:hover{
                 color: black;
-                background-color: white;
+                background-color: #d83434;
                 
             }
 
