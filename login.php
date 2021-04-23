@@ -7,17 +7,23 @@ if (!empty($_POST)) {
     try {
         $user = new User();
 
-        $user->setUsername($_POST["username"], "login");
-        $user->setPassword($_POST["password"], "login");
-        $user->login();
+        $user->setUsername($_POST["username"]);
+        $user->setPassword($_POST["password"]);
+        $user->canLogin();
+
         session_start();
-        $_SESSION["username"] = $user->getUsername();
-        var_dump($_SESSION["username"]);
+
+        $username = $user->getUsername();
+
+        $currentUser = $user->getLoggedUser($username);
+        $_SESSION["userId"] = $currentUser["id"];
+        $_SESSION["username"] = $currentUser["username"];
+
         header("Location: index.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
-}   
+}
 
 ?>
 <!DOCTYPE html>

@@ -10,7 +10,7 @@ class User
     private $email;
     private $picture;
     private $description;
-    
+
 
     /**
      * Get the value of username
@@ -25,36 +25,31 @@ class User
      *
      * @return  self
      */
-    public function setUsername($username, $action)
+    public function setUsername($username)
     {
         //CHECK IF EMPTY
         if (empty($username)) {
             throw new Exception("Username may not be empty!");
         }
-        //CHECK IF USERNAME IS AVAILABLE
-        if ($action === "signup") {
-            $conn = Db::getConnection();
-            $statement = $conn->prepare("select * from users where username = :username");
-            $statement->bindValue(":username", $username);
-            $statement->execute();
-            $result = $statement->fetch();
-            if ($result != false) {
-                throw new Exception("Username is already being used, please try a different one");
-            }
-        if($action === "edit"){
-            $conn = Db::getConnection();
-            $statement = $conn->prepare("select * from users where username = :username");
-            $statement->bindValue(":username", $username);
-            $statement->execute();
-            $result= $statement->fetch();
-            if ($result != true) {
-                throw new Exception("You are already using this username");
-            }
-        }
         $this->username = $username;
         return $this;
-    }    
-}
+    }
+
+    public function checkUsername()
+    {
+        $username = $this->getUsername();
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from users where username = :username");
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $result = $statement->fetch();
+        if ($result != false) {
+            throw new Exception("Username is already being used, please try a different one");
+        }
+
+        $this->username = $username;
+        return $this;
+    }
 
     /**
      * Get the value of firstname
@@ -115,20 +110,22 @@ class User
      *
      * @return  self
      */
-    public function setPassword($password, $action)
+    public function setPassword($password)
     {
         if (empty($password)) {
             throw new Exception("Password may not be empty!");
         }
+        $this->password = $password;
+        return $this;
+    }
 
-        if ($action === "signup") {
-            $options = [
-                'cost' => 14,
-            ];
-            $this->password = password_hash($password, PASSWORD_DEFAULT, $options);
-        } else {
-            $this->password = $password;
-        }
+    public function hashPassword()
+    {
+        $password = $this->getPassword();
+        $options = [
+            'cost' => 14,
+        ];
+        $this->password = password_hash($password, PASSWORD_DEFAULT, $options);
         return $this;
     }
 
@@ -150,22 +147,30 @@ class User
         if (empty($email)) {
             throw new Exception("Email may not be empty!");
         }
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from users where email = :email");
-        $statement->bindValue(":email", $email);
-        $statement->execute();
-        $result = $statement->fetch();
-        /*if ($result != false) {
-            throw new Exception("Email is already being used, please try a different one");
-        } */
         $this->email = $email;
 
         return $this;
     }
 
-        /**
+    public function checkEmail()
+    {
+        $email = $this->getEmail();
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindValue(":email", $email);
+        $statement->execute();
+        $result = $statement->fetch();
+        if ($result != false) {
+            throw new Exception("Email is already being used, please try a different one");
+        }
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -175,7 +180,7 @@ class User
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -185,7 +190,7 @@ class User
 
     /**
      * Get the value of picture
-     */ 
+     */
     public function getPicture()
     {
         return $this->picture;
@@ -195,13 +200,13 @@ class User
      * Set the value of picture
      *
      * @return  self
-     */ 
+     */
     public function setPicture($picture)
     {
         $this->picture = $picture;
 
         return $this;
-    }  
+    }
 
     public function save()
     {
@@ -215,7 +220,6 @@ class User
         $username = $this->getUsername();
         $password = $this->getPassword();
 
-
         $statement->bindValue(":email", $email);
         $statement->bindValue(":firstname", $firstname);
         $statement->bindValue(":lastname", $lastname);
@@ -224,7 +228,7 @@ class User
         $statement->execute();
     }
 
-    public function login()
+    public function canLogin()
     {
         $conn = Db::getConnection();
 
@@ -247,42 +251,55 @@ class User
 
     //Get current active user
     public function getLoggedUser($username)
-        {
-            $conn = Db::getConnection();
-            $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
-            $statement->bindValue(":username", $username);
-            $statement->execute();
-            $user = $statement->fetch(PDO::FETCH_ASSOC);
-        if(empty($user)){
-                throw new Exception(" No user is logged in.");
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if (empty($user)) {
+            throw new Exception(" No user is logged in. error 1");
         }
         return $user;
     }
 
-public function updateInfo($currentUserId){
+    public function getLoggedUsername($userId)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users WHERE id = :userId");
+        $statement->bindValue(":userId", $userId);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if (empty($user)) {
+            throw new Exception(" No user is logged in. error 2");
+        }
+        return $user;
+    }
 
-    $conn = Db::getConnection();
-    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
-    $statement->bindValue(":currentUserId", $currentUserId);
+    public function updateInfo($currentUserId)
+    {
 
-    $username = $this->getUsername();
-    $firstname = $this->getFirstname();
-    $lastname = $this->getLastname();
-    $description = $this->getDescription();
-    $email = $this->getEmail(); 
-    $picture = $this->getPicture();
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
+        $statement->bindValue(":currentUserId", $currentUserId);
 
-    $statement->bindValue(":username", $username);
-    $statement->bindValue(":firstname", $firstname);
-    $statement->bindValue(":lastname", $lastname);
-    $statement->bindValue(":description", $description);
-    $statement->bindValue(":description", $description);
-    $statement->bindValue(":email", $email);
-    $statement->bindValue(":picture", $picture);
+        $username = $this->getUsername();
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $description = $this->getDescription();
+        $email = $this->getEmail();
+        $picture = $this->getPicture();
 
-    $user = $statement->execute() ;
+        $statement->bindValue(":username", $username);
+        $statement->bindValue(":firstname", $firstname);
+        $statement->bindValue(":lastname", $lastname);
+        $statement->bindValue(":description", $description);
+        $statement->bindValue(":description", $description);
+        $statement->bindValue(":email", $email);
+        $statement->bindValue(":picture", $picture);
 
-    return $user;
+        $user = $statement->execute();
+
+        return $user;
     }
 }
-

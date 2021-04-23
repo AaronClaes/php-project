@@ -6,19 +6,28 @@ if (!empty($_POST)) {
   try {
     $user = new User();
     $user->setEmail($_POST["email"]);
+    $user->checkEmail();
+
     $user->setFirstname($_POST["firstName"]);
     $user->setLastname($_POST["lastName"]);
-    $user->setUsername($_POST["username"], "signup");
-    $user->setPassword($_POST["password"], "signup");
+
+    $user->setUsername($_POST["username"]);
+    $user->checkUsername();
+
+    $user->setPassword($_POST["password"]);
+    $user->hashPassword();
+
     $user->save();
+
+    $username = $user->getUsername();
+    $currentUser = $user->getLoggedUser($username);
     session_start();
-    $_SESSION["username"] = $user->getUsername();
+    $_SESSION["userId"] = $currentUser["id"];
+
     header("Location: index.php");
   } catch (\Throwable $th) {
     $error = $th->getMessage();
   }
-  
-  var_dump($_POST);
 }
 
 ?>
