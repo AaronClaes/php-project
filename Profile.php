@@ -12,15 +12,13 @@ try {
         $user->setEmail ($_POST['email']);
         $user->setDescription ($_POST['description']);
         $user->setPicture ($_POST['picture']);
-        $result = $user->updateInfo($_SESSION['username']);
+        $user->updateInfo($currentuser['id']);
         // If the result from the save is success, redirect to the index.
-        if(!empty($result)) {
-            $success = "";
-        }
     }
     } catch (\Throwable $th) {
         $error =$th->getMessage();
-    }    
+    }
+
     var_dump($_POST)
 ?>
 
@@ -40,6 +38,19 @@ try {
     <title>Profile</title>
 
 </head>
+
+<?php if (isset($error)) : ?>
+            <div class="user-messages-area">
+                <div class="alert alert-danger">
+
+                    <ul>
+                        <li><?php echo $error ?></li>
+                    </ul>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <img class="logo" src="img/gg-logo.png" alt="logo">
@@ -71,7 +82,7 @@ try {
                      </div>
                      <div class="profile-header-info">
                         <h4 class="m-t-10 m-b-5"><?php echo $currentuser['username']; ?></h4>
-                        <p class="m-b-10">Rank 5 - Backseat Gamer</p>
+                        <p class="m-b-10"><?php echo $currentuser['email']; ?></p>
                      </div>
 
                     </div>
@@ -98,6 +109,10 @@ try {
                         <div class="form-group col-md-6">
                             <label for="Lastname">Edit Lastname</label>
                             <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname" value = <?php echo $currentuser['lastname']; ?>>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="picture">Picture</label>
+                            <input type="text" class="form-control" id="picture" name="picture" placeholder="picture" value = <?php echo $currentuser['picture']; ?>>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Description">Edit Description</label>

@@ -3,7 +3,6 @@ include_once(__DIR__ . "/Db.php");
 
 class User
 {
-    private $user_ID;
     private $username;
     private $firstname;
     private $lastname;
@@ -12,26 +11,6 @@ class User
     private $picture;
     private $description;
     
-        /**
-     * Get the value of username
-     */
-    public function getUserID()
-    {
-        return $this->user_ID;
-    }
-
-        /**
-     * Set the value of user_ID
-     *
-     * @return  self
-     */ 
-    public function setUser_ID($user_ID)
-    {
-        $_SESSION["id"] = $user_ID;
-        $this->user_ID = $user_ID;
-
-        return $this;
-    }
 
     /**
      * Get the value of username
@@ -176,9 +155,9 @@ class User
         $statement->bindValue(":email", $email);
         $statement->execute();
         $result = $statement->fetch();
-        if ($result != false) {
+        /*if ($result != false) {
             throw new Exception("Email is already being used, please try a different one");
-        }
+        } */
         $this->email = $email;
 
         return $this;
@@ -280,10 +259,12 @@ class User
         return $user;
     }
 
-public function updateInfo($currentUsername){
+public function updateInfo($currentUserId){
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, Picture = :picture WHERE username = :currentUsername");
+    $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
+    $statement->bindValue(":currentUserId", $currentUserId);
+
     $username = $this->getUsername();
     $firstname = $this->getFirstname();
     $lastname = $this->getLastname();
@@ -291,8 +272,6 @@ public function updateInfo($currentUsername){
     $email = $this->getEmail(); 
     $picture = $this->getPicture();
 
-    //$statement->bindValue(":userId", $userId);
-    $statement->bindValue(":currentUsername", $currentUsername);
     $statement->bindValue(":username", $username);
     $statement->bindValue(":firstname", $firstname);
     $statement->bindValue(":lastname", $lastname);
@@ -301,11 +280,9 @@ public function updateInfo($currentUsername){
     $statement->bindValue(":email", $email);
     $statement->bindValue(":picture", $picture);
 
-    $result = $statement->execute() ;
+    $user = $statement->execute() ;
 
-    return $result;
-    var_dump($result);
-
+    return $user;
     }
 }
 
