@@ -46,16 +46,16 @@
         
       
 
-        <div class="col-md wrapper" ">
-            <form action="mailto:elias.valienne@hotmail.com" method="POST">
+        <div class="col-md wrapper ">
+            <form action="mailto:elias.valienne@hotmail.com" class="contact-form form-mobile form-medium form-maxScreen" method="POST">
                 <div class="form-outline" style="margin-top: 2%;">
-                    <label class="form-label" for="typeText">Name input</label>
+                    <label class="form-label" for="typeText">Name</label>
                     <input placeholder="Your name" type="text" name="name" method="POST" enctype="multipart/form-data" name="EmailForm" type="text" id="typeText" size="19" class="form-control" required />
 
                 </div>
 
                 <div class="form-outline">
-                    <label class="form-label" for="typeEmail">Email input</label>
+                    <label class="form-label" for="typeEmail">Email </label>
                     <fieldset>
                         <input placeholder="Your Email Adress" action="?go" method="post" type="text" name="email" id="typeEmail" class="form-control" required />
                     </fieldset>
@@ -66,20 +66,19 @@
                     <textarea placeholder="Type your Message Here...." class="form-control" id="textAreaExample" rows="4" required></textarea>
 
                 </div>
-                <button id="submit" data-submit="...Sending" name="submit" type="submit" class="btn btn-outline-secondary" data-mdb-ripple-color="dark" value="send">
+                <button id="submit" data-submit="...Sending" name="submit" type="submit" id="contact-submit" class="btn btn-secondary btn-mobile" data-mdb-ripple-color="dark" value="send">
                     Submit
                 </button>
             </form>
         </div>
-
-        <footer class="footer bg-light text-center text-lg-start top">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2020 Copyright:
-                <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+        <footer class="footer  text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">Aaron, Tommy, Elias</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
 
 </html>

@@ -36,7 +36,7 @@
 <body>
     <div class="row" style="--bs-gutter-x: 0rem;">
         <div class="bg-image p-3 text-center shadow-1-strong col-md  text-white flex-item-left" style="background-color:#7a7f84 ;
-       width: 80vh; background-size: 110%; background-repeat: no-repeat; ">
+        background-size: 110%;  ">
             <h1 class="mb-3 h2">About us!</h1>
 
             <p>Hello! we are 3 student from Thomas more making a social media platform for gamer. </p>
@@ -45,23 +45,23 @@
 
 
 
-        <div class="col-md ">
+        <div class="col-md col-mobile">
 
             <h1 class=" p-3 text-center">Who are we?</h1>
            <div class="offset-md-2">
-           <img src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
+           <img src="img/pfelias2.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
 
             <div class="offset-md-2">
-                <img src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
+                <img src="img/pfelias2.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
 
             <div class="offset-md-2">
-                <img  src="img/pfElias.png" style="width: 15%; margin-left: 32%" alt="profilePic">
+                <img  src="img/pfelias2.png" style="width: 15%; margin-left: 32%" alt="profilePic">
                 <p class="center" >Elias Valienne</p>
                 <p class="center" style=" margin-top: -12px;">“Less is more”</p>
             </div>
@@ -70,11 +70,11 @@
 
     </div>
 
-    <footer class="footer bg-light text-center text-lg-start">
+    <footer class="footer  text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            <a class="text-dark" href="https://mdbootstrap.com/">Aaron, Tommy, Elias</a>
         </div>
         <!-- Copyright -->
     </footer>

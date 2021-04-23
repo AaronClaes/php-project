@@ -1,7 +1,7 @@
 <?php
 include_once("bootstrap.php");
 
-$conn = Db::getConnection();
+
 
 if (!empty($_POST)) {
     try {
@@ -34,7 +34,7 @@ if (!empty($_POST)) {
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
     <div class="container-fluid text-center ">
-    <img class="logo" src="img/gg-logo.png" alt="logo">
+        <img class="logo" src="img/gg-logo.png" alt="logo">
 
 
 
@@ -43,10 +43,10 @@ if (!empty($_POST)) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
             <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-            
+                <a class="nav-link " aria-current="page" href="home.php">Home</a>
+
                 <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
-                
+
                 <a class="nav-link " href="about.php">About Us</a>
                 <a class="nav-link active" href="login.php">Login</a>
             </div>
@@ -68,15 +68,15 @@ if (!empty($_POST)) {
         <?php endif; ?>
 
         <form action="" method="POST">
-            <label class="formTitleEmail">
-                <h1>Login</h1>
-            </label>
+
+            <h1 class="formTitleEmail">Username</h1>
             <input type="text" class="formEmail" name="username" placeholder="username">
+            <h1 class="formTitleEmail">Password</h1>
             <input type="password" name="password" class="formPassword" placeholder="password">
             <div class="sign_up">
-                <p>Nog geen account? <a href="signup.php">Maak er één aan</a></p>
+                <p id="MA-text">Nog geen account? <a href="signup.php">Maak er één aan</a></p>
             </div>
-            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="submit" class="btn  btn-mobile">Log in</button>
 
     </div>
     </form>

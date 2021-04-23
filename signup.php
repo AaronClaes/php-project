@@ -62,35 +62,35 @@ if (!empty($_POST)) {
     </div>
   <?php endif; ?>
   <form action="" method="POST">
-    <div class="form wrapper">
+    <div class="form-contact wrapper">
 
-      <label class="formTitleEmail">
-        <h2>Email:</h2>
-      </label>
+      
+        <h2 class="formTitleEmail">Email:</h2>
+      
       <input type="email" class="formEmail" name="email" placeholder="name@example.com">
 
-      <label class="formTitleFirstName">
-        <h2>First Name:</h2>
-      </label>
+    
+        <h2 class="formTitleEmail">First Name:</h2>
+      
       <input type="text" class="formFirstName" name="firstName" placeholder="First Name">
 
       <label class="formTitleLastName">
-        <h2>Last Name:</h2>
+        <h2 class="formTitleEmail">Last Name:</h2>
       </label>
       <input type="text" class="formLastName" name="lastName" placeholder="Last Name">
 
 
       <label class="formTitleUsername">
-        <h2>Username:</h2>
+        <h2 class="formTitleEmail">Username:</h2>
       </label>
       <input type="name" class="formUsername" name="username" placeholder="Username">
 
       <label class="formTitlePassword">
-        <h2>Password:</h2>
+        <h2 class="formTitleEmail">Password:</h2>
       </label>
       <input type="password" class="formPassword" name="password" placeholder="password">
 
-      <button type="submit" class="btn btn-primary">Sign up</button>
+      <button type="submit" class="btn btn-mobile">Sign up</button>
 
     </div>
   </form>
