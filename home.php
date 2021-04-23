@@ -1,24 +1,4 @@
-<?php
-include_once("bootstrap.php");
 
-
-
-if (!empty($_POST)) {
-    try {
-        $user = new User();
-
-        $user->setUsername($_POST["username"], "login");
-        $user->setPassword($_POST["password"], "login");
-        $user->login();
-        session_start();
-        $_SESSION["username"] = $user->getUsername();
-        var_dump($_SESSION["username"]);
-        header("Location: index.php");
-    } catch (\Throwable $th) {
-        $error = $th->getMessage();
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +14,7 @@ if (!empty($_POST)) {
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
     <div class="container-fluid text-center ">
-        <img class="logo" src="img/gg-logo.png" alt="logo">
+    <img class="logo" src="img/gg-logo.png" alt="logo">
 
 
 
@@ -43,44 +23,24 @@ if (!empty($_POST)) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
             <div class="navbar-nav">
-                <a class="nav-link " aria-current="page" href="home.php">Home</a>
-
+            <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+            
                 <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
-
+                
                 <a class="nav-link " href="about.php">About Us</a>
-                <a class="nav-link active" href="login.php">Login</a>
+                <a class="nav-link" href="login.php">Login</a>
             </div>
         </div>
     </div>
 </nav>
 
 <body>
-    <div class="form wrapper">
-        <?php if (isset($error)) : ?>
-            <div class="user-messages-area">
-                <div class="alert alert-danger">
+<h1 class="hero-title">Welcome to Gamegram</h1>
+<p  class="hero-text">The gaming social media</p>
+   <a href="login.php">  <button  type="button" class="btn btn-secondary hero-button">Join now!</button></a>
+<div class="hero_bg" style="background-image: url('img/hero-background.png'); "></div>
 
-                    <ul>
-                        <li><?php echo $error ?></li>
-                    </ul>
-                </div>
-            </div>
-        <?php endif; ?>
 
-        <form action="" method="POST">
-
-            <h1 class="formTitleEmail">Username</h1>
-            <input type="text" class="formEmail" name="username" placeholder="username">
-            <h1 class="formTitleEmail">Password</h1>
-            <input type="password" name="password" class="formPassword" placeholder="password">
-            <div class="sign_up">
-                <p id="MA-text">Nog geen account? <a href="signup.php">Maak er één aan</a></p>
-            </div>
-            <button type="submit" class="btn  btn-mobile">Log in</button>
-
-    </div>
-    </form>
-    <div class="hero_bg"></div>
 
     <footer class="footer  text-center text-lg-start">
         <!-- Copyright -->
