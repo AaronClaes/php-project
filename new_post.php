@@ -1,6 +1,18 @@
 <?php
 include_once("bootstrap.php");
 
+if (!empty($_POST)) {
+    try {
+        $post = new Post();
+        $post->setUserId("1234"); //TODO temp id until merge with branch Tommy for getloggeduser function
+        $post->setDescription($_POST["description"]);
+        $post->setTags($_POST["tags"]);
+        $post->saveImage($_FILES["image"]["name"]);
+    } catch (\Throwable $th) {
+        $error = $th->getMessage();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,20 +29,30 @@ include_once("bootstrap.php");
 </head>
 
 <body>
+    <?php if (isset($error)) : ?>
+        <div class="user-messages-area">
+            <div class="alert alert-danger">
+
+                <ul>
+                    <li><?php echo $error ?></li>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <h1>Create a new post</h1>
-        <form>
+        <form enctype="multipart/form-data" method="POST">
             <div class="mb-3">
                 <label for="postDescription" class="form-label">Description</label>
-                <textarea class="form-control form-border" id="postDescription" placeholder="Give your post a description" rows="2"></textarea>
+                <textarea class="form-control form-border" id="postDescription" name="description" placeholder="Give your post a description" rows="2"></textarea>
             </div>
             <div class="mb-3">
                 <label for="postTags" class="form-label">Tags</label>
-                <input type="text" class="form-control form-border" placeholder='Separate tags with a comma' id="postTags" />
+                <input type="text" class="form-control form-border" id="postTags" name="tags" placeholder='Separate tags with a comma' />
             </div>
             <div class="mb-3">
                 <label for="postImage" class="form-label">Image</label>
-                <input type="file" class="form-control form-border" id="postImage" onchange="getImage(this);" />
+                <input type="file" class="form-control form-border" name="image" id="postImage" onchange="getImage(this);" />
             </div>
             <div class="previewImage">
 
