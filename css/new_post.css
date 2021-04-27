@@ -10,7 +10,7 @@ h1 {
 }
 
 body {
-  margin: 0 30em;
+  margin: 0 20em;
   background-color: #23272a;
 }
 
@@ -33,4 +33,10 @@ body {
 .form-border {
   border: 0px;
   border-radius: 20px;
+}
+
+.previewImage img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 1rem;
 }

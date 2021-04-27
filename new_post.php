@@ -30,9 +30,11 @@ include_once("bootstrap.php");
             </div>
             <div class="mb-3">
                 <label for="postImage" class="form-label">Image</label>
-                <input type="file" class="form-control form-border" id="postImage" />
+                <input type="file" class="form-control form-border" id="postImage" onchange="getImage(this);" />
             </div>
+            <div class="previewImage">
 
+            </div>
             <button type="submit" class="btn">Post</button>
         </form>
     </div>
