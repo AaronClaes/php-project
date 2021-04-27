@@ -6,8 +6,11 @@ if (!empty($_POST)) {
         $post = new Post();
         $post->setUserId("1234"); //TODO temp id until merge with branch Tommy for getloggeduser function
         $post->setDescription($_POST["description"]);
-        $post->setTags($_POST["tags"]);
-        $post->saveImage($_FILES["image"]["name"]);
+        $tags = $post->cleanupTags($_POST["tags"]);
+        $post->setTags($tags);
+        $image = $post->saveImage($_FILES["image"]["name"]);
+        $post->setImage($image);
+        $post->save();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }

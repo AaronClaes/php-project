@@ -1,4 +1,7 @@
 <?php
+
+include_once(__DIR__ . "/Db.php");
+
 class Post
 {
     private $userId;
@@ -67,6 +70,8 @@ class Post
         if (!$path_filename_ext) {
             throw new Exception("Something went wrong when uploading the image, please try again later");
         }
+
+        return $path_filename_ext;
     }
 
     /**
@@ -87,6 +92,13 @@ class Post
         $this->image = $image;
 
         return $this;
+    }
+
+    public function cleanupTags($tags)
+    {
+        $tags = strtolower($tags);
+        $tags = str_replace(' ', '', $tags);
+        return $tags;
     }
 
     /**
@@ -147,5 +159,23 @@ class Post
         $this->inappropriate = $inappropriate;
 
         return $this;
+    }
+
+    public function save()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "INSERT INTO posts (user_id, image, description, created, tags) VALUES (:user_id, :image, :description, UTC_TIMESTAMP(), :tags)";
+        $statement = $conn->prepare($sql);
+        $user_id = $this->getUserId();
+        $image = $this->getImage();
+        $description = $this->getDescription();
+        $tags = $this->getTags();
+
+        $statement->bindValue(":user_id", $user_id);
+        $statement->bindValue(":image", $image);
+        $statement->bindValue(":description", $description);
+        $statement->bindValue(":tags", $tags);
+        $statement->execute();
     }
 }
