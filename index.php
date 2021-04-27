@@ -1,6 +1,6 @@
 <?php
 include_once("bootstrap.php");
-$conn = Db::getConnection();
+
 
 ?>
 <!DOCTYPE html>
