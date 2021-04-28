@@ -44,24 +44,24 @@ if (!empty($_POST)) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+    <div class="container-fluid text-center ">
     <img class="logo" src="img/gg-logo.png" alt="logo">
 
-
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
-        <a class="nav-link" href="login.php">Login</a>
-        <a class="nav-link" href="about.php">About Us</a>
-
-      </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
+            <div class="navbar-nav">
+            <a class="nav-link " aria-current="page" href="home.php">Home</a>
+            
+                <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
+                
+                <a class="nav-link " href="about.php">About Us</a>
+                <a class="nav-link active" href="login.php">Login</a>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
 <body>
@@ -71,35 +71,35 @@ if (!empty($_POST)) {
     </div>
   <?php endif; ?>
   <form action="" method="POST">
-    <div class="form wrapper">
+    <div class="form-contact wrapper">
 
-      <label class="formTitleEmail">
-        <h2>Email:</h2>
-      </label>
+      
+        <h2 class="formTitleEmail">Email:</h2>
+      
       <input type="email" class="formEmail" name="email" placeholder="name@example.com">
 
-      <label class="formTitleFirstName">
-        <h2>First Name:</h2>
-      </label>
+    
+        <h2 class="formTitleEmail">First Name:</h2>
+      
       <input type="text" class="formFirstName" name="firstName" placeholder="First Name">
 
       <label class="formTitleLastName">
-        <h2>Last Name:</h2>
+        <h2 class="formTitleEmail">Last Name:</h2>
       </label>
       <input type="text" class="formLastName" name="lastName" placeholder="Last Name">
 
 
       <label class="formTitleUsername">
-        <h2>Username:</h2>
+        <h2 class="formTitleEmail">Username:</h2>
       </label>
       <input type="name" class="formUsername" name="username" placeholder="Username">
 
       <label class="formTitlePassword">
-        <h2>Password:</h2>
+        <h2 class="formTitleEmail">Password:</h2>
       </label>
       <input type="password" class="formPassword" name="password" placeholder="password">
 
-      <button type="submit" class="btn btn-primary">Sign up</button>
+      <button type="submit" class="btn btn-mobile">Sign up</button>
 
     </div>
   </form>

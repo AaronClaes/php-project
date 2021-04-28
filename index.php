@@ -18,20 +18,26 @@
   <title>Feed</title>
 
 </head>
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+    <div class="container-fluid text-center ">
     <img class="logo" src="img/gg-logo.png" alt="logo">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="profile.php">Profile</a>
-        <a class="nav-link justify-content-end" href="logout.php">Logout</a>
 
-      </div>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
+            <div class="navbar-nav">
+            <a class="nav-link " aria-current="page" href="home.php">Home</a>
+            
+                <a class="nav-link active" aria-current="page" href="profile.php">profile</a>
+                
+                <a class="nav-link " href="about.php">About Us</a>
+                <a class="nav-link" href="login.php">Login</a>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
 <body>

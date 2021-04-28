@@ -258,7 +258,7 @@ class User
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         if (empty($user)) {
-            throw new Exception(" No user is logged in. error 1");
+            throw new Exception(" No user is logged in.");
         }
         return $user;
     }
@@ -271,7 +271,7 @@ class User
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         if (empty($user)) {
-            throw new Exception(" No user is logged in. error 2");
+            throw new Exception(" No user is logged in.");
         }
         return $user;
     }
@@ -280,7 +280,7 @@ class User
     {
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("UPDATE users set username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
+        $statement = $conn->prepare("UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
         $statement->bindValue(":currentUserId", $currentUserId);
 
         $username = $this->getUsername();
@@ -294,10 +294,43 @@ class User
         $statement->bindValue(":firstname", $firstname);
         $statement->bindValue(":lastname", $lastname);
         $statement->bindValue(":description", $description);
-        $statement->bindValue(":description", $description);
         $statement->bindValue(":email", $email);
         $statement->bindValue(":picture", $picture);
 
+        $user = $statement->execute();
+
+        return $user;
+    }
+
+    public function verifyPassword($currentUserId)
+    {
+
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT password FROM users WHERE id = :currentUserId");
+
+        $password = $this->getPassword();
+
+        $statement->bindValue(":currentUserId", $currentUserId);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        $hash = $result[0]['password'];
+
+        if (!password_verify($password, $hash)) {
+            throw new Exception("Current password is incorrect!");
+        }
+    }
+
+    public function updatePassword($currentUserId)
+    {
+        $conn = Db::getConnection();
+        
+        $statement = $conn->prepare("UPDATE users SET password = :password WHERE id = :currentUserId");
+        $statement->bindValue(":currentUserId", $currentUserId);
+
+        $password = $this->getPassword();
+        $statement->bindValue(":password", $password);
+        
         $user = $statement->execute();
 
         return $user;
