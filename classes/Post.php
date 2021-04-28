@@ -46,6 +46,11 @@ class Post
      */
     public function setDescription($description)
     {
+        //CHECK IF EMPTY
+        if (empty($description)) {
+            throw new Exception("Description may not be empty!");
+        }
+
         $this->description = $description;
 
         return $this;
@@ -53,6 +58,10 @@ class Post
 
     public function saveImage($image)
     {
+        //CHECK IF EMPTY
+        if (empty($_FILES["image"]["name"])) {
+            throw new Exception("An image upload is required!");
+        }
         $target_dir = "uploads/posts/";
         $file = $image;
         $path = pathinfo($file);
