@@ -94,13 +94,13 @@ include_once("header.inc.php");
       $posts->setUserId($_SESSION["userId"]);
       $feed = $posts->getFeedPosts();
       
-      
-      foreach($feed as $post):  ?>
+      $i = 0;
+      foreach($feed as $i => $post): if ($i == 20) { break; } ?>
          <img src="<?php echo $post['image']?>" alt=""> 
          <p><?php echo $post['description']?></p>
          <p><?php echo $post['created']?></p>
          <p><?php echo $post['username']?></p>
-     <?php endforeach; ?>
+     <?php $i++; endforeach; ?>
       <footer class="footer  text-center text-lg-start">
          <!-- Copyright -->
          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
