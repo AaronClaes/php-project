@@ -4,7 +4,7 @@ include_once("bootstrap.php");
 if (!empty($_POST)) {
     try {
         $post = new Post();
-        $post->setUserId("1234"); //TODO temp id until merge with branch Tommy for getloggeduser function
+        $post->setUserId($_SESSION["userId"]);
         $post->setDescription($_POST["description"]);
         $tags = $post->cleanupTags($_POST["tags"]);
         $post->setTags($tags);
