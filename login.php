@@ -9,7 +9,7 @@ if (!empty($_POST)) {
 
         $user->setUsername($_POST["username"], "login");
         $user->setPassword($_POST["password"], "login");
-        $user->login();
+        $user->canlogin();
         session_start();
         $_SESSION["username"] = $user->getUsername();
         var_dump($_SESSION["username"]);

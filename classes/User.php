@@ -280,7 +280,7 @@ class User
     {
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
+        $statement = $conn->prepare("UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname , bio = :description, email = :email, picture = :picture WHERE id = :currentUserId");
         $statement->bindValue(":currentUserId", $currentUserId);
 
         $username = $this->getUsername();
