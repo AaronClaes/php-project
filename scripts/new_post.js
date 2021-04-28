@@ -8,6 +8,13 @@ function getImage(input) {
       document
         .querySelector(".previewImage img")
         .setAttribute("src", e.target.result);
+
+      document.querySelectorAll(".filter img").forEach((filter) => {
+        filter.src = e.target.result;
+      });
+
+      document.querySelector(".postFilters").classList.remove("hidden");
+      document.querySelector(".postFilters").classList.add("flex");
     };
 
     reader.readAsDataURL(input.files[0]);

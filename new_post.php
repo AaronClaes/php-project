@@ -57,6 +57,29 @@ if (!empty($_POST)) {
                 <label for="postImage" class="form-label">Image</label>
                 <input type="file" class="form-control form-border" name="image" id="postImage" onchange="getImage(this);" />
             </div>
+            <div class="postFilters hidden">
+                <div class="filter">
+                    <img src="" alt="negate">
+                    <h6>Negate</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="grayscale">
+                    <h6>gray scale</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="gaussian blur">
+                    <h6>gaussian blur</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="mean removal">
+                    <h6>mean removal</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="smooth">
+                    <h6>smooth</h6>
+                </div>
+
+            </div>
             <div class="previewImage">
 
             </div>
