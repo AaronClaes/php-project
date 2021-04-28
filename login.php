@@ -7,24 +7,17 @@ if (!empty($_POST)) {
     try {
         $user = new User();
 
-        $user->setUsername($_POST["username"]);
-        $user->setPassword($_POST["password"]);
-        $user->canLogin();
-
+        $user->setUsername($_POST["username"], "login");
+        $user->setPassword($_POST["password"], "login");
+        $user->login();
         session_start();
-
-        $username = $user->getUsername();
-
-        $currentUser = $user->getLoggedUser($username);
-        $_SESSION["userId"] = $currentUser["id"];
-        $_SESSION["username"] = $currentUser["username"];
-
+        $_SESSION["username"] = $user->getUsername();
+        var_dump($_SESSION["username"]);
         header("Location: index.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +29,10 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="https://use.typekit.net/zbb0stp.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="box-shadow: 0px 0px 6px grey; background-color:#1d1d1b;">
     <div class="container-fluid text-center ">
         <img class="logo" src="img/gg-logo.png" alt="logo">
 
@@ -61,7 +54,7 @@ if (!empty($_POST)) {
     </div>
 </nav>
 
-<body>
+<body style="background-color: #23272a;">
     <div class="form wrapper">
         <?php if (isset($error)) : ?>
             <div class="user-messages-area">
@@ -73,7 +66,7 @@ if (!empty($_POST)) {
                 </div>
             </div>
         <?php endif; ?>
-
+ <div class="hero_bg">
         <form action="" method="POST">
 
             <h1 class="formTitleEmail">Username</h1>
@@ -87,7 +80,7 @@ if (!empty($_POST)) {
 
     </div>
     </form>
-    <div class="hero_bg"></div>
+   </div>
 
     <footer class="footer  text-center text-lg-start">
         <!-- Copyright -->
