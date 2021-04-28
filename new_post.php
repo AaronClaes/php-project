@@ -59,24 +59,24 @@ if (!empty($_POST)) {
             </div>
             <div class="postFilters hidden">
                 <div class="filter">
-                    <img src="" alt="negate">
+                    <img src="" alt="normal">
+                    <h6>Normal</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="negate" data-type="IMG_FILTER_NEGATE">
                     <h6>Negate</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="grayscale">
+                    <img src="" alt="gray scale" data-type="IMG_FILTER_GRAYSCALE">
                     <h6>gray scale</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="gaussian blur">
-                    <h6>gaussian blur</h6>
+                    <img src="" alt="warm" data-type="IMG_FILTER_COLORIZE">
+                    <h6>warm</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="mean removal">
-                    <h6>mean removal</h6>
-                </div>
-                <div class="filter">
-                    <img src="" alt="smooth">
-                    <h6>smooth</h6>
+                    <img src="" alt="emboss" data-type="IMG_FILTER_EMBOSS">
+                    <h6>emboss</h6>
                 </div>
 
             </div>
