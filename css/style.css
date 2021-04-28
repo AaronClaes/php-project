@@ -1,7 +1,48 @@
-
-.h1{
+#contact-submit{
+ 
+        color: black;
+        border: 2px solid black;
+        margin-top: 2%;
+    
     
 }
+#MA-text{
+    font-family: azo-sans-web, sans-serif;
+
+font-weight: 400;
+
+font-style: normal;
+
+}
+.hero-title{
+    float: left ;
+   margin-left:13%;
+   margin-top: 45% ;
+   color: white;
+   opacity: 1;
+   font-size: 1.3rem;
+  
+}
+.hero-text{
+    float: left ;
+   margin-left:13%;
+   margin-bottom: 5% ;
+   color: white;
+   opacity: 1;
+   font-size: 1
+.3rem;
+  
+}
+.hero-button{
+    float: left ;
+   margin-left:-55%;
+   margin-top: 70% ;
+   color: white;
+   
+   
+  
+}
+
 .wrapper {
     margin-right: auto; /* 1 */
     margin-left:  auto; /* 1 */
@@ -10,6 +51,7 @@
   
     padding-right: 10px; /* 3 */
     padding-left:  10px; /* 3 */
+    
   }
  
 .navbar{
@@ -46,6 +88,7 @@
     --bs-gutter-y: 0;
 }
 
+
 @media  screen and (max-width: 767px) {
 .form{
     float: right;
@@ -61,10 +104,28 @@
 
 
 }
-.formTitleEmail{
-    font-family: azo-sans-web, sans-serif;  
-    font-size: 2rem;
+.form-contact{
+    float: right;
+  margin-right: 18% ;
+  margin-top: 50% ;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+   text-align: center;
+    z-index: 10;
+ 
     
+
+
+}
+
+
+.formTitleEmail{
+    font-family: azo-sans-web, sans-serif;
+
+    font-weight: 700;
+    
+    font-style: normal;
 }
 .formTitlePassword{
    
@@ -93,11 +154,11 @@
     overflow-x: visible;
 }
 .hero_bg2{
-    background-image: url("https://th.bing.com/th/id/R2da215d71466325c9a995488470b9095?rik=GN6f4DftHDlYUA&riu=http%3a%2f%2f78.media.tumblr.com%2f89dd324a1d3188c3f451d18ee6a41ae0%2ftumblr_onpj4ipBsG1syx6l9o2_1280.png&ehk=kvDUrxzYdKvXx8knIgyAHcetOjZKNQKBIAfUZ%2fzI9zY%3d&risl=&pid=ImgRaw");
+    background-image: url("https://images.hdqwalls.com/download/the-legend-of-zelda-breath-of-the-wild-4k-po-800x1280.jpg");
     
     
     background-repeat: no-repeat;
-    padding-bottom: 200%;
+    padding-bottom: 163%;
     height: 300%;
     width: 100%; 
     background-size: 120%;
@@ -120,19 +181,88 @@
 .top{
     margin-top: 20%;
 }
+.hero-title{
+    float: left ;
+   margin-left:13%;
+   margin-top: 45% ;
+   color: white;
+   opacity: 1;
+   font-size: 1.8rem;
+  
+}
+.hero-text{
+    float: left ;
+   margin-left:13%;
+   margin-bottom: 5% ;
+   color: white;
+   opacity: 1;
+   font-size: 1
+.3rem;
+  
+}
+.hero-button{
+    float: left ;
+   margin-left:-45%;
+   margin-top: 70% ;
+   color: white;
+   
+   
+  
+}
+.hero-title{
+    float: left ;
+   margin-left:13%;
+   margin-top: 45% ;
+   color: white;
+   opacity: 1;
+   font-size: 3rem;
+  
+}
+.hero-text{
+    float: left ;
+   margin-left:13%;
+   margin-bottom: 5% ;
+   color: white;
+   opacity: 1;
+   font-size: 1
+.3rem;
+  
+}
+.hero-button{
+    float: left ;
+
+   color: white;
+   padding: 2%;
+   font-size: 1.5rem
+   
+  
+}
    
   }
-  @media  screen and (max-width: 376px) {
+  @media  screen and (max-width: 415px) {
     .form{
         float: right;
       margin-right: 14% ;
-      margin-top: 50% ;
+      margin-top: 30% ;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
        text-align: center;
         z-index: 10;
       
+    
+    
+    }
+    .form-contact{
+        float: right;
+      margin-right: 19% ;
+      margin-top: 30% ;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+       text-align: center;
+        z-index: 10;
+      color: white;
     
     
     }
@@ -145,6 +275,53 @@
     .top{
         margin-top: 20%;
     }
+    .hero-title{
+        float: left ;
+       margin-left:13%;
+       margin-top: 45% ;
+       color: white;
+       opacity: 1;
+       font-size: 1.5rem;
+      
+    }
+    .hero-text{
+        float: left ;
+       margin-left:13%;
+       margin-bottom: 5% ;
+       color: white;
+       opacity: 1;
+       font-size: 1
+    .3rem;
+      
+    }
+    .hero-button{
+        float: left ;
+       margin-left:-50%;
+       margin-top: 70% ;
+       color: white;
+       
+       
+      
+    }
+    .contact-form{
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .form-mobile{
+        margin-top: -100%;
+        color: white;
+    }
+    .btn-mobile{
+        color: white;
+        border: 2px solid white;
+        margin-top: 2%;
+    }
+    .btn-mobile:hover{
+        color: black;
+        background-color: white;
+        
+    }
+    
 }
   @media  screen and (min-width: 768px) {
     .form{
@@ -161,15 +338,29 @@
     
     
     }
+    .form-contact{
+        float: right;
+      margin-right: 19% ;
+      margin-top: 8% ;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+       text-align: center;
+        z-index: 10;
+       color: white;
+        font-size: 2rem;
+    
+    
+    }
+    
     
     .formTitleEmail{
-        font-family: azo-sans-web, sans-serif;   
+        font-family: azo-sans-web, sans-serif;
+    
+        font-weight: 700;
         
-        
-    }
-    .formTitlePassword{
-       
-       
+        font-style: normal;
+        font-size: 4rem;
     }
    
     .formEmail{
@@ -189,7 +380,19 @@
     border: 5px solid #7a7f84;
         margin-bottom: 1%;
     }
-    
+    .btn-mobile{
+        color: white;
+        border: 2px solid white;
+        margin-top: 2%;
+        font-size: 1.5rem;
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    .btn-mobile:hover{
+        color: black;
+        background-color: white;
+        
+    }
     .hero_bg{
         background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
         
@@ -202,7 +405,7 @@
         overflow-x: visible;
     }
     .hero_bg2{
-        background-image: url("https://th.bing.com/th/id/R2da215d71466325c9a995488470b9095?rik=GN6f4DftHDlYUA&riu=http%3a%2f%2f78.media.tumblr.com%2f89dd324a1d3188c3f451d18ee6a41ae0%2ftumblr_onpj4ipBsG1syx6l9o2_1280.png&ehk=kvDUrxzYdKvXx8knIgyAHcetOjZKNQKBIAfUZ%2fzI9zY%3d&risl=&pid=ImgRaw");
+        background-image: url("https://images.hdqwalls.com/download/the-legend-of-zelda-breath-of-the-wild-4k-po-800x1280.jpg");
         
         background-repeat: no-repeat;
         padding-bottom: 128%;
@@ -225,6 +428,7 @@
     .center{
         margin-left: 25%;
     }
+    
    
 }
       @media  screen and (min-width: 1024px) {
@@ -242,10 +446,14 @@
         
         
         }
+        
         .formTitleEmail{
-            font-family: azo-sans-web, sans-serif;  
+            font-family: azo-sans-web, sans-serif;
+        
+            font-weight: 700;
             
-            
+            font-style: normal;
+            font-size: 2rem;
         }
         .formTitlePassword{
            
@@ -278,10 +486,10 @@
             background-image: url("https://i.pinimg.com/originals/4e/3d/c2/4e3dc23cab082329b06c4a793ce462a1.jpg");
             
             background-repeat: no-repeat;
-            padding-bottom: 82%;
+            padding-bottom: 128%;
             height: 100%;
             width: 100%; 
-            background-size: 160%;
+            background-size: 250%;
         
             overflow-x: visible;
         }
@@ -296,6 +504,34 @@
         
             overflow-x: visible;
         }
+         .hero-title{
+        float: left ;
+       margin-left:13%;
+       margin-top: 45% ;
+       color: white;
+       opacity: 1;
+       font-size: 5rem;
+      
+    }
+    .hero-text{
+        float: left ;
+       margin-left:13%;
+       margin-bottom: 5% ;
+       color: white;
+       opacity: 1;
+       font-size: 2rem;
+      
+    }
+    .hero-button{
+        float: left ;
+       margin-left:-35%;
+       margin-top: 50% ;
+       color: white;
+       font-size: 2rem;
+       
+      
+    }
+    
     }
     .offset-md-2{
         margin-left: 15%;
@@ -305,12 +541,12 @@
     }
     .bg-image{
         
-        height: 89vh;
+        height: 100vh;
     }
         @media  screen and (min-width: 1600px) {
             .form{
                 float: right;
-              margin-right: 30% ;
+              margin-right: 35% ;
               margin-top: 5% ;
                 display: flex;
                 justify-content: flex-end;
@@ -318,6 +554,20 @@
                text-align: center;
                 z-index: 10;
                 
+                font-size: 2rem;
+            
+            
+            }
+            .form-contact{
+                float: right;
+              margin-right: 25% ;
+              margin-top: 3% ;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+               text-align: center;
+                z-index: 10;
+               color: white;
                 font-size: 2rem;
             
             
@@ -381,12 +631,71 @@
             .logo{
                 width: 9%;
             }
-        }
-        .center{
+            .hero-title{
+                float: left ;
+               margin-left:13%;
+               margin-top: 10% ;
+               color: white;
+               opacity: 1;
+               font-size: 6rem;
+              
+            }
+            .hero-text{
+                float: left ;
+               margin-left:13%;
+               margin-bottom: 5% ;
+               color: white;
+               opacity: 1;
+               font-size: 3rem;
+              
+            }
+            .hero-button{
+                float: left ;
+               margin-left:-28%;
+               margin-top: 20% ;
+               color: white;
+               font-size: 2rem;
+               
+              
+            }
+            .form-maxScreen{
+                margin: 10%;
+            }
+            .btn-mobile{
+                color: white;
+                border: 2px solid #fff;
+                margin-top: 2%;
+            }
+            .btn-mobile:hover{
+                color: black;
+                background-color: white;
+                
+            }
+
+
+             .center{
             margin-left: 32%;
+            
         }
+        #contact-submit{
+ 
+            color: black;
+            border: 2px solid black;
+            margin-top: 2%;
+        
+        
+    }
+        }
+       
         .bg-image{
         
             height: 86vh;
         }
     
+
+
+
+        @keyframes title {
+            from {margin-bottom: -100px;}
+            to {margin-bottom: 0px;}
+          }

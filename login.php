@@ -1,23 +1,30 @@
 <?php
 include_once("bootstrap.php");
 
-$conn = Db::getConnection();
+
 
 if (!empty($_POST)) {
     try {
         $user = new User();
 
-        $user->setUsername($_POST["username"], "login");
-        $user->setPassword($_POST["password"], "login");
-        $user->login();
+        $user->setUsername($_POST["username"]);
+        $user->setPassword($_POST["password"]);
+        $user->canLogin();
+
         session_start();
-        $_SESSION["username"] = $user->getUsername();
-        var_dump($_SESSION["username"]);
+
+        $username = $user->getUsername();
+
+        $currentUser = $user->getLoggedUser($username);
+        $_SESSION["userId"] = $currentUser["id"];
+        $_SESSION["username"] = $currentUser["username"];
+
         header("Location: index.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,21 +36,26 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="https://use.typekit.net/zbb0stp.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
+    <div class="container-fluid text-center ">
         <img class="logo" src="img/gg-logo.png" alt="logo">
+
+
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Contact</a>
-                <a class="nav-link" href="#">Login</a>
-                <a class="nav-link" href="#">About </a>
+                <a class="nav-link " aria-current="page" href="home.php">Home</a>
 
+                <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
+
+                <a class="nav-link " href="about.php">About Us</a>
+                <a class="nav-link active" href="login.php">Login</a>
             </div>
         </div>
     </div>
@@ -63,15 +75,15 @@ if (!empty($_POST)) {
         <?php endif; ?>
 
         <form action="" method="POST">
-            <label class="formTitleEmail">
-                <h1>Login</h1>
-            </label>
+
+            <h1 class="formTitleEmail">Username</h1>
             <input type="text" class="formEmail" name="username" placeholder="username">
+            <h1 class="formTitleEmail">Password</h1>
             <input type="password" name="password" class="formPassword" placeholder="password">
             <div class="sign_up">
-                <p>Nog geen account? <a href="signup.php">Maak er één aan</a></p>
+                <p id="MA-text">Nog geen account? <a href="signup.php">Maak er één aan</a></p>
             </div>
-            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="submit" class="btn  btn-mobile">Log in</button>
 
     </div>
     </form>
