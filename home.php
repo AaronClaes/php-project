@@ -38,7 +38,7 @@
 <h1 class="hero-title">Welcome to Gamegram</h1>
 <p  class="hero-text">The gaming social media</p>
    <a href="login.php">  <button  type="button" class="btn btn-secondary hero-button">Join now!</button></a>
-<div class="hero_bg" style="background-image: url('img/hero-background.png'); "></div>
+<div class="hero" style="background-image: url('img/hero-background.png'); "></div>
 
 
 
