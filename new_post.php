@@ -11,7 +11,9 @@ if (!empty($_POST)) {
         $type = $_POST["selectedFilter"];
         $image = $post->saveImage($_FILES["image"]["name"], $type);
         $post->setImage($image);
-        $post->setLocation($_POST["location"]);
+        if (!empty($_POST["location"])) {
+            $post->setLocation($_POST["location"]);
+        }
         $post->save();
     } catch (\Throwable $th) {
         $error = $th->getMessage();

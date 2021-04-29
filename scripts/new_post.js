@@ -1,14 +1,13 @@
 function getLocation() {
   console.log("getLocation Called");
-  var Api = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+
+  var api = "https://api.bigdatacloud.net/data/reverse-geocode-client";
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      Api = `${Api}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en"`;
-      getApi(Api);
+      api = `${api}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en"`;
+      getApi(api);
     },
-    (err) => {
-      getApi(Api);
-    },
+    (err) => {},
     {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -16,8 +15,8 @@ function getLocation() {
     }
   );
 }
-function getApi(Api) {
-  fetch(Api)
+function getApi(api) {
+  fetch(api)
     .then((response) => response.json())
     .then((result) =>
       document.querySelector(".location").setAttribute("value", result.locality)
