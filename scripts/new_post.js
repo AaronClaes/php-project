@@ -1,3 +1,32 @@
+function getLocation() {
+  console.log("getLocation Called");
+  var Api = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      Api = `${Api}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en"`;
+      getApi(Api);
+    },
+    (err) => {
+      getApi(Api);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    }
+  );
+}
+function getApi(Api) {
+  fetch(Api)
+    .then((response) => response.json())
+    .then((result) =>
+      document.querySelector(".location").setAttribute("value", result.locality)
+    )
+    .catch((error) => {});
+}
+
+getLocation();
+
 function getImage(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();

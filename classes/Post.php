@@ -10,6 +10,7 @@ class Post
     private $tags;
     private $created;
     private $inappropriate;
+    private $location;
 
     /**
      * Get the value of userId
@@ -197,21 +198,43 @@ class Post
         return $this;
     }
 
+    /**
+     * Get the value of Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of Location
+     *
+     * @return  self
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
     public function save()
     {
         $conn = Db::getConnection();
 
-        $sql = "INSERT INTO posts (user_id, image, description, created, tags) VALUES (:user_id, :image, :description, UTC_TIMESTAMP(), :tags)";
+        $sql = "INSERT INTO posts (user_id, image, description, created, tags, location) VALUES (:user_id, :image, :description, UTC_TIMESTAMP(), :tags, :location)";
         $statement = $conn->prepare($sql);
         $user_id = $this->getUserId();
         $image = $this->getImage();
         $description = $this->getDescription();
         $tags = $this->getTags();
+        $location = $this->getLocation();
 
         $statement->bindValue(":user_id", $user_id);
         $statement->bindValue(":image", $image);
         $statement->bindValue(":description", $description);
         $statement->bindValue(":tags", $tags);
+        $statement->bindValue(":location", $location);
         $statement->execute();
     }
 }

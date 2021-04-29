@@ -11,6 +11,7 @@ if (!empty($_POST)) {
         $type = $_POST["selectedFilter"];
         $image = $post->saveImage($_FILES["image"]["name"], $type);
         $post->setImage($image);
+        $post->setLocation($_POST["location"]);
         $post->save();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
@@ -82,6 +83,7 @@ if (!empty($_POST)) {
             </div>
             <div class="hidden">
                 <input type="text" name="selectedFilter" class="selectedFilter">
+                <input type="text" name="location" class="location">
             </div>
             <div class="previewImage"></div>
 
