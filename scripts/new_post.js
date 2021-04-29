@@ -22,7 +22,6 @@ function getImage(input) {
           .then((blob) => {
             filter.src = URL.createObjectURL(blob);
           })
-          .then(() => {})
           .catch((error) => {
             console.error("Error:", error);
           });
@@ -38,8 +37,10 @@ function getImage(input) {
 
 document.querySelectorAll(".filter img").forEach((filter) => {
   filter.addEventListener("click", (e) => {
+    let src = e.target.src;
+    document.querySelector(".previewImage img").setAttribute("src", src);
     document
-      .querySelector(".previewImage img")
-      .setAttribute("src", e.target.src);
+      .querySelector(".selectedFilter")
+      .setAttribute("value", filter.dataset.type);
   });
 });

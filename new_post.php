@@ -8,14 +8,14 @@ if (!empty($_POST)) {
         $post->setDescription($_POST["description"]);
         $tags = $post->cleanupTags($_POST["tags"]);
         $post->setTags($tags);
-        $image = $post->saveImage($_FILES["image"]["name"]);
+        $type = $_POST["selectedFilter"];
+        $image = $post->saveImage($_FILES["image"]["name"], $type);
         $post->setImage($image);
         $post->save();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -60,11 +60,11 @@ if (!empty($_POST)) {
             <div class="postFilters hidden">
                 <div class="filter">
                     <img src="" alt="normal">
-                    <h6>Normal</h6>
+                    <h6>normal</h6>
                 </div>
                 <div class="filter">
                     <img src="" alt="negate" data-type="IMG_FILTER_NEGATE">
-                    <h6>Negate</h6>
+                    <h6>negate</h6>
                 </div>
                 <div class="filter">
                     <img src="" alt="gray scale" data-type="IMG_FILTER_GRAYSCALE">
@@ -80,10 +80,12 @@ if (!empty($_POST)) {
                 </div>
 
             </div>
-            <div class="previewImage">
-
+            <div class="hidden">
+                <input type="text" name="selectedFilter" class="selectedFilter">
             </div>
-            <button type="submit" class="btn">Post</button>
+            <div class="previewImage"></div>
+
+            <button type="submit" class="btn submit">Post</button>
         </form>
     </div>
 
