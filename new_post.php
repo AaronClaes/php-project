@@ -8,14 +8,17 @@ if (!empty($_POST)) {
         $post->setDescription($_POST["description"]);
         $tags = $post->cleanupTags($_POST["tags"]);
         $post->setTags($tags);
-        $image = $post->saveImage($_FILES["image"]["name"]);
+        $type = $_POST["selectedFilter"];
+        $image = $post->saveImage($_FILES["image"]["name"], $type);
         $post->setImage($image);
+        if (!empty($_POST["location"])) {
+            $post->setLocation($_POST["location"]);
+        }
         $post->save();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,31 +62,34 @@ if (!empty($_POST)) {
             </div>
             <div class="postFilters hidden">
                 <div class="filter">
-                    <img src="" alt="negate">
-                    <h6>Negate</h6>
+                    <img src="" alt="normal">
+                    <h6>normal</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="grayscale">
+                    <img src="" alt="negate" data-type="IMG_FILTER_NEGATE">
+                    <h6>negate</h6>
+                </div>
+                <div class="filter">
+                    <img src="" alt="gray scale" data-type="IMG_FILTER_GRAYSCALE">
                     <h6>gray scale</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="gaussian blur">
-                    <h6>gaussian blur</h6>
+                    <img src="" alt="warm" data-type="IMG_FILTER_COLORIZE">
+                    <h6>warm</h6>
                 </div>
                 <div class="filter">
-                    <img src="" alt="mean removal">
-                    <h6>mean removal</h6>
-                </div>
-                <div class="filter">
-                    <img src="" alt="smooth">
-                    <h6>smooth</h6>
+                    <img src="" alt="emboss" data-type="IMG_FILTER_EMBOSS">
+                    <h6>emboss</h6>
                 </div>
 
             </div>
-            <div class="previewImage">
-
+            <div class="hidden">
+                <input type="text" name="selectedFilter" class="selectedFilter">
+                <input type="text" name="location" class="location">
             </div>
-            <button type="submit" class="btn">Post</button>
+            <div class="previewImage"></div>
+
+            <button type="submit" class="btn submit">Post</button>
         </form>
     </div>
 

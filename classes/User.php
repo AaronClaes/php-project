@@ -324,13 +324,13 @@ class User
     public function updatePassword($currentUserId)
     {
         $conn = Db::getConnection();
-        
+
         $statement = $conn->prepare("UPDATE users SET password = :password WHERE id = :currentUserId");
         $statement->bindValue(":currentUserId", $currentUserId);
 
         $password = $this->getPassword();
         $statement->bindValue(":password", $password);
-        
+
         $user = $statement->execute();
 
         return $user;
