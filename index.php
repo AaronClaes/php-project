@@ -1,6 +1,13 @@
 <?php
 include_once("bootstrap.php");
 
+   try {
+      $user = new User();
+      $currentUserId = $_SESSION["userId"];         
+      $currentUser = $user->getLoggedUsername($currentUserId);
+   } catch (\Throwable $th) {
+      $error = $th->getMessage();
+   }
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +59,7 @@ include_once("bootstrap.php");
                      <div class="profile-header-cover"></div>
                      <div class="profile-header-content">
                         <div class="profile-header-img">
-                           <img src="https://tinyurl.com/abzdvtrz" alt="">
+                           <img src= "<?php echo $currentUser["picture"];?>" alt="ProfilePicture">
                         </div>
 
                         <div class="profile-header-info">

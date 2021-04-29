@@ -2,7 +2,8 @@
 include_once(__DIR__ . "/Db.php");
 
 class User
-{
+{   
+    private $userId;
     private $username;
     private $firstname;
     private $lastname;
@@ -11,6 +12,26 @@ class User
     private $picture;
     private $description;
 
+
+        /**
+     * Get the value of userId
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set the value of userId
+     *
+     * @return  self
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
 
     /**
      * Get the value of username
@@ -188,26 +209,6 @@ class User
         return $this;
     }
 
-    /**
-     * Get the value of picture
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * Set the value of picture
-     *
-     * @return  self
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
     public function save()
     {
         $conn = Db::getConnection();
@@ -334,5 +335,48 @@ class User
         $user = $statement->execute();
 
         return $user;
+    }
+
+    public function uploadProfilePicture($profilepicture){
+        if (!empty($_FILES["profilePicture"]["name"])) {
+            $target_dir = "uploads/profilePictures/";
+            $file = $profilepicture;
+            $path = pathinfo($file);
+            $username = $this->getUsername();
+            $ext = $path["extension"];
+            $temp_name = $_FILES["profilePicture"]["tmp_name"];
+            $filename = $username . "_" . "profilepicture" . "_" . mt_rand(100000, 999999);
+            $path_filename_ext = $target_dir . $filename . "." . $ext;
+
+            while (file_exists($path_filename_ext)) {
+                $filename = $username . "_" . "profilepicture" . "_" . mt_rand(100000, 999999);
+                $path_filename_ext = $target_dir . $filename . "." . $ext;
+            }
+            move_uploaded_file($temp_name, $path_filename_ext);
+            if (!$path_filename_ext) {
+                throw new Exception("Something went wrong when uploading the picture, please try again later");
+            }
+        }
+        return $path_filename_ext; 
+    }
+
+        /**
+     * Get the value of picture
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

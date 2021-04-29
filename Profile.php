@@ -5,7 +5,9 @@ try {
     $user = new User();
     $currentUserId = $_SESSION["userId"];
     $currentUser = $user->getLoggedUsername($currentUserId);
-    /*if($_SERVER['REQUEST_METHOD'] == 'POST'){   */
+
+        // Update User INFO
+
     if (!empty($_POST)) {
         $user->setUsername($_POST['username']);
         if ($_POST['username'] !== $currentUser["username"]) {
@@ -18,20 +20,24 @@ try {
             $user->checkEmail();
         }
         $user->setDescription($_POST['description']);
-        $user->setPicture($_POST['picture']);
-        $user->updateInfo($currentUser['id']);
 
-        // Password Verification
+        
+        // picture upload
+        $profilePicture = $user->uploadProfilePicture($_FILES["profilePicture"]["name"]);
+        $user->setPicture($profilePicture);
+
+        // Password Verification  --HIER NIKS ONDER ZETTE!
 
         $user->setPassword($_POST["passwordConfirm"]);
-        
         $user->verifyPassword($currentUser['id']);
         $user->setPassword($_POST["password"]);
         $newPassword = $user->hashPassword();
-        $user->updatePassword($currentUser['id']);
 
+        // User updates
+        $user->updateInfo($currentUser['id']);
+        $user->updatePassword($currentUser['id']);
         
-        $currentUser = $user->getLoggedUsername($currentUserId);
+        $currentUser = $user->getLoggedUsername($currentUserId); //---Updated User Fetch---
     }
 } catch (\Throwable $th) {
     $error = $th->getMessage();
@@ -95,60 +101,64 @@ try {
                             <div class="profile-header-cover"></div>
                             <div class="profile-header-content">
                                 <div class="profile-header-img">
-                                    <img src="https://tinyurl.com/abzdvtrz" alt="">
+                                    <img src= "<?php echo $currentUser["picture"];?>" alt="ProfilePicture">
                                 </div>
                                 <div class="profile-header-info">
                                     <h4 class="m-t-10 m-b-5"><?php echo $currentUser['username']; ?></h4>
                                     <p class="m-b-10"><?php echo $currentUser['email']; ?></p>
                                 </div>
-
-                            </div>
+                            </div>   
                             <ul class="profile-header-tab nav nav-tabs">
                                 <li class="nav-item"><a href="#profile-post" class="nav-link active show" data-toggle="tab">EDIT Profile</a></li>
                             </ul>
-
                         </div>
-
-                        <form method="POST">
-                            <div class="form-row form-spacing">
-                                <div class="form-group col-md-6">
-                                    <label for="Username">Edit Username</label>
-                                    <input type="text" class="form-control" name="username" id="Username" placeholder="Username" value=<?php echo $currentUser['username']; ?>>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Firstname">Edit Firstname</label>
-                                    <input type="text" class="form-control" name="firstname" id="Firstname" placeholder="Firstname" value=<?php echo $currentUser['firstname']; ?>>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Email">Edit Email</label>
-                                    <input type="email" class="form-control" name="email" id="Email" placeholder="Email" value=<?php echo $currentUser['email']; ?>>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Lastname">Edit Lastname</label>
-                                    <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname" value=<?php echo $currentUser['lastname']; ?>>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="picture">Picture</label>
-                                    <input type="text" class="form-control" id="picture" name="picture" placeholder="picture" value=<?php echo $currentUser['picture']; ?>>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Description">Edit Description</label>
-                                    <textarea class="form-control" id="Description" name="description" placeholder="Description" rows="4" cols="50"></textarea>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="password">Edit Password</label>
-                                    <input type="password" class="form-control" name="password" id="password">
-                                    <label for="passwordConfirm">Confirm Password</label>
-                                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-                                    <small id="passwordHelpBlock" class="form-text text-muted">please verify by entering your current password</small>
-
-                                </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
+          
+        <div class="container">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-row form-spacing">
+                    <div class="form-group col-md-6">
+                        <label for="Username">Edit Username</label>
+                        <input type="text" class="form-control" name="username" id="Username" placeholder="Username" value=<?php echo $currentUser['username']; ?>>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Firstname">Edit Firstname</label>
+                        <input type="text" class="form-control" name="firstname" id="Firstname" placeholder="Firstname" value=<?php echo $currentUser['firstname']; ?>>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Email">Edit Email</label>
+                        <input type="email" class="form-control" name="email" id="Email" placeholder="Email" value=<?php echo $currentUser['email']; ?>>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Lastname">Edit Lastname</label>
+                        <input type="text" class="form-control" id="Lastname" name="lastname" placeholder="Lastname" value=<?php echo $currentUser['lastname']; ?>>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Description">Edit Description</label>
+                        <textarea class="form-control" id="Description" name="description" placeholder="Description" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="col-md-6 align-items-start">
+                        <label for="profilePicture" class="form-label">Upload or update your profilepicture</label>
+                        <input type="file" class="form-control form-border" name="profilePicture" id="profilePicture" onchange="getpicture(this);">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">Edit Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                        <small id="passwordHelpBlock" class="form-text text-muted">fill in your current password if you dont want to change it</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="passwordConfirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">please verify by entering your current password</small>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Edit</button>
+            </form>
+        </div>
+    </div>
+        
 
         <footer class="footer  text-center text-lg-start">
             <!-- Copyright -->
