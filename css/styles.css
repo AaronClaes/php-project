@@ -40,6 +40,19 @@ body {
   font-size: 1.5em;
 }
 
+.form-control {
+  background-color: #7a7f84;
+  color: #d0d0d0;
+}
+
+.form-control::placeholder {
+  color: #d0d0d0;
+}
+
+.form-container {
+  width: 400px;
+}
+
 .btn {
   background-color: #fd3939;
   color: #fff;

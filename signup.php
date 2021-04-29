@@ -60,7 +60,7 @@ if (!empty($_POST)) {
   <main>
     <div class="container-box">
       <h1 class="form-title">Sign up</h1>
-      <form enctype="multipart/form-data" method="POST">
+      <form class="form-container" enctype="multipart/form-data" method="POST">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control form-border" id="email" name="email" placeholder="Email"></input>

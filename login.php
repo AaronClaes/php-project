@@ -5,12 +5,14 @@ if (!empty($_POST)) {
     try {
         $user = new User();
 
-        $user->setUsername($_POST["username"], "login");
-        $user->setPassword($_POST["password"], "login");
+        $user->setUsername($_POST["username"]);
+        $user->setPassword($_POST["password"]);
         $user->canlogin();
         session_start();
-        $_SESSION["username"] = $user->getUsername();
-        var_dump($_SESSION["username"]);
+        $username = $user->getUsername();
+        $currentUser = $user->getLoggedUser($username);
+        session_start();
+        $_SESSION["userId"] = $currentUser["id"];
         header("Location: index.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
@@ -47,7 +49,7 @@ if (!empty($_POST)) {
     <main>
         <div class="container-box">
             <h1 class="form-title">Login in</h1>
-            <form enctype="multipart/form-data" method="POST">
+            <form class="form-container" enctype="multipart/form-data" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input class="form-control form-border" id="username" name="username" placeholder="Username"></input>

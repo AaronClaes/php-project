@@ -47,7 +47,7 @@ if (!empty($_POST)) {
     <?php endif; ?>
     <div class="container-box">
         <h1 class="form-title">Create a new post</h1>
-        <form enctype="multipart/form-data" method="POST">
+        <form class="form-container" enctype="multipart/form-data" method="POST">
             <div class="mb-3">
                 <label for="postDescription" class="form-label">Description</label>
                 <textarea class="form-control form-border" id="postDescription" name="description" placeholder="Give your post a description" rows="2"></textarea>
