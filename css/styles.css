@@ -13,8 +13,11 @@ h6 {
   color: #d0d0d0;
 }
 
+.logo {
+  width: 8rem;
+}
+
 body {
-  margin: 0 20em;
   background-color: #23272a;
 }
 
@@ -22,6 +25,14 @@ body {
   background-color: #2c2f33;
   border-radius: 22pt;
   padding: 2em 10em;
+}
+
+.nav-btn {
+  margin-left: auto;
+}
+
+.form-title {
+  text-align: center;
 }
 
 .form-label {
@@ -37,35 +48,4 @@ body {
 .form-border {
   border: 0px;
   border-radius: 20px;
-}
-
-.postFilters {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.filter {
-  width: 100%;
-  vertical-align: top;
-}
-
-.filter img {
-  width: 100%;
-  padding: 0.5rem;
-}
-
-.previewImage img {
-  width: 100%;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-
-.hidden {
-  display: none;
-}
-
-.flex {
-  display: flex;
 }

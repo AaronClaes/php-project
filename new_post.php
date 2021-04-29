@@ -45,8 +45,8 @@ if (!empty($_POST)) {
             </div>
         </div>
     <?php endif; ?>
-    <div class="container">
-        <h1>Create a new post</h1>
+    <div class="container-box">
+        <h1 class="form-title">Create a new post</h1>
         <form enctype="multipart/form-data" method="POST">
             <div class="mb-3">
                 <label for="postDescription" class="form-label">Description</label>
@@ -89,7 +89,7 @@ if (!empty($_POST)) {
             </div>
             <div class="previewImage"></div>
 
-            <button type="submit" class="btn submit">Post</button>
+            <button type="submit" class="w-100 btn btn-lg submit">Post</button>
         </form>
     </div>
 
