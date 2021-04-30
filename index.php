@@ -8,6 +8,36 @@ try {
 } catch (\Throwable $th) {
    $error = $th->getMessage();
 }
+
+function time_elapsed_string($datetime, $full = false)
+{
+   $now = new DateTime;
+   $ago = new DateTime($datetime);
+   $diff = $now->diff($ago);
+
+   $diff->w = floor($diff->d / 7);
+   $diff->d -= $diff->w * 7;
+
+   $string = array(
+      'y' => 'year',
+      'm' => 'month',
+      'w' => 'week',
+      'd' => 'day',
+      'h' => 'hour',
+      'i' => 'minute',
+      's' => 'second',
+   );
+   foreach ($string as $k => &$v) {
+      if ($diff->$k) {
+         $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+      } else {
+         unset($string[$k]);
+      }
+   }
+
+   if (!$full) $string = array_slice($string, 0, 1);
+   return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,84 +56,53 @@ try {
    <title>Feed</title>
 
 </head>
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
-   <div class="container-fluid text-center ">
-      <img class="logo" src="img/gg-logo.png" alt="logo">
-
-
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
-         <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-
-            <a class="nav-link active" aria-current="page" href="profile.php">profile</a>
-
-            <a class="nav-link " href="about.php">About Us</a>
-            <a class="nav-link" href="login.php">Login</a>
-         </div>
-      </div>
-   </div>
-</nav> -->
 
 <body>
    <?php include_once("header.inc.php") ?>
-
-   <!-- <div class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div id="content" class="content content-full-width">
-               <div class="profile">
-                  <div class="profile-header">
-                     <div class="profile-header-cover"></div>
-                     <div class="profile-header-content">
-                        <div class="profile-header-img">
-                           <img src="<?php echo $currentUser["picture"]; ?>" alt="ProfilePicture">
-                        </div>
-
-                        <div class="profile-header-info">
-                           <h4 class="m-t-10 m-b-5"> <?php echo $_SESSION['username']; ?> </h4>
-                           <p class="m-b-10">Rank 5 - Backseat Gamer</p>
-                        </div>
-
+   <div class="index-feed">
+      <div class="feed-container left">
+         <div class="left-link">
+            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="">
+            <h3><a href="profile.php"><?php echo $currentUser["username"] ?></a></h3>
+         </div>
+         <div class="left-link left-link-middle">
+            <img class="left-link-follow" src="img/follow.svg" alt="">
+            <h3><a href="profile.php">Volgers</a></h3>
+         </div>
+         <div class="left-link">
+            <img class="left-link-follow" src="img/follow.svg" alt="">
+            <h3><a href="profile.php">Likes</a></h3>
+         </div>
+      </div>
+      <div class="right">
+         <div class="feed-container">
+            <div class="new_post-box">
+               <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+               <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
+               <a href="new_post.php" class="btn nav-btn">New post</a>
+            </div>
+         </div>
+         <?php
+         $feed = Post::getFeedPosts();
+         foreach ($feed as $post) :  ?>
+            <?php $date = time_elapsed_string($post['created']); ?>
+            <div class="post feed-container">
+               <div class="post-top">
+                  <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+                  <div class="post-data">
+                     <div class="post-data-top">
+                        <h4 class="post-user"><?php echo $post['username'] ?></h4>
+                        <h4 class="post-dot">•</h4>
+                        <p class="post-date"><?php echo $date ?></p>
                      </div>
-                     <ul class="profile-header-tab nav nav-tabs">
-                        <li class="nav-item"><a href="#" class="nav-link active show" data-toggle="tab">POSTS</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">FRIENDS</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">ABOUT</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">SCREENSHOTS</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" data-toggle="tab">SCREENCAPTURES</a></li>
-                     </ul>
+                     <p class="post-description"><?php echo $post['description'] ?></p>
                   </div>
                </div>
+               <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
             </div>
-         </div>
-      </div> -->
-   <?php
-
-   $posts = new Post;
-   $posts->setUserId($_SESSION["userId"]);
-   $feed = $posts->getFeedPosts();
-
-
-   foreach ($feed as $post) :  ?>
-      <div class="post container-box">
-         <div class="post-top">
-            <img class="post-profile_picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
-            <div class="post-data">
-               <div class="post-data-top">
-                  <h4 class="post-user"><?php echo $post['username'] ?></h4>
-                  <h4 class="post-dot">•</h4>
-                  <p class="post-date"><?php echo $post['created'] ?></p>
-               </div>
-               <p class="post-description"><?php echo $post['description'] ?></p>
-            </div>
-         </div>
-         <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
+         <?php endforeach; ?>
       </div>
-   <?php endforeach; ?>
+   </div>
 </body>
 
 </html>
