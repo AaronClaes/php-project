@@ -2,7 +2,7 @@
 include_once(__DIR__ . "/Db.php");
 
 class User
-{   
+{
     private $userId;
     private $username;
     private $firstname;
@@ -13,7 +13,7 @@ class User
     private $description;
 
 
-        /**
+    /**
      * Get the value of userId
      */
     public function getUserId()
@@ -281,7 +281,7 @@ class User
     {
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname , description = :description, email = :email, picture = :picture WHERE id = :currentUserId");
+        $statement = $conn->prepare("UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname , bio = :description, email = :email, picture = :picture WHERE id = :currentUserId");
         $statement->bindValue(":currentUserId", $currentUserId);
 
         $username = $this->getUsername();
@@ -337,7 +337,8 @@ class User
         return $user;
     }
 
-    public function uploadProfilePicture($profilepicture){
+    public function uploadProfilePicture($profilepicture)
+    {
         if (!empty($_FILES["profilePicture"]["name"])) {
             $target_dir = "uploads/profilePictures/";
             $file = $profilepicture;
@@ -357,10 +358,10 @@ class User
                 throw new Exception("Something went wrong when uploading the picture, please try again later");
             }
         }
-        return $path_filename_ext; 
+        return $path_filename_ext;
     }
 
-        /**
+    /**
      * Get the value of picture
      */
     public function getPicture()
