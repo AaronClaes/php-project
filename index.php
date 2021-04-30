@@ -79,12 +79,16 @@ include_once("bootstrap.php");
       $feed = $posts->getFeedPosts();
       
       
-      foreach($feed as $post):  ?>
+      $i = 0;
+      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
+      <div id="load_data">
+   
          <img src="<?php echo $post['image']?>" alt=""> 
          <p><?php echo $post['description']?></p>
          <p><?php echo $post['created']?></p>
          <p><?php echo $post['username']?></p>
-     <?php endforeach; ?>
+         </div><div id="load_data_message"></div>
+     <?php $i++; endforeach; ?>
       <footer class="footer  text-center text-lg-start">
          <!-- Copyright -->
          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -94,5 +98,6 @@ include_once("bootstrap.php");
          <!-- Copyright -->
       </footer>
 </body>
-
+<script>
+</script>
 </html>

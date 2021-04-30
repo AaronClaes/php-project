@@ -335,4 +335,13 @@ class User
 
         return $user;
     }
+    public function searchUsers($searchresult)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users WHERE username = :searchResult ");
+        $statement->bindValue(":searchResult", $searchresult);
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+    }
 }
