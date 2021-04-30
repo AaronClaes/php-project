@@ -9,8 +9,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   color: #d0d0d0;
+  margin: 0;
 }
 
 .logo {
@@ -61,4 +63,46 @@ body {
 .form-border {
   border: 0px;
   border-radius: 20px;
+}
+
+.post {
+}
+
+.post-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.post-profile_picture {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50px;
+}
+
+.post-description {
+}
+
+.post-data {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.post-data-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.post-dot {
+  margin: 0 1rem;
+}
+
+.post-img {
+  border-radius: 22px;
 }

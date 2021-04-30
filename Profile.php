@@ -6,7 +6,7 @@ try {
     $currentUserId = $_SESSION["userId"];
     $currentUser = $user->getLoggedUsername($currentUserId);
 
-        // Update User INFO
+    // Update User INFO
 
     if (!empty($_POST)) {
         $user->setUsername($_POST['username']);
@@ -21,7 +21,7 @@ try {
         }
         $user->setDescription($_POST['description']);
 
-        
+
         // picture upload
         $profilePicture = $user->uploadProfilePicture($_FILES["profilePicture"]["name"]);
         $user->setPicture($profilePicture);
@@ -36,7 +36,7 @@ try {
         // User updates
         $user->updateInfo($currentUser['id']);
         $user->updatePassword($currentUser['id']);
-        
+
         $currentUser = $user->getLoggedUsername($currentUserId); //---Updated User Fetch---
     }
 } catch (\Throwable $th) {
@@ -81,16 +81,16 @@ try {
 
 <body>
 
-        <?php if (isset($error)) : ?>
-            <div class="user-messages-area">
-                <div class="alert alert-danger">
+    <?php if (isset($error)) : ?>
+        <div class="user-messages-area">
+            <div class="alert alert-danger">
 
-                    <ul>
-                        <li><?php echo $error ?></li>
-                    </ul>
-                </div>
+                <ul>
+                    <li><?php echo $error ?></li>
+                </ul>
             </div>
-        <?php endif; ?>
+        </div>
+    <?php endif; ?>
 
     <div class="container">
         <div class="row">
@@ -101,13 +101,13 @@ try {
                             <div class="profile-header-cover"></div>
                             <div class="profile-header-content">
                                 <div class="profile-header-img">
-                                    <img src= "<?php echo $currentUser["picture"];?>" alt="ProfilePicture">
+                                    <img src="<?php echo $currentUser["picture"]; ?>" alt="ProfilePicture">
                                 </div>
                                 <div class="profile-header-info">
                                     <h4 class="m-t-10 m-b-5"><?php echo $currentUser['username']; ?></h4>
                                     <p class="m-b-10"><?php echo $currentUser['email']; ?></p>
                                 </div>
-                            </div>   
+                            </div>
                             <ul class="profile-header-tab nav nav-tabs">
                                 <li class="nav-item"><a href="#profile-post" class="nav-link active show" data-toggle="tab">EDIT Profile</a></li>
                             </ul>
@@ -116,7 +116,7 @@ try {
                 </div>
             </div>
         </div>
-          
+
         <div class="container">
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-row form-spacing">
@@ -142,7 +142,7 @@ try {
                     </div>
                     <div class="col-md-6 align-items-start">
                         <label for="profilePicture" class="form-label">Upload or update your profilepicture</label>
-                        <input type="file" class="form-control form-border" name="profilePicture" id="profilePicture" onchange="getpicture(this);">
+                        <input type="file" class="form-control form-border" name="profilePicture" id="profilePicture">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="password">Edit Password</label>
@@ -158,16 +158,16 @@ try {
             </form>
         </div>
     </div>
-        
 
-        <footer class="footer  text-center text-lg-start">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2020 Copyright:
-                <a class="text-dark" href="https://mdbootstrap.com/">Aaron, Tommy, Elias</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+
+    <footer class="footer  text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">Aaron, Tommy, Elias</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
 
 </html>
