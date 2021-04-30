@@ -10,7 +10,8 @@ if (preg_match('(signup.php)', $_SERVER['SCRIPT_NAME'])) {
 } else if ((preg_match('(login.php)', $_SERVER['SCRIPT_NAME']))) {
     $buttonText = "Sign up";
     $buttonValue = "signup.php";
-} else ($buttonValue = "login.php")
+} else  ($buttonValue = "login.php")
+
 ?>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">

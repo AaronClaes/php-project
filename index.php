@@ -36,12 +36,10 @@ include_once("bootstrap.php");
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
          <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-
-            <a class="nav-link active" aria-current="page" href="profile.php">profile</a>
+            <a class="nav-link" aria-current="page" href="profile.php">profile</a>
 
             <a class="nav-link " href="about.php">About Us</a>
-            <a class="nav-link" href="login.php">Login</a>
+            <a class="nav-link" href="logout.php">Logout</a>
          </div>
       </div>
    </div>
@@ -63,7 +61,7 @@ include_once("bootstrap.php");
                         </div>
 
                         <div class="profile-header-info">
-                           <h4 class="m-t-10 m-b-5"> <?php echo $_SESSION['username']; ?> </h4>
+                           <h4 class="m-t-10 m-b-5"> <?php echo $currentUser['username']; ?> </h4>
                            <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                         </div>
 
