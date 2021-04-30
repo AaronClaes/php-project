@@ -10,8 +10,20 @@ if (preg_match('(signup.php)', $_SERVER['SCRIPT_NAME'])) {
 } else if ((preg_match('(login.php)', $_SERVER['SCRIPT_NAME']))) {
     $buttonText = "Sign up";
     $buttonValue = "signup.php";
-} else  ($buttonValue = "login.php")
+} else  ($buttonValue = "login.php");
 
+if (!empty($_GET['search'])) {
+    try {
+        $user = new User;
+        $searchresult = $_GET['search'];
+       $users = $user->searchusers($searchresult);
+        
+        var_dump($searchresult);
+        var_dump($user['firstname']);
+    }catch (\Throwable $th) {
+        $error = $th->getMessage();
+    }
+}
 ?>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
@@ -20,7 +32,11 @@ if (preg_match('(signup.php)', $_SERVER['SCRIPT_NAME'])) {
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        <label>Search</label>
+<form action="search.php" method="GET">
+<input type="text" placeholder="Type the name here" name="search">&nbsp;
+<input type="submit" value="Search" name="btn" class="btn btn-sm btn-primary">
+</form>
         <div class="collapse navbar-collapse navbar-nav me-auto">
             <?php if ($loggedIn) :  ?>
                 <a href=<?php echo $buttonValue ?> class="btn nav-btn"> <?php echo $buttonText ?></a>
