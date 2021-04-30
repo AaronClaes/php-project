@@ -8,36 +8,6 @@ try {
 } catch (\Throwable $th) {
    $error = $th->getMessage();
 }
-
-function time_elapsed_string($datetime, $full = false)
-{
-   $now = new DateTime;
-   $ago = new DateTime($datetime);
-   $diff = $now->diff($ago);
-
-   $diff->w = floor($diff->d / 7);
-   $diff->d -= $diff->w * 7;
-
-   $string = array(
-      'y' => 'year',
-      'm' => 'month',
-      'w' => 'week',
-      'd' => 'day',
-      'h' => 'hour',
-      'i' => 'minute',
-      's' => 'second',
-   );
-   foreach ($string as $k => &$v) {
-      if ($diff->$k) {
-         $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-      } else {
-         unset($string[$k]);
-      }
-   }
-
-   if (!$full) $string = array_slice($string, 0, 1);
-   return $string ? implode(', ', $string) . ' ago' : 'just now';
-}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +30,7 @@ function time_elapsed_string($datetime, $full = false)
 <body>
    <?php include_once("header.inc.php") ?>
    <div class="index-feed">
-      <div class="feed-container left">
+      <div class="box-container left">
          <div class="left-link">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="">
             <h3><a href="profile.php"><?php echo $currentUser["username"] ?></a></h3>
@@ -75,7 +45,7 @@ function time_elapsed_string($datetime, $full = false)
          </div>
       </div>
       <div class="right">
-         <div class="feed-container">
+         <div class="box-container">
             <div class="new_post-box">
                <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
                <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
@@ -85,8 +55,8 @@ function time_elapsed_string($datetime, $full = false)
          <?php
          $feed = Post::getFeedPosts();
          foreach ($feed as $post) :  ?>
-            <?php $date = time_elapsed_string($post['created']); ?>
-            <div class="post feed-container">
+            <?php $date = Post::time_elapsed_string($post['created']); ?>
+            <div class="post box-container">
                <div class="post-top">
                   <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
                   <div class="post-data">

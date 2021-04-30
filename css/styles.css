@@ -16,6 +16,17 @@ a {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+.line {
+  width: 100%;
+  border: 5px solid #d0d0d0;
+  border-radius: 5px;
+  margin-top: 3rem;
+}
+
 .logo {
   width: 8rem;
 }
@@ -27,7 +38,8 @@ body {
 .container-box {
   background-color: #2c2f33;
   border-radius: 22pt;
-  padding: 2em 10em;
+  padding: 2rem 2rem;
+  margin: 1rem 0;
 }
 
 .nav-btn {
@@ -66,7 +78,7 @@ body {
   border-radius: 20px;
 }
 
-.feed-container {
+.box-container {
   background-color: #2c2f33;
   border-radius: 22pt;
   padding: 2em 2em;
@@ -74,9 +86,23 @@ body {
   margin: 1rem auto;
 }
 
+.box-container-medium {
+  background-color: #2c2f33;
+  border-radius: 22pt;
+  padding: 2em 0;
+  width: 620px;
+  margin: 0;
+}
+
 .profile-picture {
   width: 4rem;
   height: 4rem;
+  border-radius: 50px;
+}
+
+.profile-picture-big {
+  width: 6rem;
+  height: 6rem;
   border-radius: 50px;
 }
 
@@ -104,7 +130,7 @@ body {
 .post-data {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
   margin-left: 1rem;
 }
@@ -112,8 +138,7 @@ body {
 .post-data-top {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
+  justify-content: center;
 }
 
 .post-dot {
@@ -132,4 +157,64 @@ body {
 
 .new_post-box-title {
   margin-left: 1rem;
+}
+
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-box-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-box-names {
+  margin-left: 1rem;
+}
+
+.profile-box-description {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.profile-stats-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile-stats-container {
+  width: 800px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-stats-container-box {
+  background-color: #2c2f33;
+  border-radius: 22pt;
+
+  width: 100%;
+  margin: 1rem 0;
+  margin-right: 2rem;
+}
+
+.btn-profile-edit {
+  text-align: center;
+  width: 160px;
+  padding: 2rem 3rem;
+  font-size: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
 }
