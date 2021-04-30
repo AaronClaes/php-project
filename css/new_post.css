@@ -11,7 +11,6 @@ h4,
 h5,
 h6 {
   color: #d0d0d0;
-  text-align: center;
 }
 
 body {
@@ -19,7 +18,7 @@ body {
   background-color: #23272a;
 }
 
-.container {
+.container-box {
   background-color: #2c2f33;
   border-radius: 22pt;
   padding: 2em 10em;

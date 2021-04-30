@@ -41,78 +41,51 @@ if (!empty($_POST)) {
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/signup.css">
   <title>Document</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px grey;">
-    <div class="container-fluid text-center ">
-    <img class="logo" src="img/gg-logo.png" alt="logo">
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
-            <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-            
-                <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
-                
-                <a class="nav-link " href="about.php">About Us</a>
-                <a class="nav-link active" href="login.php">Login</a>
-            </div>
-        </div>
-    </div>
-</nav>
 
 <body>
+  <?php include_once("header.inc.php") ?>
   <?php if (isset($error)) : ?>
-    <div class="error">
-      <h3><?php echo $error ?></h3>
+    <div class="user-messages-area">
+      <div class="alert alert-danger">
+        <ul>
+          <li><?php echo $error ?></li>
+        </ul>
+      </div>
     </div>
   <?php endif; ?>
-  <form action="" method="POST">
-    <div class="form-contact wrapper">
-
-      
-        <h2 class="formTitleEmail">Email:</h2>
-      
-      <input type="email" class="formEmail" name="email" placeholder="name@example.com">
-
-    
-        <h2 class="formTitleEmail">First Name:</h2>
-      
-      <input type="text" class="formFirstName" name="firstName" placeholder="First Name">
-
-      <label class="formTitleLastName">
-        <h2 class="formTitleEmail">Last Name:</h2>
-      </label>
-      <input type="text" class="formLastName" name="lastName" placeholder="Last Name">
-
-
-      <label class="formTitleUsername">
-        <h2 class="formTitleEmail">Username:</h2>
-      </label>
-      <input type="name" class="formUsername" name="username" placeholder="Username">
-
-      <label class="formTitlePassword">
-        <h2 class="formTitleEmail">Password:</h2>
-      </label>
-      <input type="password" class="formPassword" name="password" placeholder="password">
-
-      <button type="submit" class="btn btn-mobile">Sign up</button>
-
+  <main>
+    <div class="container-box">
+      <h1 class="form-title">Sign up</h1>
+      <form class="form-container" enctype="multipart/form-data" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control form-border" id="email" name="email" placeholder="Email"></input>
+        </div>
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <input class="form-control form-border" id="firstname" name="firstName" placeholder="First Name"></input>
+        </div>
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <input class="form-control form-border" id="lastname" name="lastName" placeholder="Last Name"></input>
+        </div>
+        <div class="mb-3">
+          <label for="postDescription" class="form-label">Username</label>
+          <input class="form-control form-border" id="postDescription" name="username" placeholder="Username"></input>
+        </div>
+        <div class="mb-3">
+          <label for="postTags" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control form-border" id="postTags" name="tags" placeholder='Password' />
+        </div>
+        <button type="submit" class="w-100 btn btn-lg submit">Sign up</button>
+        <h6 class="mt-4 mb-3 text-muted">Already have an account? <a href="login.php">Login</a></h6>
+      </form>
     </div>
-  </form>
-  <div class="hero_bg2"></div>
-
-  <footer class="footer bg-light text-center text-lg-start">
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
+  </main>
 </body>
 
 </html>
