@@ -237,4 +237,18 @@ class Post
         $statement->bindValue(":location", $location);
         $statement->execute();
     }
+    public function getFeedPosts(){
+        $conn = Db::getConnection();
+
+        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id  ";
+        $statement = $conn->prepare($sql);
+        $user_id = $this->getUserId();
+        
+
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+        
+    }
 }
