@@ -55,7 +55,6 @@ try {
          <?php
          $feed = Post::getFeedPosts();
          foreach ($feed as $post) :  ?>
-            <?php $date = Post::time_elapsed_string($post['created']); ?>
             <?php include("post.inc.php") ?>
          <?php endforeach; ?>
       </div>

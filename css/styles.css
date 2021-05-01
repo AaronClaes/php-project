@@ -27,6 +27,13 @@ a {
   margin-top: 3rem;
 }
 
+.line-small {
+  width: 100%;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
 .logo {
   width: 8rem;
 }
@@ -122,7 +129,7 @@ body {
 
 .post-data-top {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
@@ -147,6 +154,43 @@ body {
 .post-img {
   border-radius: 22px;
   width: 100%;
+}
+
+.comment {
+  display: flex;
+}
+
+.comment-box {
+  background-color: #7a7f84;
+  margin-left: 2rem;
+  border-radius: 20px;
+  height: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.comment-box-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment-message {
+  margin-top: 0.5rem;
+}
+
+.post-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.comment-input {
+  margin: 0 2rem;
+}
+
+.comment-send {
+  width: 2.5rem;
+  cursor: pointer;
 }
 
 .new_post-box {
