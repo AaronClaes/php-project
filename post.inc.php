@@ -1,3 +1,7 @@
+<?php
+$tags = explode(",", $post['tags']);
+?>
+
 <div class="post box-container">
     <div class="post-top">
         <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
@@ -10,5 +14,14 @@
             <p class="post-description"><?php echo $post['description'] ?></p>
         </div>
     </div>
+    <?php if (!empty($tags)) : ?>
+        <div class="post-tags">
+            <?php foreach ($tags as $tag) : ?>
+                <a href="">
+                    <p class="post-tag"><?php echo $tag ?></p>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif;  ?>
     <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
 </div>

@@ -130,6 +130,20 @@ body {
   margin: 0 1rem;
 }
 
+.post-tags {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.post-tag {
+  background-color: #23272a;
+
+  margin-right: 0.5rem;
+  padding: 0.25rem 1rem;
+  border-radius: 12px;
+}
+
 .post-img {
   border-radius: 22px;
   width: 100%;

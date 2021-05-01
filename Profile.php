@@ -155,7 +155,7 @@ try {
     $feed = Post::getUserPosts();
     foreach ($feed as $post) :  ?>
         <?php $date = Post::time_elapsed_string($post['created']); ?>
-        <?php include("post.php") ?>
+        <?php include("post.inc.php") ?>
     <?php endforeach; ?>
     <script src="scripts/profile.js"></script>
 </body>
