@@ -4,6 +4,7 @@ $date = Post::time_elapsed_string($post['created']);
 ?>
 
 <div class="post box-container">
+    <!-- USER & DESCRIPTION -->
     <div class="post-top">
         <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
         <div class="post-data">
@@ -12,9 +13,23 @@ $date = Post::time_elapsed_string($post['created']);
                 <h4 class="post-dot">•</h4>
                 <p class="post-date"><?php echo $date ?></p>
             </div>
-            <p class="post-description"><?php echo $post['description'] ?></p>
+            <p class="post-description"><?php echo $post['description']  ?></p>
         </div>
+        <div class="btn-group dropend post-dropdown-button">
+            <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <h1>&#8942;</h1>
+            </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Flag innappropriate</a>
+                <?php if ($post["user_id"] === $currentUser["id"]) : ?>
+                    <a class="dropdown-item" href="#">Delete post</a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
     </div>
+    <!-- TAGS -->
     <?php if (!empty($tags)) : ?>
         <div class="post-tags">
             <?php foreach ($tags as $tag) : ?>
@@ -24,9 +39,11 @@ $date = Post::time_elapsed_string($post['created']);
             <?php endforeach; ?>
         </div>
     <?php endif;  ?>
+    <!-- IMAGE -->
     <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
     <div class="post-comments-box">
         <hr class="line-small">
+        <!-- COMMENTS -->
         <div class="comments">
             <div class="comment">
                 <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
@@ -40,6 +57,7 @@ $date = Post::time_elapsed_string($post['created']);
                 </div>
             </div>
         </div>
+        <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
             <input class="form-control form-border comment-input" name="comment" placeholder="Write a comment..."></input>

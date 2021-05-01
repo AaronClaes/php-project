@@ -119,6 +119,24 @@ body {
   font-size: 1.2rem;
 }
 
+.post-dropdown-button {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.dropend .dropdown-toggle::after {
+  content: unset;
+}
+
+.dropdown-menu {
+  background-color: #2c2f33;
+}
+
+.dropdown-item {
+  color: #d0d0d0;
+}
+
 .post-data {
   display: flex;
   align-items: flex-start;
