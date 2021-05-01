@@ -95,10 +95,6 @@ body {
   border-radius: 50px;
 }
 
-.post {
-  margin: 1rem auto;
-}
-
 .post-top {
   display: flex;
   align-items: center;

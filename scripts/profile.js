@@ -2,6 +2,7 @@ let edit = true;
 const editButton = document.querySelector(".btn-profile-edit");
 const editContainer = document.querySelector(".edit-container");
 const feedContainer = document.querySelectorAll(".post");
+
 editButton.addEventListener("click", () => {
   edit = !edit;
   showPage(edit);

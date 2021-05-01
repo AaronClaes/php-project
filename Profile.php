@@ -144,6 +144,13 @@ try {
             </form>
         </div>
     </main>
+    <div class="post box-container">
+        <div class="new_post-box">
+            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
+            <a href="new_post.php" class="btn nav-btn">New post</a>
+        </div>
+    </div>
     <?php
     $feed = Post::getUserPosts();
     foreach ($feed as $post) :  ?>

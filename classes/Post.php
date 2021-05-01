@@ -256,7 +256,7 @@ class Post
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id  ";
+        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
 
