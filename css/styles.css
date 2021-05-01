@@ -34,12 +34,17 @@ a {
   margin-top: 2rem;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .logo {
   width: 8rem;
 }
 
 body {
   background-color: #23272a;
+  padding-top: 4.5rem;
 }
 
 .nav-btn {
