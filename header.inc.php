@@ -16,10 +16,9 @@ if (!empty($_GET['search'])) {
     try {
         $user = new User;
         $searchresult = $_GET['search'];
-       $users = $user->searchusers($searchresult);
+       $users = $user->searchusers($searchresult, $tags);
         
-        var_dump($searchresult);
-        var_dump($user['firstname']);
+        
     }catch (\Throwable $th) {
         $error = $th->getMessage();
     }

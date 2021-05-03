@@ -340,8 +340,19 @@ class User
     public function searchUsers($searchresult)
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM users WHERE username = :searchResult ");
+        $statement = $conn->prepare("SELECT * FROM users  WHERE username = :searchResult");
         $statement->bindValue(":searchResult", $searchresult);
+        
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+    }
+    public function searchtags($searchtags)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM posts GROUP BY tags WHERE tags = :tags");
+        $statement->bindValue(":tags", $searchtags);
+        
         $user = $statement->execute();
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;

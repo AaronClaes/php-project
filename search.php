@@ -5,15 +5,14 @@ if (!empty($_GET['search'])) {
     try {
         $user = new User;
         $searchresult = $_GET['search'];
+        $searchtags = $_GET['search'];
        $users = $user->searchusers($searchresult);
+    $tags = $user->searchtags($searchtags);
         
-        var_dump($searchresult);
-        var_dump($user['firstname']);
     }catch (\Throwable $th) {
         $error = $th->getMessage();
     }
-}
-
+} 
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,12 +35,25 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </table>
 </div>
 <?php
+
 if( isset($users) ){
 foreach($users as $searchresult):  ?>
 
 
    
    <a href="profile.php?id= <?php echo $searchresult['username']; ?>" ><?php echo $searchresult['username']; ?></a>
+   
+   
+<?php  endforeach;} ?>
+<?php
+var_dump($searchresult);
+var_dump($searchtags);
+if( isset($tags) ){
+foreach($tags as $searchtags):  ?>
+
+
+   
+   <a href="profile.php?id= <?php echo $searchtags['tags']; ?>" ><?php echo $searchtags['tags']; ?></a>
    
    
 <?php  endforeach;} ?>
