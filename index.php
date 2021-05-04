@@ -67,16 +67,10 @@ include_once("header.inc.php");
       $feed = $posts->getFeedPosts();
       
       
-      $i = 0;
-      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
-      <div id="load_data">
+    ?>
+     
    
-         <img src="<?php echo $post['image']?>" alt=""> 
-         <p><?php echo $post['description']?></p>
-         <p><?php echo $post['created']?></p>
-         <p><?php echo $post['username']?></p>
-         </div><div id="load_data_message"></div>
-     <?php $i++; endforeach; ?>
+     
       
       <div class="right">
          <div class="box-container">
@@ -88,9 +82,10 @@ include_once("header.inc.php");
          </div>
          <?php
          $feed = Post::getFeedPosts();
-         foreach ($feed as $post) :  ?>
+         $i = 0;
+         foreach($feed as $i => $post): if ($i == 2) { break; } ?>
             <?php include("post.inc.php") ?>
-         <?php endforeach; ?>
+            <?php $i++; endforeach; ?>
       </div>
    </div>
 </body>
