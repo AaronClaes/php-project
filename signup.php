@@ -58,9 +58,9 @@ if (!empty($_POST)) {
     </div>
   <?php endif; ?>
   <main>
-    <div class="container-box">
+    <div style="padding: 2rem 2rem;" class="box-container-medium">
       <h1 class="form-title">Sign up</h1>
-      <form class="form-container" enctype="multipart/form-data" method="POST">
+      <form enctype="multipart/form-data" method="POST">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control form-border" id="email" name="email" placeholder="Email"></input>

@@ -15,6 +15,7 @@ if (!empty($_POST)) {
             $post->setLocation($_POST["location"]);
         }
         $post->save();
+        header("Location: profile.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
@@ -31,10 +32,12 @@ if (!empty($_POST)) {
     <title>new post</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/new_post.css">
 </head>
 
 <body>
+    <?php include_once("header.inc.php"); ?>
     <?php if (isset($error)) : ?>
         <div class="user-messages-area">
             <div class="alert alert-danger">
@@ -45,9 +48,9 @@ if (!empty($_POST)) {
             </div>
         </div>
     <?php endif; ?>
-    <div class="container-box">
+    <div class="box-container">
         <h1 class="form-title">Create a new post</h1>
-        <form class="form-container" enctype="multipart/form-data" method="POST">
+        <form enctype="multipart/form-data" method="POST">
             <div class="mb-3">
                 <label for="postDescription" class="form-label">Description</label>
                 <textarea class="form-control form-border" id="postDescription" name="description" placeholder="Give your post a description" rows="2"></textarea>

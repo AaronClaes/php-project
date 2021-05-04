@@ -47,9 +47,9 @@ if (!empty($_POST)) {
         </div>
     <?php endif; ?>
     <main>
-        <div class="container-box">
+        <div style="padding: 2rem 2rem;" class="box-container-medium">
             <h1 class="form-title">Login in</h1>
-            <form class="form-container" enctype="multipart/form-data" method="POST">
+            <form enctype="multipart/form-data" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input class="form-control form-border" id="username" name="username" placeholder="Username"></input>
