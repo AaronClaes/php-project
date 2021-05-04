@@ -1,30 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
-    <title>Document</title>
-</head>
-<body>
+<?php
+if (isset($_SESSION["userId"])) {
+    $loggedIn = true;
+    $buttonText = "Logout";
+    $buttonValue = "";
+}
+if (preg_match('(signup.php)', $_SERVER['SCRIPT_NAME'])) {
+    $buttonText = "Login";
+    $buttonValue = "login.php";
+} else if ((preg_match('(login.php)', $_SERVER['SCRIPT_NAME']))) {
+    $buttonText = "Sign up";
+    $buttonValue = "signup.php";
+} else  ($buttonValue = "login.php");
 
-<header class="p-3 bg-dark text-white">
-  <div class="container ">
-    <div class=" d-flex justify-content-center">
-      
-      <a href=""><img class="logo" src="img/gg-logo.png" alt="logo"></a>
-      
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 w-50">
-        <input type="search" class="form-control form-control-dark " placeholder="Search...">
-      </form>
+if (!empty($_GET['search'])) {
+    try {
+        $user = new User;
+        $searchresult = $_GET['search'];
+       $users = $user->searchusers($searchresult, $tags);
+        
+        
+    }catch (\Throwable $th) {
+        $error = $th->getMessage();
+    }
+}
+?>
 
-      
-      <a class="" href="#"><img class="profile-pic" src="img/pfelias2.png" alt=""> Link</a>
-        <button type="button" class="btn btn-warning btn-logout">Sign-up</button>
-      
+<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo" src="img/gg-logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <label>Search</label>
+<form action="search.php" method="GET">
+<input type="text" placeholder="Type the name here" name="search">&nbsp;
+<input type="submit" value="Search" name="btn" class="btn btn-sm btn-primary">
+</form>
+        <div class="collapse navbar-collapse navbar-nav me-auto">
+            <?php if ($loggedIn) :  ?>
+                <a href=<?php echo $buttonValue ?> class="btn nav-btn"> <?php echo $buttonText ?></a>
+            <?php endif; ?>
+            <?php if (!$loggedIn) :  ?>
+                <a href=<?php echo $buttonValue ?> class="btn nav-btn"><?php echo $buttonText ?></a>
+            <?php endif; ?>
+            <!-- <form data-np-checked="1">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" data-np-checked="1">
+            </form> -->
+        </div>
     </div>
-  </div>
-</header>
-</body>
-</html>
+</nav>

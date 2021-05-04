@@ -1,6 +1,13 @@
 <?php
 include_once("bootstrap.php");
 
+   try {
+      $user = new User();
+      $currentUserId = $_SESSION["userId"];         
+      $currentUser = $user->getLoggedUsername($currentUserId);
+   } catch (\Throwable $th) {
+      $error = $th->getMessage();
+   }
 ?>
 
 <!DOCTYPE html>
@@ -45,18 +52,17 @@ include_once("header.inc.php");
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: center; margin-left:-4%;">
          <div class="navbar-nav">
-            <a class="nav-link " aria-current="page" href="home.php">Home</a>
-
-            <a class="nav-link active" aria-current="page" href="profile.php">profile</a>
+            <a class="nav-link" aria-current="page" href="profile.php">profile</a>
 
             <a class="nav-link " href="about.php">About Us</a>
-            <a class="nav-link" href="login.php">Login</a>
+            <a class="nav-link" href="logout.php">Logout</a>
          </div>
       </div>
    </div>
 </nav>
 
 <body>
+   <?php include_once("header.inc.php") ?>
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
    <div class="container">
       <div class="row">
@@ -67,11 +73,11 @@ include_once("header.inc.php");
                      <div class="profile-header-cover"></div>
                      <div class="profile-header-content">
                         <div class="profile-header-img">
-                           <img src="https://tinyurl.com/abzdvtrz" alt="">
+                           <img src= "<?php echo $currentUser["picture"];?>" alt="ProfilePicture">
                         </div>
 
                         <div class="profile-header-info">
-                           <h4 class="m-t-10 m-b-5"> <?php echo $_SESSION['username']; ?> </h4>
+                           <h4 class="m-t-10 m-b-5"> <?php echo $currentUser['username']; ?> </h4>
                            <p class="m-b-10">Rank 5 - Backseat Gamer</p>
                         </div>
 
@@ -94,12 +100,16 @@ include_once("header.inc.php");
       $posts->setUserId($_SESSION["userId"]);
       $feed = $posts->getFeedPosts();
       
+      
       $i = 0;
-      foreach($feed as $i => $post): if ($i == 20) { break; } ?>
+      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
+      <div id="load_data">
+   
          <img src="<?php echo $post['image']?>" alt=""> 
          <p><?php echo $post['description']?></p>
          <p><?php echo $post['created']?></p>
          <p><?php echo $post['username']?></p>
+         </div><div id="load_data_message"></div>
      <?php $i++; endforeach; ?>
       <footer class="footer  text-center text-lg-start">
          <!-- Copyright -->
@@ -110,5 +120,6 @@ include_once("header.inc.php");
          <!-- Copyright -->
       </footer>
 </body>
-
+<script>
+</script>
 </html>
