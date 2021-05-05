@@ -34,12 +34,17 @@ a {
   margin-top: 2rem;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .logo {
   width: 8rem;
 }
 
 body {
   background-color: #23272a;
+  padding-top: 4.5rem;
 }
 
 .nav-btn {
@@ -119,6 +124,24 @@ body {
   font-size: 1.2rem;
 }
 
+.post-dropdown-button {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.dropend .dropdown-toggle::after {
+  content: unset;
+}
+
+.dropdown-menu {
+  background-color: #2c2f33;
+}
+
+.dropdown-item {
+  color: #d0d0d0;
+}
+
 .post-data {
   display: flex;
   align-items: flex-start;
@@ -154,6 +177,30 @@ body {
 .post-img {
   border-radius: 22px;
   width: 100%;
+}
+
+.post-buttons {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.post-buttons svg {
+  width: 4rem;
+  height: 4rem;
+  fill: #7a7f84;
+  margin-right: 1rem;
+}
+
+.post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+}
+
+.post-button p {
+  font-size: 1.4rem;
 }
 
 .comment {

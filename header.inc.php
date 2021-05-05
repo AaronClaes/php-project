@@ -25,7 +25,7 @@ if (!empty($_GET['search'])) {
 }
 ?>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top" aria-label="Second navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php"><img class="logo" src="img/gg-logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
