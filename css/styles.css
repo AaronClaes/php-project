@@ -179,6 +179,30 @@ body {
   width: 100%;
 }
 
+.post-buttons {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.post-buttons svg {
+  width: 4rem;
+  height: 4rem;
+  fill: #7a7f84;
+  margin-right: 1rem;
+}
+
+.post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+}
+
+.post-button p {
+  font-size: 1.4rem;
+}
+
 .comment {
   display: flex;
 }
