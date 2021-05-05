@@ -302,6 +302,18 @@ class Post
         return $posts;
     }
 
+    public static function getPostsByTag($tag)
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE INSTR(tags, :tag) > 0 AND inappropriate = 0 ORDER BY created DESC; ";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":tag", $tag);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
+
     public static function time_elapsed_string($datetime, $full = false)
     {
         $now = new DateTime;

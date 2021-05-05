@@ -34,7 +34,7 @@ $date = Post::time_elapsed_string($post['created']);
     <?php if (!empty($tags)) : ?>
         <div class="post-tags">
             <?php foreach ($tags as $tag) : ?>
-                <a href="">
+                <a href="feed.php?search=tag&query=<?php echo $tag ?>">
                     <p class="post-tag"><?php echo $tag ?></p>
                 </a>
             <?php endforeach; ?>
@@ -69,15 +69,15 @@ $date = Post::time_elapsed_string($post['created']);
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $date ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
-                    <p class="comment-message" >text</p>
+                    <p class="comment-message">text</p>
                 </div>
             </div>
         </div>
         <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
-            <input class="form-control form-border comment-input" id="commentText" name="comment" placeholder="Write a comment..."></input>
-            <div  id="addComment" data-postId="3"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
+            <input class="form-control form-border comment-input" class="commentText" name="comment" placeholder="Write a comment..."></input>
+            <div class="addComment" data-postId="3"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>
     </div>
 </div>
