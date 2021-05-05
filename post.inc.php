@@ -2,7 +2,6 @@
 $tags = explode(",", $post['tags']);
 $date = Post::time_elapsed_string($post['created']);
 ?>
-
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
     <div class="post-top">
@@ -21,11 +20,11 @@ $date = Post::time_elapsed_string($post['created']);
             </div>
             <div class="dropdown-menu">
                 <?php if ($post["user_id"] !== $currentUser["id"]) : ?>
-                    <a class="dropdown-item" href="#">Flag innappropriate</a>
+                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item inappropriate" href="#">Flag inappropriate</li>
                 <?php endif; ?>
 
                 <?php if ($post["user_id"] === $currentUser["id"]) : ?>
-                    <a class="dropdown-item" href="#">Delete post</a>
+                    <li class="dropdown-item" href="#">Delete post</li>
                 <?php endif; ?>
             </div>
         </div>

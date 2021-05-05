@@ -68,6 +68,7 @@ try {
          endforeach; ?>
       </div>
    </div>
+   <script src="scripts/post.js"></script>
 </body>
 
 </html>
