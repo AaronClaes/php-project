@@ -1,7 +1,8 @@
 <?php
-
+include_once("bootstrap.php");
 $tags = explode(",", $post['tags']);
 $date = Post::time_elapsed_string($post['created']);
+//$allComments = Comment::getAllComments();
 ?>
 
 <div class="post box-container">
@@ -25,6 +26,7 @@ $date = Post::time_elapsed_string($post['created']);
             <?php endforeach; ?>
         </div>
     <?php endif;  ?>
+    <?php //foreach($allComments as $c): ?>
     <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
     <div class="post-comments-box">
         <hr class="line-small">
@@ -37,15 +39,16 @@ $date = Post::time_elapsed_string($post['created']);
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $date ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
-                    <p class="comment-message" >text</p>
+                    <p class="comment-message" ><?php //echo $c['text']; ?>test </p>
                 </div>
             </div>
         </div>
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
             <input class="form-control form-border comment-input" id="commentText" name="comment" placeholder="Write a comment..."></input>
-            <div  id="addComment" data-postId="3"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
+            <div  id="addComment" data-postId="<?php  echo $postId['postId']; ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>
     </div>
+    <?php //endforeach; ?>
 </div>
 <script src="scripts/comments.js"></script>

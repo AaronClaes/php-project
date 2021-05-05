@@ -83,7 +83,7 @@ include_once("header.inc.php");
          <?php
          $feed = Post::getFeedPosts();
          $i = 0;
-         foreach($feed as $i => $post): if ($i == 2) { break; } ?>
+         foreach($feed as $i => $post): if ($i == 1) { break; } ?>
             <?php include("post.inc.php") ?>
             <?php $i++; endforeach; ?>
       </div>

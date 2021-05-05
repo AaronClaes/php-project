@@ -90,8 +90,29 @@ class Comment
     }
 
     public function saveComment(){
+        $conn = Db::getConnection();
+        $sql = "INSERT INTO comments (text, post_id, user_id, created) values (:text, :post_Id, :user_Id, :created)";
+        $statement = $conn->prepare($sql);
+        $text = $this->getText();
+        $postId = $this->getPostId();
+        $userId = $this->getUserId();
+        $date = $this->getDate();
 
+        $statement->bindValue(":text", $text );
+        $statement->bindValue(":postId", $postId);
+        $statement->bindValue(":userId", $userId);
+        $statement->bindValue(":created", $date);
+
+        $result = $statement->execute();
+        return $result;
     }
-
+    /*public static function getAllComments(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM comments WHERE post_Id = :postId");
+        
+        $statement->bindValue(':postId', $postId);
+        $result = $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }*/
 
 }
