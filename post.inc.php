@@ -25,7 +25,7 @@ $date = Post::time_elapsed_string($post['created']);
                 <?php endif; ?>
 
                 <?php if ($post["user_id"] === $currentUser["id"]) : ?>
-                    <li class="dropdown-item" href="#">Delete post</li>
+                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item delete" href="#">Delete post</li>
                 <?php endif; ?>
             </div>
         </div>

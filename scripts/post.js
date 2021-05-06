@@ -32,3 +32,22 @@ document.querySelectorAll(".inappropriate").forEach((post) => {
       });
   });
 });
+//DELETE POST
+document.querySelectorAll(".delete").forEach((post) => {
+  post.addEventListener("click", (e) => {
+    const formData = new FormData();
+    let postId = post.dataset.postid;
+    formData.append("postId", postId);
+    fetch("ajax/deletepost.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Succes", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+});
