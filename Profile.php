@@ -157,6 +157,7 @@ try {
         <?php include("post.inc.php") ?>
     <?php endforeach; ?>
     <script src="scripts/profile.js"></script>
+    <script src="scripts/post.js"></script>
 </body>
 
 </html>

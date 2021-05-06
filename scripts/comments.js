@@ -10,7 +10,7 @@ const formData = new FormData();
 formData.append('text', text);
 formData.append('postId', postId);
 
-fetch('ajax/saveComment.php', {
+fetch('./ajax/saveComment.php', {
   method: 'POST',
   body: formData
 })

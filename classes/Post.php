@@ -4,6 +4,7 @@ include_once(__DIR__ . "/Db.php");
 
 class Post
 {
+    private $postId;
     private $userId;
     private $description;
     private $image;
@@ -11,6 +12,27 @@ class Post
     private $created;
     private $inappropriate;
     private $location;
+
+
+    /**
+     * Get the value of postId
+     */
+    public function getPostId()
+    {
+        return $this->postId;
+    }
+
+    /**
+     * Set the value of postId
+     *
+     * @return  self
+     */
+    public function setPostId($postId)
+    {
+        $this->postId = $postId;
+
+        return $this;
+    }
 
     /**
      * Get the value of userId
@@ -241,10 +263,9 @@ class Post
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id  ";
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
-
 
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
@@ -252,11 +273,25 @@ class Post
         return $posts;
     }
 
+    public function flag()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "UPDATE posts SET inappropriate = 1 WHERE id = :id";
+        $statement = $conn->prepare($sql);
+
+        $id = $this->getPostId();
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+
+        return $this;
+    }
+
     public static function getUserPosts()
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id ORDER BY created DESC; ";
+        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
 

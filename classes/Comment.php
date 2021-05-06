@@ -109,8 +109,9 @@ class Comment
     /*public static function getAllComments(){
         $conn = Db::getConnection();
         $statement = $conn->prepare("SELECT * FROM comments WHERE post_Id = :postId");
-        
+       
         $statement->bindValue(':postId', $postId);
+        
         $result = $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }*/
