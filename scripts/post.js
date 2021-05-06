@@ -11,12 +11,7 @@ document.querySelectorAll(".inappropriate").forEach((post) => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Succes", result);
-        let element = post.parentElement.parentElement.parentElement.parentNode;
-        element.querySelector(".post-tags").classList.add("hidden");
-        element.querySelector(".post-img").classList.add("hidden");
-        element.querySelector(".post-buttons").classList.add("hidden");
-        element.querySelector(".post-comments-box").classList.add("hidden");
-        element.querySelector(".post-top").classList.add("hidden");
+        let element = emptyPost(post);
         let successElement = document.createElement("h4");
         let successMessage = document.createTextNode(
           "Successfully flagged this post."
@@ -43,12 +38,7 @@ document.querySelectorAll(".delete").forEach((post) => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Succes", result);
-        let element = post.parentElement.parentElement.parentElement.parentNode;
-        element.querySelector(".post-tags").classList.add("hidden");
-        element.querySelector(".post-img").classList.add("hidden");
-        element.querySelector(".post-buttons").classList.add("hidden");
-        element.querySelector(".post-comments-box").classList.add("hidden");
-        element.querySelector(".post-top").classList.add("hidden");
+        let element = emptyPost(post);
         let successElement = document.createElement("h4");
         let successMessage = document.createTextNode(
           "Successfully deleted this post"
@@ -62,3 +52,13 @@ document.querySelectorAll(".delete").forEach((post) => {
       });
   });
 });
+
+const emptyPost = (post) => {
+  let element = post.parentElement.parentElement.parentElement.parentNode;
+  element.querySelector(".post-tags").classList.add("hidden");
+  element.querySelector(".post-img").classList.add("hidden");
+  element.querySelector(".post-buttons").classList.add("hidden");
+  element.querySelector(".post-comments-box").classList.add("hidden");
+  element.querySelector(".post-top").classList.add("hidden");
+  return element;
+};
