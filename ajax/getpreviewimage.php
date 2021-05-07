@@ -2,7 +2,9 @@
 
 if (!empty($_POST)) {
 
+    $path = pathinfo($_POST["image"]);
     $image = imagecreatefrompng($_POST["image"]);
+
     $type = $_POST["type"];
 
     switch ($type) {
@@ -13,7 +15,6 @@ if (!empty($_POST)) {
             imagefilter($image, IMG_FILTER_GRAYSCALE);
             break;
         case 'IMG_FILTER_COLORIZE':
-
             imagefilter($image, IMG_FILTER_COLORIZE, 50, 0, 0);
             break;
         case 'IMG_FILTER_MEAN_REMOVAL':

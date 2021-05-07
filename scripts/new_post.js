@@ -32,32 +32,37 @@ function getImage(input) {
 
     reader.onload = function (e) {
       let upload = e.target.result;
+      let extension = upload.slice(11, 14);
+
       let image = document.createElement("IMG");
       document.querySelector(".previewImage").appendChild(image);
       document.querySelector(".previewImage img").setAttribute("src", upload);
+      if (extension === "png") {
+        document.querySelectorAll(".filter img").forEach((filter) => {
+          const formData = new FormData();
+          let type = filter.dataset.type;
+          formData.append("image", upload);
+          formData.append("type", `${type}`);
 
-      document.querySelectorAll(".filter img").forEach((filter) => {
-        const formData = new FormData();
-        let type = filter.dataset.type;
-        formData.append("image", upload);
-        formData.append("type", `${type}`);
-
-        fetch("ajax/getpreviewimage.php", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.blob())
-          .then((blob) => {
-            filter.src = URL.createObjectURL(blob);
+          fetch("ajax/getpreviewimage.php", {
+            method: "POST",
+            body: formData,
           })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      });
+            .then((response) => response.blob())
+            .then((blob) => {
+              filter.src = URL.createObjectURL(blob);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+        document.querySelector(".postFilters").classList.remove("hidden");
+        document.querySelector(".postFilters").classList.add("flex");
+      } else {
+        document.querySelector(".postFilters").classList.add("hidden");
+        document.querySelector(".postFilters").classList.remove("flex");
+      }
     };
-
-    document.querySelector(".postFilters").classList.remove("hidden");
-    document.querySelector(".postFilters").classList.add("flex");
 
     reader.readAsDataURL(input.files[0]);
   }
@@ -72,3 +77,7 @@ document.querySelectorAll(".filter img").forEach((filter) => {
       .setAttribute("value", filter.dataset.type);
   });
 });
+
+function getFileExtension(filename) {
+  return /[.]/.exec(filename) ? /[^.]+$/.exec(filename)[0] : undefined;
+}

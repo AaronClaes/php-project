@@ -94,29 +94,31 @@ class Post
         $temp_name = $_FILES['image']['tmp_name'];
 
         //APPLY FILTER
-        $img = imagecreatefrompng($temp_name);
-        switch ($type) {
-            case 'IMG_FILTER_NEGATE':
-                imagefilter($img, IMG_FILTER_NEGATE);
-                break;
-            case 'IMG_FILTER_GRAYSCALE':
-                imagefilter($img, IMG_FILTER_GRAYSCALE);
-                break;
-            case 'IMG_FILTER_COLORIZE':
+        if ($ext === "png") {
 
-                imagefilter($img, IMG_FILTER_COLORIZE, 50, 0, 0);
-                break;
-            case 'IMG_FILTER_MEAN_REMOVAL':
-                imagefilter($img, IMG_FILTER_MEAN_REMOVAL);
-                break;
-            case 'IMG_FILTER_EMBOSS':
-                imagefilter($img, IMG_FILTER_EMBOSS);
-                break;
-            default:
-                break;
+
+            $img = imagecreatefrompng($temp_name);
+            switch ($type) {
+                case 'IMG_FILTER_NEGATE':
+                    imagefilter($img, IMG_FILTER_NEGATE);
+                    break;
+                case 'IMG_FILTER_GRAYSCALE':
+                    imagefilter($img, IMG_FILTER_GRAYSCALE);
+                    break;
+                case 'IMG_FILTER_COLORIZE':
+                    imagefilter($img, IMG_FILTER_COLORIZE, 50, 0, 0);
+                    break;
+                case 'IMG_FILTER_MEAN_REMOVAL':
+                    imagefilter($img, IMG_FILTER_MEAN_REMOVAL);
+                    break;
+                case 'IMG_FILTER_EMBOSS':
+                    imagefilter($img, IMG_FILTER_EMBOSS);
+                    break;
+                default:
+                    break;
+            }
+            imagepng($img, $temp_name);
         }
-        imagepng($img, $temp_name);
-
         //SET FILENAME
         $filename = "post_" . $id . "_" . mt_rand(100000, 999999);
         $path_filename_ext = $target_dir . $filename . "." . $ext;
