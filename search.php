@@ -18,7 +18,7 @@ if (!empty($_GET['search'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Basic Search form using mysqli</title>
+<title>GameGram</title>
 <link rel="stylesheet" type="text/css"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -29,7 +29,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <input type="text" placeholder="Type the name here" name="search">&nbsp;
 <input type="submit" value="Search" name="btn" class="btn btn-sm btn-primary">
 </form>
-<h2>List of students</h2>
+<h2>Users</h2>
 
 
 

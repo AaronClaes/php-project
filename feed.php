@@ -51,12 +51,9 @@ try {
         };
 
         $i = 0;
-        foreach ($feed as $i => $post):  if ($i == 1) {
-                break;
-            } ?>
+      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
             <?php include("post.inc.php") ?>
-        <?php $i++;
-        endforeach; ?>
+            <?php $i++; endforeach; ?>
     </div>
     </div>
     <script src="scripts/post.js"></script>

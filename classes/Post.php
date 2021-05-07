@@ -292,7 +292,7 @@ class Post
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0";
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0 ORDER BY created DESC;";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
 

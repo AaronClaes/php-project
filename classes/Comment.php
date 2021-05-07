@@ -91,29 +91,59 @@ class Comment
 
     public function saveComment(){
         $conn = Db::getConnection();
-        $sql = "INSERT INTO comments (text, post.id, user_id, created) SELECT post.id FROM posts JOIN comments ON posts.id = comments.post_id values (:text, :post_Id, :user_Id, :created)";
+        $sql = "INSERT INTO comments (text, post_id, user_id, created )  values (:text, :post_id, :user_id, UTC_TIMESTAMP())";
+        
         $statement = $conn->prepare($sql);
         $text = $this->getText();
         $postId = $this->getPostId();
         $userId = $this->getUserId();
-        $date = $this->getDate();
-
+        
+        
         $statement->bindValue(":text", $text );
-        $statement->bindValue(":postId", $postId);
-        $statement->bindValue(":userId", $userId);
-        $statement->bindValue(":created", $date);
+        $statement->bindValue(":post_id", $postId);
+        $statement->bindValue(":user_id", $userId);
+        
 
         $result = $statement->execute();
         return $result;
     }
-    /*public static function getAllComments(){
+    public static function getAllComments($postId){
         $conn = Db::getConnection();
         $statement = $conn->prepare("SELECT * FROM comments WHERE post_Id = :postId");
-       
+        
         $statement->bindValue(':postId', $postId);
         
         $result = $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }*/
+    }
+    public static function time_elapsed_string($datetime, $full = false)
+    {
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) : 'just now';
+    }
 
 }

@@ -2,7 +2,9 @@
 include_once("bootstrap.php");
 $tags = explode(",", $post['tags']);
 $date = Post::time_elapsed_string($post['created']);
-//$allComments = Comment::getAllComments();
+$allComments = Comment::getAllComments($post["postId"]);
+var_dump($post["postId"]);
+
 ?>
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
@@ -41,7 +43,7 @@ $date = Post::time_elapsed_string($post['created']);
             <?php endforeach; ?>
         </div>
     <?php endif;  ?>
-    <?php //foreach($allComments as $c): ?>
+    
     <!-- IMAGE -->
     <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
     <div class="post-buttons">
@@ -62,6 +64,8 @@ $date = Post::time_elapsed_string($post['created']);
     <div class="post-comments-box post">
         <hr class="line-small">
         <!-- COMMENTS -->
+        <?php foreach($allComments as $c): ?>
+    <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
         <div class="comments">
             <div class="comment">
                 <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
@@ -69,19 +73,19 @@ $date = Post::time_elapsed_string($post['created']);
                     <div class="comment-box-info">
                         <h5 class="post-user"><?php echo $post['username'] ?></h5> <!-- Make username of user that sent comment -->
                         <h5 class="post-dot">•</h5>
-                        <p class="post-date"><?php echo $date ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
+                        <p class="post-date"><?php echo $dateComment ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
-                    <p class="comment-message" ><?php  //echo $c['text']; ?>test </p>
+                    <p class="comment-message" ><?php echo $c['text']; ?></p>
                 </div>
             </div>
-        </div>
+        </div><?php endforeach; ?>
         <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
-            <input class="form-control form-border comment-input" id="commentText" name="comment" placeholder="Write a comment..."></input>
-            <div class="addComment" data-postId="100<?php // echo $postId["postId"]; var_dump($postId["postId"]) ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
+            <input class="form-control form-border comment-input commentText" name="comment" placeholder="Write a comment..."></input>
+            <div class="addComment" data-postid="<?php  echo $post["postId"];  ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>
     </div>
-    <?php //endforeach; ?>
+    
 </div>
 <script src="scripts/comments.js"></script>

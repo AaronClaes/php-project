@@ -1,26 +1,35 @@
-document.querySelector(".addComment").addEventListener("click", function(){
-let postId = "100";
-let text = document.getElementById("commentText").value;
+ document.querySelectorAll(".addComment").forEach((btn) => {
+//let btn = document.querySelector(".addComment")
+  btn.addEventListener("click", (e) =>{
+  
+    let postid = btn.dataset.postid;
+    e.preventDefault();
+    let text = btn.parentElement.querySelector(".commentText").value
+    console.log(postid);
+    console.log(text);
+  
+    let formData = new FormData();
 
-console.log(postId);
-console.log(text);
 
-const formData = new FormData();
+    formData.append('text', text);
+    formData.append('postId', postid);
 
-
-formData.append('text', text);
-formData.append('postId', postId);
-
-fetch('./ajax/saveComment.php', {
-  method: 'POST',
-  body: formData
-})
-.then(response => response.json())
-.then(result => {
-    l
-  console.log('Success:', result);
-})
-.catch(error => {
-  console.error('Error:', error);
-});
+    fetch('ajax/saveComment.php', {
+    method: 'POST',
+    body: formData
+    })
+    .then(response =>{
+      console.log(response)
+      return response.json()
+     })
+    .then(result => {
+   
+      console.log('Success:', result);
+    })
+    .catch(error => {
+    console.log('Error:', error);
+  
+    });
+  
+ });
 });
