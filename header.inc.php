@@ -1,25 +1,10 @@
 <?php
-if (isset($_SESSION["userId"])) {
-    $loggedIn = true;
-    $buttonText = "Logout";
-    $buttonValue = "";
-}
-if (preg_match('(signup.php)', $_SERVER['SCRIPT_NAME'])) {
-    $buttonText = "Login";
-    $buttonValue = "login.php";
-} else if ((preg_match('(login.php)', $_SERVER['SCRIPT_NAME']))) {
-    $buttonText = "Sign up";
-    $buttonValue = "signup.php";
-} else ($buttonValue = "login.php");
-
 if (!empty($_GET['search'])) {
     try {
         $user = new User;
         $searchresult = $_GET['search'];
-       $users = $user->searchusers($searchresult, $tags);
-        
-        
-    }catch (\Throwable $th) {
+        $users = $user->searchusers($searchresult, $tags);
+    } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
@@ -32,17 +17,12 @@ if (!empty($_GET['search'])) {
             <span class="navbar-toggler-icon"></span>
         </button>
         <label>Search</label>
-<form action="search.php" method="GET">
-<input type="text" placeholder="Type the name here" name="search">&nbsp;
-<input type="submit" value="Search" name="btn" class="btn btn-sm btn-primary">
-</form>
+        <form action="search.php" method="GET">
+            <input type="text" placeholder="Type the name here" name="search">&nbsp;
+            <input type="submit" value="Search" name="btn" class="btn btn-sm btn-primary">
+        </form>
         <div class="collapse navbar-collapse navbar-nav me-auto">
-            <?php if ($loggedIn) :  ?>
-                <a href=<?php echo $buttonValue ?> class="btn nav-btn"> <?php echo $buttonText ?></a>
-            <?php endif; ?>
-            <?php if (!$loggedIn) :  ?>
-                <a href=<?php echo $buttonValue ?> class="btn nav-btn"><?php echo $buttonText ?></a>
-            <?php endif; ?>
+            <a href="logout.php" class="btn nav-btn"> Logout </a>
             <!-- <form data-np-checked="1">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search" data-np-checked="1">
             </form> -->

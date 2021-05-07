@@ -47,7 +47,6 @@ if (!empty($_POST)) {
 </head>
 
 <body>
-  <?php include_once("header.inc.php") ?>
   <?php if (isset($error)) : ?>
     <div class="user-messages-area">
       <div class="alert alert-danger">
