@@ -6,14 +6,14 @@ $date = Post::time_elapsed_string($post['created']);
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
     <div class="post-top">
-        <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+        <img class="profile-picture" src="<?php echo htmlspecialchars($currentUser["picture"]) ?>" alt="profile picture">
         <div class="post-data">
             <div class="post-data-top">
-                <h4 class="post-user"><?php echo $post['username'] ?></h4>
+                <h4 class="post-user"><?php echo htmlspecialchars($post['username'])  ?></h4>
                 <h4 class="post-dot">•</h4>
                 <p class="post-date"><?php echo $date ?></p>
             </div>
-            <p class="post-description"><?php echo $post['description']  ?></p>
+            <p class="post-description"><?php echo htmlspecialchars($post['description'])  ?></p>
         </div>
         <div class="btn-group dropend post-dropdown-button">
             <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,11 +21,11 @@ $date = Post::time_elapsed_string($post['created']);
             </div>
             <div class="dropdown-menu">
                 <?php if ($post["user_id"] !== $currentUser["id"]) : ?>
-                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item inappropriate" href="#">Flag inappropriate</li>
+                    <li data-postid="<?php echo htmlspecialchars($post['postId']) ?>" class="dropdown-item inappropriate" href="#">Flag inappropriate</li>
                 <?php endif; ?>
 
                 <?php if ($post["user_id"] === $currentUser["id"]) : ?>
-                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item delete" href="#">Delete post</li>
+                    <li data-postid="<?php echo htmlspecialchars($post['postId']) ?>" class="dropdown-item delete" href="#">Delete post</li>
                 <?php endif; ?>
             </div>
         </div>
@@ -35,7 +35,7 @@ $date = Post::time_elapsed_string($post['created']);
         <div class="post-tags">
             <?php foreach ($tags as $tag) : ?>
                 <a href="feed.php?search=tag&query=<?php echo $tag ?>">
-                    <p class="post-tag"><?php echo $tag ?></p>
+                    <p class="post-tag"><?php echo htmlspecialchars($tag) ?></p>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -65,7 +65,7 @@ $date = Post::time_elapsed_string($post['created']);
                 <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
                 <div class="comment-box">
                     <div class="comment-box-info">
-                        <h5 class="post-user"><?php echo $post['username'] ?></h5> <!-- Make username of user that sent comment -->
+                        <h5 class="post-user"><?php echo htmlspecialchars($post['username']) ?></h5> <!-- Make username of user that sent comment -->
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $date ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>

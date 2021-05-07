@@ -34,7 +34,7 @@ try {
     <div class="right">
         <div class="box-container">
             <div class="new_post-box">
-                <h2 class="new_post-box-title">Results for: <?php echo $_GET["query"] ?> </h2>
+                <h2 class="new_post-box-title">Results for: <?php echo htmlspecialchars($_GET["query"]) ?> </h2>
             </div>
         </div>
         <?php
