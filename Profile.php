@@ -4,7 +4,7 @@ $conn = Db::getConnection();
 try {
     $user = new User();
     $currentUserId = $_SESSION["userId"];
-    $currentUser = $user->getLoggedUsername($currentUserId);
+    $currentUser = $user->getUserInfo($currentUserId);
 
     // Update User INFO
 
@@ -41,7 +41,7 @@ try {
         // User updates
         $user->updateInfo($currentUser['id']);
 
-        $currentUser = $user->getLoggedUsername($currentUserId); //---Updated User Fetch---
+        $currentUser = $user->getUserInfo($currentUserId); //---Updated User Fetch---
     }
 } catch (\Throwable $th) {
     $error = $th->getMessage();
@@ -152,7 +152,7 @@ try {
         </div>
     </div>
     <?php
-    $feed = Post::getUserPosts();
+    $feed = Post::getUserPosts($_SESSION["userId"]);
     foreach ($feed as $post) :  ?>
         <?php include("post.inc.php") ?>
     <?php endforeach; ?>

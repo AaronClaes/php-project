@@ -9,7 +9,8 @@ $date = Post::time_elapsed_string($post['created']);
         <img class="profile-picture" src="<?php echo htmlspecialchars($currentUser["picture"]) ?>" alt="profile picture">
         <div class="post-data">
             <div class="post-data-top">
-                <h4 class="post-user"><?php echo htmlspecialchars($post['username'])  ?></h4>
+                
+                <h4 class="post-user"><a href="other_user.php?id=<?php echo $post["id"]?>" > <?php echo htmlspecialchars($post['username'])?></a></h4>
                 <h4 class="post-dot">•</h4>
                 <p class="post-date"><?php echo $date ?></p>
             </div>

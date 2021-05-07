@@ -265,7 +265,7 @@ class User
         return $user;
     }
 
-    public function getLoggedUsername($userId)
+    public function getUserInfo($userId)
     {
         $conn = Db::getConnection();
         $statement = $conn->prepare("SELECT * FROM users WHERE id = :userId");
