@@ -259,19 +259,6 @@ class Post
         $statement->bindValue(":location", $location);
         $statement->execute();
     }
-    public static function getFeedPosts()
-    {
-        $conn = Db::getConnection();
-
-        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0";
-        $statement = $conn->prepare($sql);
-        $user_id = $_SESSION["userId"];
-
-        $statement->bindValue(":user_id", $user_id);
-        $statement->execute();
-        $posts = $statement->fetchAll();
-        return $posts;
-    }
 
     public function flag()
     {
@@ -287,16 +274,56 @@ class Post
         return $this;
     }
 
+    public function delete()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "DELETE FROM posts WHERE id = :id";
+        $statement = $conn->prepare($sql);
+
+        $id = $this->getPostId();
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+
+        return $this;
+    }
+
+    public static function getFeedPosts()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0";
+        $statement = $conn->prepare($sql);
+        $user_id = $_SESSION["userId"];
+
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
+
     public static function getUserPosts()
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id AND inappropriate = 0 ORDER BY created DESC; ";
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
 
 
         $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
+
+    public static function getPostsByTag($tag)
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE INSTR(tags, :tag) > 0 AND inappropriate = 0 ORDER BY created DESC; ";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":tag", $tag);
         $statement->execute();
         $posts = $statement->fetchAll();
         return $posts;

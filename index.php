@@ -1,6 +1,5 @@
 <?php
 include_once("bootstrap.php");
-
 try {
    $user = new User();
    $currentUserId = $_SESSION["userId"];
@@ -41,14 +40,6 @@ try {
             <h3><a href="profile.php">Likes</a></h3>
          </div>
       </div>
-      <?php
-
-      $posts = new Post;
-      $posts->setUserId($_SESSION["userId"]);
-      $feed = $posts->getFeedPosts();
-
-      ?>
-
       <div class="right">
          <div class="box-container">
             <div class="new_post-box">

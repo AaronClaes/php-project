@@ -13,6 +13,7 @@ if (!empty($_GET['search'])) {
         $error = $th->getMessage();
     }
 } 
+
 ?>
 <!DOCTYPE html>
 <html>

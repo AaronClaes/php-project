@@ -1,6 +1,7 @@
-document.querySelector("#addComment").addEventListener("click", function(){
-let postId = this.dataset.postId;
-let text = document.querySelector("#commentText").value;
+document.querySelector(".addComment").addEventListener("click", function(){
+let postId = "100";
+let text = document.getElementById("commentText").value;
+
 console.log(postId);
 console.log(text);
 

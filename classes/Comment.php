@@ -91,7 +91,7 @@ class Comment
 
     public function saveComment(){
         $conn = Db::getConnection();
-        $sql = "INSERT INTO comments (text, post_id, user_id, created) values (:text, :post_Id, :user_Id, :created)";
+        $sql = "INSERT INTO comments (text, post.id, user_id, created) SELECT post.id FROM posts JOIN comments ON posts.id = comments.post_id values (:text, :post_Id, :user_Id, :created)";
         $statement = $conn->prepare($sql);
         $text = $this->getText();
         $postId = $this->getPostId();

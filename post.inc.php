@@ -26,7 +26,7 @@ $date = Post::time_elapsed_string($post['created']);
                 <?php endif; ?>
 
                 <?php if ($post["user_id"] === $currentUser["id"]) : ?>
-                    <li class="dropdown-item" href="#">Delete post</li>
+                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item delete" href="#">Delete post</li>
                 <?php endif; ?>
             </div>
         </div>
@@ -35,7 +35,7 @@ $date = Post::time_elapsed_string($post['created']);
     <?php if (!empty($tags)) : ?>
         <div class="post-tags">
             <?php foreach ($tags as $tag) : ?>
-                <a href="">
+                <a href="feed.php?search=tag&query=<?php echo $tag ?>">
                     <p class="post-tag"><?php echo $tag ?></p>
                 </a>
             <?php endforeach; ?>
@@ -71,7 +71,7 @@ $date = Post::time_elapsed_string($post['created']);
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $date ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
-                    <p class="comment-message" ><?php // echo $c['text']; ?>test </p>
+                    <p class="comment-message" ><?php  //echo $c['text']; ?>test </p>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@ $date = Post::time_elapsed_string($post['created']);
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
             <input class="form-control form-border comment-input" id="commentText" name="comment" placeholder="Write a comment..."></input>
-            <div  id="addComment" data-postId="<?php  echo $postId['postId']; ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
+            <div class="addComment" data-postId="100<?php // echo $postId["postId"]; var_dump($postId["postId"]) ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>
     </div>
     <?php //endforeach; ?>
