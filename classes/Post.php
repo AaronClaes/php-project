@@ -329,16 +329,17 @@ class Post
         return $posts;
     }
 
+    //source: https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
     public static function time_elapsed_string($datetime, $full = false)
     {
         $now = new DateTime;
         $ago = new DateTime($datetime);
-        $diff = $now->diff($ago);
+        $diff = $now->diff($ago); //php function to get datetime difference
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+        $diff->w = floor($diff->d / 7); //round off week number
+        $diff->d -= $diff->w * 7; //amount of days ago
 
-        $string = array(
+        $string = array( //display text
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
@@ -348,14 +349,13 @@ class Post
             's' => 'second',
         );
         foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            if ($diff->$k) { //check if y,m,w,d,h,i,s is not null in $diff
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : ''); //set value of string to correct time
             } else {
-                unset($string[$k]);
+                unset($string[$k]); //unset if y,m,w,d,h,i,s is null in $diff
             }
         }
-
-        if (!$full) $string = array_slice($string, 0, 1);
-        return $string ? implode(', ', $string) : 'just now';
+        if (!$full) $string = array_slice($string, 0, 1); //get first time unit
+        return $string ? implode(', ', $string) : 'just now'; //if no string -> return "just now"
     }
 }
