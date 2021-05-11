@@ -158,6 +158,7 @@ try {
     <?php endforeach; ?>
     <script src="scripts/profile.js"></script>
     <script src="scripts/post.js"></script>
+    <script src="scripts/comments.js"></script>
 </body>
 
 </html>

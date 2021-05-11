@@ -332,14 +332,23 @@ class Post
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT *  FROM posts JOIN users  WHERE location = :location AND inappropriate = 0 ORDER BY created DESC; ";
+        $sql = "SELECT *, posts.id as postId, posts.location as postLocation FROM posts JOIN users ON users.id=posts.user_id WHERE posts.location = :location AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $statement->bindValue(":location", $Location);
         $statement->execute();
         $posts = $statement->fetchAll();
         return $posts;
     }
-
+    public function searchLocation($searchLocation)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users  WHERE location = :searchResult GROUP BY location");
+        $statement->bindValue(":searchResult", $searchLocation);
+        
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+    }
     public static function time_elapsed_string($datetime, $full = false)
     {
         $now = new DateTime;

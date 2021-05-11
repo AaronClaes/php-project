@@ -368,16 +368,7 @@ class User
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
-    public function searchLocation($searchLocation)
-    {
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM users  WHERE location = :searchResult GROUP BY location");
-        $statement->bindValue(":searchResult", $searchLocation);
-        
-        $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $user;
-    }
+   
 
 
     public function uploadProfilePicture($profilepicture)

@@ -3,7 +3,7 @@ include_once("bootstrap.php");
 $tags = explode(",", $post['tags']);
 $date = Post::time_elapsed_string($post['created']);
 $allComments = Comment::getAllComments($post["postId"]);
-var_dump($post["postId"]);
+
 
 ?>
 <div class="post box-container">

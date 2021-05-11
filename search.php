@@ -10,7 +10,7 @@ if (!empty($_GET['search'])) {
         $searchtags = $_GET['search'];
         $searchLocation = $_GET['search'];
        $users = $user->searchusers($searchresult);
-       $location = $user->searchLocation($searchLocation);
+       $location = $tag->searchLocation($searchLocation);
     $tags = $tag->searchtags($searchtags);
         
     }catch (\Throwable $th) {
@@ -71,7 +71,7 @@ foreach($location as $searchLocation):  ?>
 
 
    
-    <a href="feed.php?search=tag&query=<?php echo $searchLocation['location']; ?>"><?php echo $searchLocation['location']; ?></a>
+    <a href="feed.php?search=location&query=<?php echo $searchLocation['location']; ?>"><?php echo $searchLocation['location']; ?></a>
    
  
 <?php  endforeach;} ?>
