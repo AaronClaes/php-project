@@ -94,29 +94,31 @@ class Post
         $temp_name = $_FILES['image']['tmp_name'];
 
         //APPLY FILTER
-        $img = imagecreatefrompng($temp_name);
-        switch ($type) {
-            case 'IMG_FILTER_NEGATE':
-                imagefilter($img, IMG_FILTER_NEGATE);
-                break;
-            case 'IMG_FILTER_GRAYSCALE':
-                imagefilter($img, IMG_FILTER_GRAYSCALE);
-                break;
-            case 'IMG_FILTER_COLORIZE':
+        if ($ext === "png") {
 
-                imagefilter($img, IMG_FILTER_COLORIZE, 50, 0, 0);
-                break;
-            case 'IMG_FILTER_MEAN_REMOVAL':
-                imagefilter($img, IMG_FILTER_MEAN_REMOVAL);
-                break;
-            case 'IMG_FILTER_EMBOSS':
-                imagefilter($img, IMG_FILTER_EMBOSS);
-                break;
-            default:
-                break;
+
+            $img = imagecreatefrompng($temp_name);
+            switch ($type) {
+                case 'IMG_FILTER_NEGATE':
+                    imagefilter($img, IMG_FILTER_NEGATE);
+                    break;
+                case 'IMG_FILTER_GRAYSCALE':
+                    imagefilter($img, IMG_FILTER_GRAYSCALE);
+                    break;
+                case 'IMG_FILTER_COLORIZE':
+                    imagefilter($img, IMG_FILTER_COLORIZE, 50, 0, 0);
+                    break;
+                case 'IMG_FILTER_MEAN_REMOVAL':
+                    imagefilter($img, IMG_FILTER_MEAN_REMOVAL);
+                    break;
+                case 'IMG_FILTER_EMBOSS':
+                    imagefilter($img, IMG_FILTER_EMBOSS);
+                    break;
+                default:
+                    break;
+            }
+            imagepng($img, $temp_name);
         }
-        imagepng($img, $temp_name);
-
         //SET FILENAME
         $filename = "post_" . $id . "_" . mt_rand(100000, 999999);
         $path_filename_ext = $target_dir . $filename . "." . $ext;
@@ -302,13 +304,12 @@ class Post
         return $posts;
     }
 
-    public static function getUserPosts()
+    public static function getUserPosts($user_id)
     {
         $conn = Db::getConnection();
 
         $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
-        $user_id = $_SESSION["userId"];
 
 
         $statement->bindValue(":user_id", $user_id);
@@ -332,6 +333,7 @@ class Post
     {
         $conn = Db::getConnection();
 
+<<<<<<< HEAD
         $sql = "SELECT *, posts.id as postId, posts.location as postLocation FROM posts JOIN users ON users.id=posts.user_id WHERE posts.location = :location AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $statement->bindValue(":location", $Location);
@@ -349,16 +351,19 @@ class Post
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
+=======
+    //source: https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
+>>>>>>> main
     public static function time_elapsed_string($datetime, $full = false)
     {
         $now = new DateTime;
         $ago = new DateTime($datetime);
-        $diff = $now->diff($ago);
+        $diff = $now->diff($ago); //php function to get datetime difference
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+        $diff->w = floor($diff->d / 7); //round off week number
+        $diff->d -= $diff->w * 7; //amount of days ago
 
-        $string = array(
+        $string = array( //display text
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
@@ -368,15 +373,14 @@ class Post
             's' => 'second',
         );
         foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            if ($diff->$k) { //check if y,m,w,d,h,i,s is not null in $diff
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : ''); //set value of string to correct time
             } else {
-                unset($string[$k]);
+                unset($string[$k]); //unset if y,m,w,d,h,i,s is null in $diff
             }
         }
-
-        if (!$full) $string = array_slice($string, 0, 1);
-        return $string ? implode(', ', $string) : 'just now';
+        if (!$full) $string = array_slice($string, 0, 1); //get first time unit
+        return $string ? implode(', ', $string) : 'just now'; //if no string -> return "just now"
     }
     public function searchtags($searchtags)
     {

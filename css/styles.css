@@ -11,7 +11,8 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+small {
   color: #d0d0d0;
   margin: 0;
 }
@@ -286,6 +287,13 @@ body {
 }
 
 .btn-profile-edit {
+  text-align: center;
+  width: 160px;
+  padding: 2rem 3rem;
+  font-size: 1rem;
+}
+
+.btn-profile-follow{
   text-align: center;
   width: 160px;
   padding: 2rem 3rem;

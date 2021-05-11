@@ -4,7 +4,7 @@ $conn = Db::getConnection();
 try {
     $user = new User();
     $currentUserId = $_SESSION["userId"];
-    $currentUser = $user->getLoggedUsername($currentUserId);
+    $currentUser = $user->getUserInfo($currentUserId);
 
     // Update User INFO
 
@@ -41,7 +41,7 @@ try {
         // User updates
         $user->updateInfo($currentUser['id']);
 
-        $currentUser = $user->getLoggedUsername($currentUserId); //---Updated User Fetch---
+        $currentUser = $user->getUserInfo($currentUserId); //---Updated User Fetch---
     }
 } catch (\Throwable $th) {
     $error = $th->getMessage();
@@ -82,11 +82,11 @@ try {
                 <div class="profile-box-info">
                     <img class="profile-picture-big" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
                     <div class="profile-box-names">
-                        <h1><?php echo $currentUser["username"] ?></h1>
-                        <h5><?php echo $currentUser["firstname"] . " " .  $currentUser["lastname"] ?></h5>
+                        <h1><?php echo htmlspecialchars($currentUser["username"]) ?></h1>
+                        <h5><?php echo htmlspecialchars($currentUser["firstname"]) . " " .  htmlspecialchars($currentUser["lastname"]) ?></h5>
                     </div>
                 </div>
-                <p class="profile-box-description"><?php echo $currentUser["bio"] ?></p>
+                <p class="profile-box-description"><?php echo htmlspecialchars($currentUser["bio"]) ?></p>
             </div>
         </div>
         </div>
@@ -112,23 +112,23 @@ try {
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Username">Edit Username</label>
-                        <input type="text" class="form-control form-border" name="username" id="Username" placeholder="Username" value=<?php echo $currentUser['username']; ?>>
+                        <input type="text" class="form-control form-border" name="username" id="Username" placeholder="Username" value=<?php echo htmlspecialchars($currentUser['username']); ?>>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Firstname">Edit Firstname</label>
-                        <input type="text" class="form-control form-border" name="firstname" id="Firstname" placeholder="Firstname" value=<?php echo $currentUser['firstname']; ?>>
+                        <input type="text" class="form-control form-border" name="firstname" id="Firstname" placeholder="Firstname" value=<?php echo htmlspecialchars($currentUser['firstname']); ?>>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Email">Edit Email</label>
-                        <input type="email" class="form-control form-border" name="email" id="Email" placeholder="Email" value=<?php echo $currentUser['email']; ?>>
+                        <input type="email" class="form-control form-border" name="email" id="Email" placeholder="Email" value=<?php echo htmlspecialchars($currentUser['email']); ?>>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Lastname">Edit Lastname</label>
-                        <input type="text" class="form-control form-border" id="Lastname" name="lastname" placeholder="Lastname" value=<?php echo $currentUser['lastname']; ?>>
+                        <input type="text" class="form-control form-border" id="Lastname" name="lastname" placeholder="Lastname" value=<?php echo htmlspecialchars($currentUser['lastname']); ?>>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Description">Edit Description</label>
-                        <textarea class="form-control form-border" id="Description" name="description" placeholder="Description" rows="3" cols="50"><?php echo $currentUser['bio']; ?></textarea>
+                        <textarea class="form-control form-border" id="Description" name="description" placeholder="Description" rows="3" cols="50"><?php echo htmlspecialchars($currentUser['bio']); ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Edit Password</label>
@@ -152,7 +152,7 @@ try {
         </div>
     </div>
     <?php
-    $feed = Post::getUserPosts();
+    $feed = Post::getUserPosts($_SESSION["userId"]);
     foreach ($feed as $post) :  ?>
         <?php include("post.inc.php") ?>
     <?php endforeach; ?>

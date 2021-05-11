@@ -62,6 +62,7 @@ if (!empty($_POST)) {
             <div class="mb-3">
                 <label for="postImage" class="form-label">Image</label>
                 <input type="file" class="form-control form-border" name="image" id="postImage" onchange="getImage(this);" />
+                <small>Upload a .png if you want to apply filters</small>
             </div>
             <div class="postFilters hidden">
                 <div class="filter">

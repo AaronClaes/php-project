@@ -9,14 +9,17 @@ $allComments = Comment::getAllComments($post["postId"]);
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
     <div class="post-top">
-        <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+        <?php if (empty(!$post["picture"])) : ?>
+            <img class="profile-picture" src="<?php echo htmlspecialchars($post["picture"]) ?>" alt="profile picture">
+        <?php endif; ?>
         <div class="post-data">
             <div class="post-data-top">
-                <h4 class="post-user"><?php echo $post['username'] ?></h4>
+                
+                <h4 class="post-user"><a href="other_user.php?id=<?php echo $post["id"]?>" > <?php echo htmlspecialchars($post['username'])?></a></h4>
                 <h4 class="post-dot">•</h4>
                 <p class="post-date"><?php echo $date ?></p>
             </div>
-            <p class="post-description"><?php echo $post['description']  ?></p>
+            <p class="post-description"><?php echo htmlspecialchars($post['description'])  ?></p>
         </div>
         <div class="btn-group dropend post-dropdown-button">
             <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,11 +27,11 @@ $allComments = Comment::getAllComments($post["postId"]);
             </div>
             <div class="dropdown-menu">
                 <?php if ($post["user_id"] !== $currentUser["id"]) : ?>
-                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item inappropriate" href="#">Flag inappropriate</li>
+                    <li data-postid="<?php echo htmlspecialchars($post['postId']) ?>" class="dropdown-item inappropriate" href="#">Flag inappropriate</li>
                 <?php endif; ?>
 
                 <?php if ($post["user_id"] === $currentUser["id"]) : ?>
-                    <li data-postid="<?php echo $post['postId'] ?>" class="dropdown-item delete" href="#">Delete post</li>
+                    <li data-postid="<?php echo htmlspecialchars($post['postId']) ?>" class="dropdown-item delete" href="#">Delete post</li>
                 <?php endif; ?>
             </div>
         </div>
@@ -38,7 +41,7 @@ $allComments = Comment::getAllComments($post["postId"]);
         <div class="post-tags">
             <?php foreach ($tags as $tag) : ?>
                 <a href="feed.php?search=tag&query=<?php echo $tag ?>">
-                    <p class="post-tag"><?php echo $tag ?></p>
+                    <p class="post-tag"><?php echo htmlspecialchars($tag) ?></p>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -71,11 +74,11 @@ $allComments = Comment::getAllComments($post["postId"]);
                 <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
                 <div class="comment-box">
                     <div class="comment-box-info">
-                        <h5 class="post-user"><?php echo $post['username'] ?></h5> <!-- Make username of user that sent comment -->
+                        <h5 class="post-user"><?php echo htmlspecialchars($post['username']) ?></h5> <!-- Make username of user that sent comment -->
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $dateComment ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
-                    <p class="comment-message" ><?php echo $c['text']; ?></p>
+                    <p class="comment-message" ><?php echo  htmlspecialchars($c['text']); ?></p>
                 </div>
             </div>
         </div><?php endforeach; ?>

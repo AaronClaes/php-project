@@ -3,7 +3,7 @@ include_once("bootstrap.php");
 try {
    $user = new User();
    $currentUserId = $_SESSION["userId"];
-   $currentUser = $user->getLoggedUsername($currentUserId);
+   $currentUser = $user->getUserInfo($currentUserId);
 } catch (\Throwable $th) {
    $error = $th->getMessage();
 }
@@ -29,7 +29,7 @@ try {
       <div class="box-container left">
          <div class="left-link">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="">
-            <h3><a href="profile.php"><?php echo $currentUser["username"] ?></a></h3>
+            <h3><a href="profile.php"><?php echo htmlspecialchars($currentUser["username"]) ?></a></h3>
          </div>
          <div class="left-link left-link-middle">
             <img class="left-link-follow" src="img/follow.svg" alt="">
