@@ -60,9 +60,10 @@ try {
       </div>
       
    </div>
-   <button id="Load">Load more</button>
+   <button class="load" id="Load">Load more</button>
    <script src="scripts/post.js"></script>
-   
+   <script src="scripts/loadMore.js"></script>
+   <script src="scripts/comments.js"></script>
 </body>
 
 </html>

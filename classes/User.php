@@ -11,6 +11,7 @@ class User
     private $email;
     private $picture;
     private $description;
+    private $location;
 
 
     /**
@@ -29,6 +30,25 @@ class User
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+    /**
+     * Get the value of picture
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
 
         return $this;
     }
@@ -348,11 +368,11 @@ class User
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
-    public function searchtags($searchtags)
+    public function searchLocation($searchLocation)
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM posts GROUP BY tags WHERE tags = :tags");
-        $statement->bindValue(":tags", $searchtags);
+        $statement = $conn->prepare("SELECT * FROM users  WHERE location = :searchResult GROUP BY location");
+        $statement->bindValue(":searchResult", $searchLocation);
         
         $user = $statement->execute();
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -403,4 +423,5 @@ class User
 
         return $this;
     }
+    
 }

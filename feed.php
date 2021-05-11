@@ -45,6 +45,9 @@ try {
             case 'query':
                 $feed = Post::getPostsByTag($_GET["query"]);
                 break;
+            case 'Location':
+                $feed = Post::getPostsByLocation($_GET["query"]);
+                break;
             default:
                 # code...
                 break;

@@ -328,6 +328,17 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+    public static function getPostsByLocation($Location)
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT *  FROM posts JOIN users  WHERE location = :location AND inappropriate = 0 ORDER BY created DESC; ";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":location", $Location);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
 
     public static function time_elapsed_string($datetime, $full = false)
     {
@@ -357,5 +368,15 @@ class Post
 
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) : 'just now';
+    }
+    public function searchtags($searchtags)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT tags FROM posts  WHERE tags = :tags");
+        $statement->bindValue(":tags", $searchtags);
+        
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
     }
 }

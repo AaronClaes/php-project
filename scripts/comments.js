@@ -1,14 +1,16 @@
- document.querySelectorAll(".addComment").forEach((btn) => {
-//let btn = document.querySelector(".addComment")
-  btn.addEventListener("click", (e) =>{
-  
-    let postid = btn.dataset.postid;
-    e.preventDefault();
-    let text = btn.parentElement.querySelector(".commentText").value
+ document.querySelectorAll(".addComment").forEach((comment) => {
+//let btn = document.querySelector(".addComment") 
+console.log(comment);
+  comment.addEventListener("click", (e) =>{
+    console.log(e);
+  const formData = new FormData();
+    let postid = comment.dataset.postid;
+    
+    let text = comment.parentElement.querySelector(".commentText").value
     console.log(postid);
     console.log(text);
   
-    let formData = new FormData();
+    
 
 
     formData.append('text', text);

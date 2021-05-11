@@ -88,4 +88,3 @@ var_dump($post["postId"]);
     </div>
     
 </div>
-<script src="scripts/comments.js"></script>
