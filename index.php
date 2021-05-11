@@ -3,7 +3,7 @@ include_once("bootstrap.php");
 try {
    $user = new User();
    $currentUserId = $_SESSION["userId"];
-   $currentUser = $user->getLoggedUsername($currentUserId);
+   $currentUser = $user->getUserInfo($currentUserId);
 } catch (\Throwable $th) {
    $error = $th->getMessage();
 }

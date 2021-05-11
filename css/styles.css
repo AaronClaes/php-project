@@ -293,6 +293,13 @@ body {
   font-size: 1rem;
 }
 
+.btn-profile-follow{
+  text-align: center;
+  width: 160px;
+  padding: 2rem 3rem;
+  font-size: 1rem;
+}
+
 .hidden {
   display: none;
 }
