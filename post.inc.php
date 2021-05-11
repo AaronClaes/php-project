@@ -6,7 +6,9 @@ $date = Post::time_elapsed_string($post['created']);
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
     <div class="post-top">
-        <img class="profile-picture" src="<?php echo htmlspecialchars($currentUser["picture"]) ?>" alt="profile picture">
+        <?php if (empty(!$post["picture"])) : ?>
+            <img class="profile-picture" src="<?php echo htmlspecialchars($post["picture"]) ?>" alt="profile picture">
+        <?php endif; ?>
         <div class="post-data">
             <div class="post-data-top">
                 <h4 class="post-user"><?php echo htmlspecialchars($post['username'])  ?></h4>
