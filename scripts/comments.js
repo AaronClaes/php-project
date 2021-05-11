@@ -2,7 +2,7 @@
 //let btn = document.querySelector(".addComment") 
 console.log(comment);
   comment.addEventListener("click", (e) =>{
-    console.log(e);
+    window.location.reload(); 
   const formData = new FormData();
     let postid = comment.dataset.postid;
     

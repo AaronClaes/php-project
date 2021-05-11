@@ -51,7 +51,7 @@ try {
          <?php
          $feed = Post::getFeedPosts();
          $i = 0;
-         foreach ($feed as $post) : if ($i == 5) {
+         foreach ($feed as $post) : if ($i == 20) {
                break;
             } ?>
             <?php include("post.inc.php") ?>

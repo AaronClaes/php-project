@@ -333,7 +333,6 @@ class Post
     {
         $conn = Db::getConnection();
 
-<<<<<<< HEAD
         $sql = "SELECT *, posts.id as postId, posts.location as postLocation FROM posts JOIN users ON users.id=posts.user_id WHERE posts.location = :location AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
         $statement->bindValue(":location", $Location);
@@ -351,9 +350,7 @@ class Post
         $user= $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
-=======
     //source: https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
->>>>>>> main
     public static function time_elapsed_string($datetime, $full = false)
     {
         $now = new DateTime;
