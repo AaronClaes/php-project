@@ -26,38 +26,49 @@ try {
 
 <body>
     <?php include_once("header.inc.php") ?>
-    <?php
-
-
-
-    ?>
     <div class="right">
         <div class="box-container">
             <div class="new_post-box">
-                <h2 class="new_post-box-title">Results for: <?php echo htmlspecialchars($_GET["query"]) ?> </h2>
+                <?php if ((empty($_GET["query"])) || (empty($_GET["search"]))) : ?>
+                    <h2 class="new_post-box-title">No search term or type specified</h2>
+                <?php else : ?>
+                    <h2 class="new_post-box-title">Results for: <?php echo htmlspecialchars($_GET["query"]) ?> </h2>
+                <?php endif; ?>
             </div>
         </div>
-        <?php 
-        switch ($_GET["search"]) {
-            case 'tag':
-                $feed = Post::getPostsByTag($_GET["query"]);
-                break;
-            case 'query':
-                $feed = Post::getPostsByTag($_GET["query"]);
-                break;
-            case 'location':
-                $feed = Post::getPostsByLocation($_GET["query"]);
-               
-                break;
-            default:
-                # code...
-                break;
-        };
-        
-        $i = 0;
-      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
-            <?php include("post.inc.php") ?>
-            <?php $i++; endforeach; ?>
+        <?php
+        if ((!empty($_GET["query"])) || (!empty($_GET["search"]))) :
+            switch ($_GET["search"]) {
+                case 'tag':
+                    $feed = Post::getPostsByTag($_GET["query"]);
+                    break;
+                case 'content':
+                    $feed = Post::getPostsByContent($_GET["query"]);
+                    break;
+                case 'location':
+                    $feed = Post::getPostsByLocation($_GET["query"]);
+                    break;
+                case 'user':
+                    $users = User::searchUsers($_GET["query"]);
+                    break;
+                default:
+                    # code...
+                    break;
+            };
+            if (isset($feed)) {
+                $i = 0;
+                foreach ($feed as $i => $post) :
+                    if ($i == 2) {
+                        break;
+                    }
+                    include("post.inc.php");
+                    $i++;
+                endforeach;
+            }
+            if (isset($users)) : ?>
+                <?php var_dump($users) ?>
+        <?php endif;
+        endif; ?>
     </div>
     </div>
     <script src="scripts/post.js"></script>

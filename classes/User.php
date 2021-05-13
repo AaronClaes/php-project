@@ -269,7 +269,7 @@ class User
         }
     }
 
-   
+
 
     //Get current active user
     public function getLoggedUser($username)
@@ -357,18 +357,18 @@ class User
 
         return $user;
     }
-    
-    public function searchUsers($searchresult)
+
+    public static function searchUsers($query)
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM users  WHERE username = :searchResult");
-        $statement->bindValue(":searchResult", $searchresult);
-        
+        $statement = $conn->prepare("SELECT * FROM users WHERE INSTR(username, :query) OR INSTR(firstname, :query) OR INSTR(lastname, :query)");
+        $statement->bindValue(":query", $query);
+
         $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
-   
+
 
 
     public function uploadProfilePicture($profilepicture)
@@ -414,5 +414,4 @@ class User
 
         return $this;
     }
-    
 }

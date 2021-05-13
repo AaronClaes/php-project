@@ -92,6 +92,11 @@ body {
   width: 600px;
 }
 
+.btn-search {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
 #search {
   flex-wrap: nowrap;
 }
