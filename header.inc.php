@@ -9,7 +9,7 @@
                     <option value="location">Location</option>
                     <option value="user">Users</option>
                 </select>
-                <input type=" text" class="form-control form-border" id="searchbar" placeholder="Type the name here" name="query">&nbsp;
+                <input type=" text" class="form-control form-border" id="searchbar" placeholder="Type your query here" name="query">&nbsp;
                 <button class="btn btn-search" type="submit">Search</button>
             </div>
         </form>
@@ -21,3 +21,16 @@
         </div>
     </div>
 </nav>
+<script>
+    let select = document.querySelector(".form-select")
+    if (localStorage.getItem("selectedSearch") !== null) {
+        select.value = localStorage.getItem("selectedSearch");
+    } else {
+        select.value = "content"
+    }
+
+    select.addEventListener("change", (e) => {
+        localStorage.setItem("selectedSearch", select.value);
+        console.log(document.cookie);
+    });
+</script>

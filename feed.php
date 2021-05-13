@@ -65,8 +65,18 @@ try {
                     $i++;
                 endforeach;
             }
-            if (isset($users)) : ?>
-                <?php var_dump($users) ?>
+            if (isset($users)) :
+                foreach ($users as $user) : ?>
+                    <div class="box-container">
+                        <div class="new_post-box">
+                            <?php if (!empty($user["picture"])) : ?>
+                                <img class="profile-picture" src="<?php echo $user["picture"] ?>" alt="profile picture">
+                            <?php endif; ?>
+                            <h2 class="new_post-box-title"><a href="other_user.php?id=<?php echo $user["id"] ?>"> <?php echo htmlspecialchars($user["username"]) ?> </a></h2>
+                            <a href="other_user.php?id=<?php echo $user["id"] ?>" class="btn nav-btn">Checkout user</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
         <?php endif;
         endif; ?>
     </div>
