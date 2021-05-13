@@ -51,15 +51,19 @@ try {
          <?php
          $feed = Post::getFeedPosts();
          $i = 0;
-         foreach ($feed as $i => $post) : if ($i == 2) {
+         foreach ($feed as $post) : if ($i == 20) {
                break;
             } ?>
             <?php include("post.inc.php") ?>
          <?php $i++;
          endforeach; ?>
       </div>
+      
    </div>
+   <button class="load" id="Load">Load more</button>
    <script src="scripts/post.js"></script>
+   <script src="scripts/loadMore.js"></script>
+   <script src="scripts/comments.js"></script>
 </body>
 
 </html>

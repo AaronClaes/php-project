@@ -294,7 +294,7 @@ class Post
     {
         $conn = Db::getConnection();
 
-        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0";
+        $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id != :user_id AND inappropriate = 0 ORDER BY created DESC;";
         $statement = $conn->prepare($sql);
         $user_id = $_SESSION["userId"];
 
@@ -329,7 +329,27 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+    public static function getPostsByLocation($Location)
+    {
+        $conn = Db::getConnection();
 
+        $sql = "SELECT *, posts.id as postId, posts.location as postLocation FROM posts JOIN users ON users.id=posts.user_id WHERE posts.location = :location AND inappropriate = 0 ORDER BY created DESC; ";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":location", $Location);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
+    public function searchLocation($searchLocation)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users  WHERE location = :searchResult GROUP BY location");
+        $statement->bindValue(":searchResult", $searchLocation);
+        
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+    }
     //source: https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
     public static function time_elapsed_string($datetime, $full = false)
     {
@@ -358,5 +378,15 @@ class Post
         }
         if (!$full) $string = array_slice($string, 0, 1); //get first time unit
         return $string ? implode(', ', $string) : 'just now'; //if no string -> return "just now"
+    }
+    public function searchtags($searchtags)
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT tags FROM posts  WHERE tags = :tags");
+        $statement->bindValue(":tags", $searchtags);
+        
+        $user = $statement->execute();
+        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
     }
 }

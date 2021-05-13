@@ -37,7 +37,7 @@ try {
                 <h2 class="new_post-box-title">Results for: <?php echo htmlspecialchars($_GET["query"]) ?> </h2>
             </div>
         </div>
-        <?php
+        <?php 
         switch ($_GET["search"]) {
             case 'tag':
                 $feed = Post::getPostsByTag($_GET["query"]);
@@ -45,21 +45,23 @@ try {
             case 'query':
                 $feed = Post::getPostsByTag($_GET["query"]);
                 break;
+            case 'location':
+                $feed = Post::getPostsByLocation($_GET["query"]);
+               
+                break;
             default:
                 # code...
                 break;
-        }
-
+        };
+        
         $i = 0;
-        foreach ($feed as $i => $post) : if ($i == 20) {
-                break;
-            } ?>
+      foreach($feed as $i => $post): if ($i == 2) { break; } ?>
             <?php include("post.inc.php") ?>
-        <?php $i++;
-        endforeach; ?>
+            <?php $i++; endforeach; ?>
     </div>
     </div>
     <script src="scripts/post.js"></script>
+    <script src="scripts/comments.js"></script>
 </body>
 
 </html>
