@@ -19,29 +19,13 @@ try {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/index.css">
+
 <title>Feed</title>
 </head>
 
 <body>
    <?php include_once("header.inc.php") ?>
    <div class="index-feed">
-      <div class="box-container left">
-         <div class="left-link">
-            <?php if (!empty($currentUser["picture"])) : ?>
-               <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
-            <?php endif; ?>
-            <h3><a href="profile.php"><?php echo htmlspecialchars($currentUser["username"]) ?></a></h3>
-         </div>
-         <div class="left-link left-link-middle">
-            <img class="left-link-follow" src="img/follow.svg" alt="">
-            <h3><a href="profile.php">Volgers</a></h3>
-         </div>
-         <div class="left-link">
-            <img class="left-link-follow" src="img/follow.svg" alt="">
-            <h3><a href="profile.php">Likes</a></h3>
-         </div>
-      </div>
       <div class="right">
          <div class="box-container">
             <div class="new_post-box">
