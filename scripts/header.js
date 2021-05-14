@@ -12,7 +12,6 @@ select.addEventListener("change", (e) => {
 const searchbar = document.querySelector(".search-input");
 const autocomplete = document.querySelector(".autocomplete-box");
 searchbar.addEventListener("keyup", (e) => {
-  console.log(searchbar.value);
   if (searchbar.value !== "" && select.value === "user") {
     autocomplete.classList.remove("hidden");
     while (autocomplete.firstChild) {
@@ -27,7 +26,6 @@ searchbar.addEventListener("keyup", (e) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result["users"]);
         result["users"].forEach((user) => {
           let li = document.createElement("li");
           autocomplete.appendChild(li);
