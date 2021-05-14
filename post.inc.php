@@ -15,8 +15,8 @@ $allComments = Comment::getAllComments($post["postId"]);
         <?php endif; ?>
         <div class="post-data">
             <div class="post-data-top">
-                
-                <h4 class="post-user"><a href="other_user.php?id=<?php echo $post["id"]?>" > <?php echo htmlspecialchars($post['username'])?></a></h4>
+
+                <h4 class="post-user"><a href="other_user.php?id=<?php echo $post["id"] ?>"> <?php echo htmlspecialchars($post['username']) ?></a></h4>
                 <h4 class="post-dot">•</h4>
                 <p class="post-date"><?php echo $date ?></p>
             </div>
@@ -47,7 +47,7 @@ $allComments = Comment::getAllComments($post["postId"]);
             <?php endforeach; ?>
         </div>
     <?php endif;  ?>
-    
+
     <!-- IMAGE -->
     <img class="post-img" src="<?php echo $post['image'] ?>" alt="">
     <div class="post-buttons">
@@ -58,40 +58,40 @@ $allComments = Comment::getAllComments($post["postId"]);
             </svg>
             <p>1000</p>
         </div>
-        <div class="post-comment post-button">
+        <div class="post-comments post-button">
             <svg height="682pt" viewBox="-21 -47 682.66669 682" width="682pt" xmlns="http://www.w3.org/2000/svg">
                 <path d="m552.011719-1.332031h-464.023438c-48.515625 0-87.988281 39.472656-87.988281 87.988281v283.972656c0 48.421875 39.300781 87.824219 87.675781 87.988282v128.871093l185.183594-128.859375h279.152344c48.515625 0 87.988281-39.472656 87.988281-88v-283.972656c0-48.515625-39.472656-87.988281-87.988281-87.988281zm-83.308594 330.011719h-297.40625v-37.5h297.40625zm0-80h-297.40625v-37.5h297.40625zm0-80h-297.40625v-37.5h297.40625zm0 0" />
             </svg>
             <p>1000</p>
         </div>
     </div>
-    <div class="post-comments-box post">
+    <div class="post-comments-box post hidden">
         <hr class="line-small">
         <!-- COMMENTS -->
-      
+
         <div class="comments">
-          <?php foreach($allComments as $c): ?>
-    <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
-            <div class="comment">
-                <img class="profile-picture" src="<?php echo $c["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
-                <div class="comment-box">
-                    <div class="comment-box-info">
-                        <h5 class="post-user"><?php echo htmlspecialchars($c['username']) ?></h5> <!-- Make username of user that sent comment -->
-                        <h5 class="post-dot">•</h5>
-                        <p class="post-date"><?php echo $dateComment ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
+            <?php foreach ($allComments as $c) : ?>
+                <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
+                <div class="comment">
+                    <img class="profile-picture" src="<?php echo $c["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
+                    <div class="comment-box">
+                        <div class="comment-box-info">
+                            <h5 class="post-user"><?php echo htmlspecialchars($c['username']) ?></h5> <!-- Make username of user that sent comment -->
+                            <h5 class="post-dot">•</h5>
+                            <p class="post-date"><?php echo $dateComment ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
+                        </div>
+                        <p class="comment-message"><?php echo  htmlspecialchars($c['text']); ?></p>
                     </div>
-                    <p class="comment-message" ><?php echo  htmlspecialchars($c['text']); ?></p>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
-        
+
         <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
             <input class="form-control form-border comment-input commentText" name="comment" placeholder="Write a comment..."></input>
-            <div class="addComment" data-postid="<?php  echo $post["postId"];  ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
+            <div class="addComment" data-postid="<?php echo $post["postId"];  ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>
     </div>
-    
+
 </div>

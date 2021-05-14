@@ -62,3 +62,19 @@ const emptyPost = (post) => {
   element.querySelector(".post-top").classList.add("hidden");
   return element;
 };
+
+document.querySelectorAll(".post-comments").forEach((button) => {
+  let state = false;
+  button.addEventListener("click", (e) => {
+    state = !state;
+    if (state === true) {
+      button.parentElement.parentElement
+        .querySelector(".post-comments-box")
+        .classList.remove("hidden");
+    } else {
+      button.parentElement.parentElement
+        .querySelector(".post-comments-box")
+        .classList.add("hidden");
+    }
+  });
+});
