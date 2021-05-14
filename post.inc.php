@@ -73,7 +73,9 @@ $allComments = Comment::getAllComments($post["postId"]);
             <?php foreach ($allComments as $c) : ?>
                 <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
                 <div class="comment">
-                    <img class="profile-picture" src="<?php echo $c["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
+                    <?php if (!empty($c["picture"])) : ?>
+                        <img class="profile-picture" src="<?php echo $c["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
+                    <?php endif; ?>
                     <div class="comment-box">
                         <div class="comment-box-info">
                             <h5 class="post-user"><?php echo htmlspecialchars($c['username']) ?></h5> <!-- Make username of user that sent comment -->
@@ -88,7 +90,10 @@ $allComments = Comment::getAllComments($post["postId"]);
 
         <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
-            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php if (!empty($currentUser["picture"])) : ?>
+                <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php endif; ?>
+
             <input class="form-control form-border comment-input commentText" name="comment" placeholder="Write a comment..."></input>
             <div class="addComment" data-postid="<?php echo $post["postId"];  ?>"><img class="comment-send" src="img/right-arrow.svg" alt=""></div>
         </div>

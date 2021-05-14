@@ -80,7 +80,9 @@ try {
         <div class="box-container">
             <div class="profile-box">
                 <div class="profile-box-info">
-                    <img class="profile-picture-big" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+                    <?php if (!empty($currentUser["picture"])) : ?>
+                        <img class="profile-picture-big" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+                    <?php endif; ?>
                     <div class="profile-box-names">
                         <h1><?php echo htmlspecialchars($currentUser["username"]) ?></h1>
                         <h5><?php echo htmlspecialchars($currentUser["firstname"]) . " " .  htmlspecialchars($currentUser["lastname"]) ?></h5>
@@ -146,7 +148,9 @@ try {
     </main>
     <div class="post box-container">
         <div class="new_post-box">
-            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php if (!empty($currentUser["picture"])) : ?>
+                <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php endif; ?>
             <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
             <a href="new_post.php" class="btn nav-btn">New post</a>
         </div>

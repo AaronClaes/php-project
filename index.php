@@ -28,7 +28,9 @@ try {
    <div class="index-feed">
       <div class="box-container left">
          <div class="left-link">
-            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="">
+            <?php if (!empty($currentUser["picture"])) : ?>
+               <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php endif; ?>
             <h3><a href="profile.php"><?php echo htmlspecialchars($currentUser["username"]) ?></a></h3>
          </div>
          <div class="left-link left-link-middle">
@@ -43,7 +45,9 @@ try {
       <div class="right">
          <div class="box-container">
             <div class="new_post-box">
-               <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+               <?php if (!empty($currentUser["picture"])) : ?>
+                  <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+               <?php endif; ?>
                <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
                <a href="new_post.php" class="btn nav-btn">New post</a>
             </div>

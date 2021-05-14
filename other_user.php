@@ -44,7 +44,10 @@ try {
         <div class="box-container">
             <div class="profile-box">
                 <div class="profile-box-info">
-                    <img class="profile-picture-big" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
+                    <?php if (!empty($otherUser["picture"])) : ?>
+                        <img class="profile-picture-big" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
+                    <?php endif; ?>
+
                     <div class="profile-box-names">
                         <h1><?php echo htmlspecialchars($otherUser["username"]) ?></h1>
                         <h5><?php echo htmlspecialchars($otherUser["firstname"]) . " " .  htmlspecialchars($otherUser["lastname"]) ?></h5>
