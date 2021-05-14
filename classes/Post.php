@@ -9,9 +9,7 @@ class Post
     private $description;
     private $image;
     private $tags;
-    private $created;
-    private $inappropriate;
-    private $location;
+   
 
 
     /**

@@ -7,6 +7,8 @@ class Comment
     private $date;
     private $postId;
     private $userId;
+    private $username;
+    private $image;
 
 
     /**
@@ -88,20 +90,61 @@ class Comment
 
         return $this;
     }
+ /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
 
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of username
+     */ 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set the value of username
+     *
+     * @return  self
+     */ 
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
     public function saveComment(){
         $conn = Db::getConnection();
-        $sql = "INSERT INTO comments (text, post_id, user_id, created )  values (:text, :post_id, :user_id, UTC_TIMESTAMP())";
+        $sql = "INSERT INTO comments (text, post_id, user_id, created)  values (:text, :post_id, :user_id, UTC_TIMESTAMP() )";
         
         $statement = $conn->prepare($sql);
         $text = $this->getText();
         $postId = $this->getPostId();
         $userId = $this->getUserId();
         
+       
+        
         
         $statement->bindValue(":text", $text );
         $statement->bindValue(":post_id", $postId);
         $statement->bindValue(":user_id", $userId);
+        
         
 
         $result = $statement->execute();
@@ -109,7 +152,7 @@ class Comment
     }
     public static function getAllComments($postId){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM comments WHERE post_Id = :postId");
+        $statement = $conn->prepare("SELECT * FROM comments JOIN users ON users.id=comments.user_id WHERE post_Id = :postId");
         
         $statement->bindValue(':postId', $postId);
         
@@ -146,4 +189,6 @@ class Comment
         return $string ? implode(', ', $string) : 'just now';
     }
 
+
+   
 }
