@@ -90,11 +90,13 @@ class Post
         $id = $this->getUserId();
         $ext = $path['extension'];
         $temp_name = $_FILES['image']['tmp_name'];
-
+        if ($_FILES["image"]["error"] === 1) {
+            throw new Exception("The image file size is too big, please try a smaller one");
+        } else if ($_FILES["image"]["error"] !== 0) {
+            throw new Exception("Something went wrong when uploading the image, please try again later");
+        }
         //APPLY FILTER
-        if ($ext === "png") {
-
-
+        if ($ext === "png" || $ext === "PNG") {
             $img = imagecreatefrompng($temp_name);
             switch ($type) {
                 case 'IMG_FILTER_NEGATE':
