@@ -52,6 +52,10 @@ body {
   margin-left: auto;
 }
 
+.navbar-brand {
+  margin: 0;
+}
+
 .form-title {
   text-align: center;
 }
@@ -78,6 +82,31 @@ body {
 .form-border {
   border: 0px;
   border-radius: 20px;
+}
+
+.nav-container {
+  display: flex;
+}
+
+.searchbar {
+  width: 600px;
+}
+
+.btn-search {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#search {
+  flex-wrap: nowrap;
+}
+
+#search-select {
+  width: 30%;
+}
+
+#searchbar {
+  width: 100%;
 }
 
 .box-container {
@@ -293,7 +322,7 @@ body {
   font-size: 1rem;
 }
 
-.btn-profile-follow{
+.btn-profile-follow {
   text-align: center;
   width: 160px;
   padding: 2rem 3rem;

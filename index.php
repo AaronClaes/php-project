@@ -58,7 +58,7 @@ try {
          <?php $i++;
          endforeach; ?>
       </div>
-      
+
    </div>
    <button class="load" id="Load">Load more</button>
    <script src="scripts/post.js"></script>

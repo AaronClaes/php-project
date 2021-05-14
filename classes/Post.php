@@ -327,6 +327,7 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+
     public static function getPostsByLocation($Location)
     {
         $conn = Db::getConnection();
@@ -338,14 +339,27 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+
+    public static function getPostsByContent($query)
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT *, posts.id as postId, posts.location as postLocation FROM posts JOIN users ON users.id=posts.user_id WHERE INSTR(tags, :query) OR INSTR(description, :query) AND inappropriate = 0 ORDER BY created DESC; ";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":query", $query);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
+
     public function searchLocation($searchLocation)
     {
         $conn = Db::getConnection();
         $statement = $conn->prepare("SELECT * FROM users  WHERE location = :searchResult GROUP BY location");
         $statement->bindValue(":searchResult", $searchLocation);
-        
+
         $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
     //source: https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
@@ -382,9 +396,9 @@ class Post
         $conn = Db::getConnection();
         $statement = $conn->prepare("SELECT tags FROM posts  WHERE tags = :tags");
         $statement->bindValue(":tags", $searchtags);
-        
+
         $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
 }
