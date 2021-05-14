@@ -4,7 +4,9 @@ $conn = Db::getConnection();
 try {
     $user = new User();
     $otherUserid = $_GET["id"];
-    $otherUser = $user->getUserInfo($otherUserid); 
+    $otherUser = $user->getUserInfo($otherUserid);
+    $currentUserid = $_SESSION["userId"];
+    $currentUser = $user->getUserInfo($currentUserid);
 } catch (\Throwable $th) {
     $error = $th->getMessage();
 }
@@ -42,7 +44,7 @@ try {
         <div class="box-container">
             <div class="profile-box">
                 <div class="profile-box-info">
-                    <img class="profile-picture-big" src="<?php $otherUser["picture"] ?>" alt="profile picture">
+                    <img class="profile-picture-big" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
                     <div class="profile-box-names">
                         <h1><?php echo htmlspecialchars($otherUser["username"]) ?></h1>
                         <h5><?php echo htmlspecialchars($otherUser["firstname"]) . " " .  htmlspecialchars($otherUser["lastname"]) ?></h5>
@@ -65,20 +67,14 @@ try {
             </div>
         </div>
         </div>
-    <div class="post box-container">
-        <div class="new_post-box">
-            <img class="profile-picture" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
-            <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
-            <a href="new_post.php" class="btn nav-btn">New post</a>
-        </div>
-    </div>
-    <?php
-    $feed = Post::getUserPosts($otherUser["id"]);
-    foreach ($feed as $post) :  ?>
-        <?php include("post.inc.php") ?>
-    <?php endforeach; ?>
-    <script src="scripts/other_user.js"></script>
-    <script src="scripts/post.js"></script>
+        <?php
+        $feed = Post::getUserPosts($otherUser["id"]);
+        foreach ($feed as $post) :  ?>
+            <?php include("post.inc.php") ?>
+        <?php endforeach; ?>
+        <script src="scripts/other_user.js"></script>
+        <script src="scripts/post.js"></script>
+        <script src="scripts/comments.js"></script>
 </body>
 
 </html>
