@@ -67,9 +67,10 @@ $allComments = Comment::getAllComments($post["postId"]);
     <div class="post-comments-box post">
         <hr class="line-small">
         <!-- COMMENTS -->
-        <?php foreach($allComments as $c): ?>
-    <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
+      
         <div class="comments">
+          <?php foreach($allComments as $c): ?>
+    <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
             <div class="comment">
                 <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
                 <div class="comment-box">
@@ -81,7 +82,9 @@ $allComments = Comment::getAllComments($post["postId"]);
                     <p class="comment-message" ><?php echo  htmlspecialchars($c['text']); ?></p>
                 </div>
             </div>
-        </div><?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+        
         <!-- COMMENTS INPUT FIELD -->
         <div class="post-comment">
             <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
