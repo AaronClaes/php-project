@@ -9,7 +9,7 @@ class Post
     private $description;
     private $image;
     private $tags;
-   
+
 
 
     /**
@@ -117,6 +117,7 @@ class Post
             }
             imagepng($img, $temp_name);
         }
+
         //SET FILENAME
         $filename = "post_" . $id . "_" . mt_rand(100000, 999999);
         $path_filename_ext = $target_dir . $filename . "." . $ext;
@@ -308,7 +309,6 @@ class Post
 
         $sql = "SELECT *, posts.id as postId FROM posts JOIN users ON users.id=posts.user_id WHERE  user_id = :user_id AND inappropriate = 0 ORDER BY created DESC; ";
         $statement = $conn->prepare($sql);
-
 
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();

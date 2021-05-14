@@ -17,6 +17,7 @@ searchbar.addEventListener("keyup", (e) => {
     while (autocomplete.firstChild) {
       autocomplete.removeChild(autocomplete.lastChild);
     }
+
     const formData = new FormData();
     let value = searchbar.value;
     formData.append("value", value);
