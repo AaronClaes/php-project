@@ -152,7 +152,7 @@ class Comment
     }
     public static function getAllComments($postId){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM comments WHERE post_Id = :postId");
+        $statement = $conn->prepare("SELECT * FROM comments JOIN users ON users.id=comments.user_id WHERE post_Id = :postId");
         
         $statement->bindValue(':postId', $postId);
         

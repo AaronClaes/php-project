@@ -5,6 +5,7 @@ $date = Post::time_elapsed_string($post['created']);
 $allComments = Comment::getAllComments($post["postId"]);
 
 
+
 ?>
 <div class="post box-container">
     <!-- USER & DESCRIPTION -->
@@ -72,10 +73,10 @@ $allComments = Comment::getAllComments($post["postId"]);
           <?php foreach($allComments as $c): ?>
     <?php $dateComment = Comment::time_elapsed_string($c['created']); ?>
             <div class="comment">
-                <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
+                <img class="profile-picture" src="<?php echo $c["picture"] ?>" alt=""> <!-- Make picture of user that sent comment -->
                 <div class="comment-box">
                     <div class="comment-box-info">
-                        <h5 class="post-user"><?php echo htmlspecialchars($post['username']) ?></h5> <!-- Make username of user that sent comment -->
+                        <h5 class="post-user"><?php echo htmlspecialchars($c['username']) ?></h5> <!-- Make username of user that sent comment -->
                         <h5 class="post-dot">•</h5>
                         <p class="post-date"><?php echo $dateComment ?></p> <!-- Make date of comment ($date is the date the post was sent, dont use this) -->
                     </div>
