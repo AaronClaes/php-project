@@ -4,7 +4,9 @@ $conn = Db::getConnection();
 try {
     $user = new User();
     $otherUserid = $_GET["id"];
-    $otherUser = $user->getUserInfo($otherUserid); 
+    $otherUser = $user->getUserInfo($otherUserid);
+    $currentUserid = $_SESSION["userId"];
+    $currentUser = $user->getUserInfo($currentUserid);
 } catch (\Throwable $th) {
     $error = $th->getMessage();
 }
@@ -22,7 +24,6 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
 
@@ -42,7 +43,10 @@ try {
         <div class="box-container">
             <div class="profile-box">
                 <div class="profile-box-info">
-                    <img class="profile-picture-big" src="<?php $otherUser["picture"] ?>" alt="profile picture">
+                    <?php if (!empty($otherUser["picture"])) : ?>
+                        <img class="profile-picture-big" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
+                    <?php endif; ?>
+
                     <div class="profile-box-names">
                         <h1><?php echo htmlspecialchars($otherUser["username"]) ?></h1>
                         <h5><?php echo htmlspecialchars($otherUser["firstname"]) . " " .  htmlspecialchars($otherUser["lastname"]) ?></h5>
@@ -65,20 +69,14 @@ try {
             </div>
         </div>
         </div>
-    <div class="post box-container">
-        <div class="new_post-box">
-            <img class="profile-picture" src="<?php echo $otherUser["picture"] ?>" alt="profile picture">
-            <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
-            <a href="new_post.php" class="btn nav-btn">New post</a>
-        </div>
-    </div>
-    <?php
-    $feed = Post::getUserPosts($otherUser["id"]);
-    foreach ($feed as $post) :  ?>
-        <?php include("post.inc.php") ?>
-    <?php endforeach; ?>
-    <script src="scripts/other_user.js"></script>
-    <script src="scripts/post.js"></script>
+        <?php
+        $feed = Post::getUserPosts($otherUser["id"]);
+        foreach ($feed as $post) :  ?>
+            <?php include("post.inc.php") ?>
+        <?php endforeach; ?>
+        <script src="scripts/other_user.js"></script>
+        <script src="scripts/post.js"></script>
+        <script src="scripts/comments.js"></script>
 </body>
 
 </html>

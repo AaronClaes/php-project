@@ -60,7 +60,6 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
 
@@ -80,7 +79,9 @@ try {
         <div class="box-container">
             <div class="profile-box">
                 <div class="profile-box-info">
-                    <img class="profile-picture-big" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+                    <?php if (!empty($currentUser["picture"])) : ?>
+                        <img class="profile-picture-big" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+                    <?php endif; ?>
                     <div class="profile-box-names">
                         <h1><?php echo htmlspecialchars($currentUser["username"]) ?></h1>
                         <h5><?php echo htmlspecialchars($currentUser["firstname"]) . " " .  htmlspecialchars($currentUser["lastname"]) ?></h5>
@@ -146,7 +147,9 @@ try {
     </main>
     <div class="post box-container">
         <div class="new_post-box">
-            <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php if (!empty($currentUser["picture"])) : ?>
+                <img class="profile-picture" src="<?php echo $currentUser["picture"] ?>" alt="profile picture">
+            <?php endif; ?>
             <h2 class="new_post-box-title">Share an epic gamer moment!</h2>
             <a href="new_post.php" class="btn nav-btn">New post</a>
         </div>
@@ -158,6 +161,7 @@ try {
     <?php endforeach; ?>
     <script src="scripts/profile.js"></script>
     <script src="scripts/post.js"></script>
+    <script src="scripts/comments.js"></script>
 </body>
 
 </html>

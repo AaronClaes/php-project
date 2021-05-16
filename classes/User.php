@@ -11,6 +11,7 @@ class User
     private $email;
     private $picture;
     private $description;
+    private $location;
 
 
     /**
@@ -29,6 +30,25 @@ class User
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+    /**
+     * Get the value of picture
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
 
         return $this;
     }
@@ -249,7 +269,7 @@ class User
         }
     }
 
-   
+
 
     //Get current active user
     public function getLoggedUser($username)
@@ -337,27 +357,18 @@ class User
 
         return $user;
     }
-    
-    public function searchUsers($searchresult)
+
+    public static function searchUsers($query)
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM users  WHERE username = :searchResult");
-        $statement->bindValue(":searchResult", $searchresult);
-        
+        $statement = $conn->prepare("SELECT * FROM users WHERE INSTR(username, :query) OR INSTR(firstname, :query) OR INSTR(lastname, :query)");
+        $statement->bindValue(":query", $query);
+
         $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $user;
     }
-    public function searchtags($searchtags)
-    {
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM posts GROUP BY tags WHERE tags = :tags");
-        $statement->bindValue(":tags", $searchtags);
-        
-        $user = $statement->execute();
-        $user= $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $user;
-    }
+
 
 
     public function uploadProfilePicture($profilepicture)
