@@ -2,6 +2,8 @@
 if (!empty($_GET['search'])) {
     try {
         $user = new User;
+        $currentUserId = $_SESSION["userId"];
+        $currentUser = $user->getUserInfo($currentUserId);
         $searchresult = $_GET['search'];
         $users = $user->searchusers($searchresult, $tags);
     } catch (\Throwable $th) {
@@ -23,6 +25,9 @@ if (!empty($_GET['search'])) {
         </form>
         <div class="collapse navbar-collapse navbar-nav me-auto">
             <a href="logout.php" class="btn nav-btn"> Logout </a>
+            <?php if($currentUser["admin"] !=0):?>
+            <a href="adminControl.php" class="btn"> Control Panel </a>
+                <?php ; endif?>
             <!-- <form data-np-checked="1">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search" data-np-checked="1">
             </form> -->

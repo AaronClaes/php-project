@@ -276,6 +276,18 @@ class Post
         return $this;
     }
 
+    public function getflag()
+    {
+        $conn = Db::getConnection();
+
+        $sql = "SELECT * FROM posts WHERE inappropriate = 1";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $posts = $statement->fetchAll();
+
+        return $posts;
+    }
+
     public function delete()
     {
         $conn = Db::getConnection();
