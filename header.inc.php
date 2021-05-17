@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 if (!empty($_GET['search'])) {
     try {
@@ -13,8 +12,6 @@ if (!empty($_GET['search'])) {
 }
 ?>
 
-=======
->>>>>>> c548fb809b30cda6587f24a9c53495d6b2e28aea
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top" aria-label="Second navbar example">
     <div class="container-fluid nav-container">
         <a class="navbar-brand" href="index.php"><img class="logo" src="img/gg-logo.png" alt=""></a>
@@ -41,19 +38,11 @@ if (!empty($_GET['search'])) {
                 <button class="btn btn-search" type="submit">Search</button>
             </div>
         </form>
-<<<<<<< HEAD
-        <div class="collapse navbar-collapse navbar-nav me-auto">
-            <a href="logout.php" class="btn nav-btn"> Logout </a>
-            <?php if($currentUser["admin"] !=0):?>
-            <a href="adminControl.php" class="btn"> Control Panel </a>
-                <?php ; endif?>
-=======
         <div class="navbar-nav">
-            <a href="logout.php" class="btn btn-nav"> Logout </a>
->>>>>>> c548fb809b30cda6587f24a9c53495d6b2e28aea
-            <!-- <form data-np-checked="1">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search" data-np-checked="1">
-            </form> -->
+            <a href="logout.php" class="btn nav-btn"> Logout </a>
+            <?php if ($currentUser["admin"] != 0) : ?>
+                <a href="adminControl.php" class="btn"> Control Panel </a>
+            <?php endif ?>
         </div>
     </div>
 </nav>

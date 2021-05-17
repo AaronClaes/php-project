@@ -15,7 +15,7 @@ if (!empty($_POST)) {
             $post->setLocation($_POST["location"]);
         }
         $post->save();
-        //header("Location: profile.php");
+        header("Location: profile.php");
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
