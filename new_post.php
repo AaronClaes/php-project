@@ -9,8 +9,13 @@ if (!empty($_POST)) {
         $tags = $post->cleanupTags($_POST["tags"]);
         $post->setTags($tags);
         $type = $_POST["selectedFilter"];
-        $image = $post->saveImage($_FILES["image"]["name"], $type);
-        $post->setImage($image);
+
+        $image = new Image();
+        $image->setType($type);
+        $image->setImage($_FILES["image"]["name"]);
+        $postImage = $image->saveImage();
+
+        $post->setImage($postImage);
         if (!empty($_POST["location"])) {
             $post->setLocation($_POST["location"]);
         }

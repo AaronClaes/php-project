@@ -4,6 +4,7 @@ spl_autoload_register(function () {
     include_once("classes/Db.php");
     include_once("classes/Post.php");
     include_once("classes/User.php");
+    include_once("classes/Image.php");
 });
 
 session_start();
