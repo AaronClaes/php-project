@@ -40,6 +40,8 @@ if (!empty($_GET['search'])) {
         </form>
         <div class="navbar-nav">
             <a href="logout.php" class="btn nav-btn"> Logout </a>
+            <a href="friends.php" class="btn nav-btn"> Following </a>
+            <a href="Profile.php" class="btn nav-btn"> Profile </a>
             <?php if ($currentUser["admin"] != 0) : ?>
                 <a href="adminControl.php" class="btn"> Control Panel </a>
             <?php endif ?>

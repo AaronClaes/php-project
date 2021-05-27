@@ -7,6 +7,20 @@ try {
     $otherUser = $user->getUserInfo($otherUserid);
     $currentUserid = $_SESSION["userId"];
     $currentUser = $user->getUserInfo($currentUserid);
+    
+    $follower = new Follower();
+    $follower->setUser_Id($currentUserid);
+    $follower->setFollower_id($otherUserid);
+    $check = $follower->checkFollowed();
+
+    if(!empty($check)){
+        $followedId = $check[0]["id"];
+    }else{
+        $followedId = " ";
+    }
+
+    //var_dump($follower->checkFollowed());
+
 } catch (\Throwable $th) {
     $error = $th->getMessage();
 }
@@ -65,7 +79,7 @@ try {
                 </div>
             </div>
             <div class="box-container-small">
-                <div class="btn btn-profile-follow">Follow</div>
+                <div class="btn btn-profile-follow" data-followid="<?php echo $followedId?>" data-followedUser="<?php echo $otherUser['id']?>"><?php echo $followedId !== " "  ? "Unfollow" : "Follow" ?></div>
             </div>
         </div>
         </div>

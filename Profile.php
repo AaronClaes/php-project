@@ -90,7 +90,7 @@ try {
                 <p class="profile-box-description"><?php echo htmlspecialchars($currentUser["bio"]) ?></p>
             </div>
         </div>
-        </div>
+    </div>
         <div class="profile-stats-container">
             <div class="box-container-medium ">
                 <div class="profile-stats-box">
@@ -110,6 +110,8 @@ try {
                     <div class="mb-3">
                         <label class="form-label" for=" profilePicture">Edit Profilepicture</label>
                         <input type="file" class="form-control form-border" name="profilePicture" id="profilePicture">
+                        <small class="form-text text-muted" for="removeProfilePicture">Do you want to remove your current profile picture?</small>
+                        <input type="checkbox" name="removeProfilePicture" id="removeProfilePicture">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="Username">Edit Username</label>
@@ -154,6 +156,10 @@ try {
             <a href="new_post.php" class="btn nav-btn">New post</a>
         </div>
     </div>
+    <?php if (isset($_POST["RemoveProfilePicture"])){
+        Echo "Profilepicture delete";
+    } ?>
+
     <?php
     $feed = Post::getUserPosts($_SESSION["userId"]);
     foreach ($feed as $post) :  ?>

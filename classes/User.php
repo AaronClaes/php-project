@@ -233,7 +233,7 @@ class User
     {
         $conn = Db::getConnection();
 
-        $sql = "INSERT INTO users (email, firstname, lastname, username, password) VALUES (:email, :firstname, :lastname, :username, :password)";
+        $sql = "INSERT INTO users (email, firstname, lastname, username, password, picture) VALUES (:email, :firstname, :lastname, :username, :password, 'uploads/profilePictures/default.png')";
         $statement = $conn->prepare($sql);
         $email = $this->getEmail();
         $firstname = $this->getFirstname();
