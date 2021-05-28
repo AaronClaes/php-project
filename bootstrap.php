@@ -6,6 +6,7 @@ spl_autoload_register(function () {
     include_once("classes/User.php");
     include_once("classes/Image.php");
     include_once("classes/Followers.php");
+    include_once("classes/Like.php");
 });
 
 session_start();

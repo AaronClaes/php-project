@@ -78,3 +78,24 @@ document.querySelectorAll(".post-comments").forEach((button) => {
     }
   });
 });
+
+document.querySelectorAll(".post-like").forEach((like) => {
+  like.addEventListener("click", (e) => {
+    const formData = new FormData();
+    let postId = like.dataset.postid;
+    formData.append("postId", postId);
+    fetch("ajax/likepost.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        console.log("Succes like", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+});
