@@ -93,6 +93,18 @@ document.querySelectorAll(".post-like").forEach((like) => {
       })
       .then((result) => {
         console.log("Succes like", result);
+        let likeField =
+          like.parentElement.parentElement.parentElement.querySelector(
+            ".post-buttons .post-like p"
+          );
+        let likeAmount = likeField.innerHTML;
+        if (result["action"] === "saved") {
+          likeField.innerHTML = parseInt(likeAmount) + 1;
+          like.querySelector("svg").style.fill = "#fd3939";
+        } else {
+          likeField.innerHTML = parseInt(likeAmount) - 1;
+          like.querySelector("svg").style.fill = "#7a7f84";
+        }
       })
       .catch((error) => {
         console.error("Error:", error);

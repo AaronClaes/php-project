@@ -116,7 +116,7 @@ class Like
     public static function getAllLikesOnPost($post_id)
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM followers JOIN users ON users.id = followers.follower_id WHERE post_id = :post_id");
+        $statement = $conn->prepare("SELECT * FROM likes JOIN users ON users.id = likes.user_id WHERE post_id = :post_id");
 
         $statement->bindValue(":post_id", $post_id);
 
