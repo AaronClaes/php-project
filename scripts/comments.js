@@ -1,6 +1,5 @@
 document.querySelectorAll(".addComment").forEach((comment) => {
   //let btn = document.querySelector(".addComment")
-  console.log(comment);
   comment.addEventListener("click", (e) => {
     const formData = new FormData();
     let postid = comment.dataset.postid;
@@ -12,7 +11,6 @@ document.querySelectorAll(".addComment").forEach((comment) => {
 
     let commentBox =
       comment.parentElement.parentElement.querySelector(".comments");
-    console.log(commentBox, "tesr");
 
     fetch("ajax/saveComment.php", {
       method: "POST",
@@ -22,7 +20,6 @@ document.querySelectorAll(".addComment").forEach((comment) => {
 
       .then((result) => {
         let comment = document.createElement("tr");
-        console.log(result, "test");
         comment.innerHTML =
           "<div class='comments'><div class='comment'><img class='profile-picture' src='" +
           result["image"] +
@@ -33,6 +30,14 @@ document.querySelectorAll(".addComment").forEach((comment) => {
           "</p> </div> </div></div>";
         commentBox.appendChild(comment);
         console.log("Success:", result);
+        let commentsAmount =
+          comment.parentElement.parentElement.parentElement.querySelector(
+            ".post-buttons .post-comments p"
+          ).innerHTML;
+
+        comment.parentElement.parentElement.parentElement.querySelector(
+          ".post-buttons .post-comments p"
+        ).innerHTML = parseInt(commentsAmount) + 1;
       })
       .catch((error) => {
         console.log("Error:", error);
