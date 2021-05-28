@@ -2,20 +2,24 @@
 include_once("bootstrap.php");
 $conn = Db::getConnection();
 try {
+
     $user = new User();
     $otherUserid = $_GET["id"];
     $otherUser = $user->getUserInfo($otherUserid);
     $currentUserid = $_SESSION["userId"];
     $currentUser = $user->getUserInfo($currentUserid);
-    
+    $feed = Post::getUserPosts($otherUser["id"]);
+    $allFollowing = Follower::getAllFollowing($otherUserid);
+    $allFollowers = Follower::getAllFollowers($otherUserid);
+
     $follower = new Follower();
     $follower->setUser_Id($currentUserid);
     $follower->setFollower_id($otherUserid);
     $check = $follower->checkFollowed();
 
-    if(!empty($check)){
+    if (!empty($check)) {
         $followedId = $check[0]["id"];
-    }else{
+    } else {
         $followedId = " ";
     }
 
@@ -73,18 +77,18 @@ try {
         <div class="profile-stats-container">
             <div class="box-container-medium ">
                 <div class="profile-stats-box">
-                    <h4><span>420</span> Posts</h4>
-                    <h4><a href=""><span>420</span> Followers</a></h4>
-                    <h4><a href=""><span>420</span> Following</a></h4>
+                    <h4><span><?php echo count($feed) ?></span> Posts</h4>
+                    <h4><span><?php echo count($allFollowers) ?></span> Followers</h4>
+                    <h4><span><?php echo count($allFollowing) ?></span> Following</h4>
                 </div>
             </div>
             <div class="box-container-small">
-                <div class="btn btn-profile-follow" data-followid="<?php echo $followedId?>" data-followedUser="<?php echo $otherUser['id']?>"><?php echo $followedId !== " "  ? "Unfollow" : "Follow" ?></div>
+                <div class="btn btn-profile-follow" data-followid="<?php echo $followedId ?>" data-followedUser="<?php echo $otherUser['id'] ?>"><?php echo $followedId !== " "  ? "Unfollow" : "Follow" ?></div>
             </div>
         </div>
         </div>
         <?php
-        $feed = Post::getUserPosts($otherUser["id"]);
+
         foreach ($feed as $post) :  ?>
             <?php include("post.inc.php") ?>
         <?php endforeach; ?>

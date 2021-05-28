@@ -2,6 +2,9 @@
 include_once("bootstrap.php");
 $conn = Db::getConnection();
 try {
+    $feed = Post::getUserPosts($_SESSION["userId"]);
+    $allFollowing = Follower::getAllFollowing($_SESSION["userId"]);
+    $allFollowers = Follower::getAllFollowers($_SESSION["userId"]);
     $user = new User();
     $currentUserId = $_SESSION["userId"];
     $currentUser = $user->getUserInfo($currentUserId);
@@ -90,13 +93,13 @@ try {
                 <p class="profile-box-description"><?php echo htmlspecialchars($currentUser["bio"]) ?></p>
             </div>
         </div>
-    </div>
+        </div>
         <div class="profile-stats-container">
             <div class="box-container-medium ">
                 <div class="profile-stats-box">
-                    <h4><span>420</span> Posts</h4>
-                    <h4><a href=""><span>420</span> Followers</a></h4>
-                    <h4><a href=""><span>420</span> Following</a></h4>
+                    <h4><span><?php echo count($feed) ?></span> Posts</h4>
+                    <h4><span><?php echo count($allFollowers) ?></span> Followers</h4>
+                    <h4><a href="friends.php"><span><?php echo count($allFollowing) ?></span> Following</a></h4>
                 </div>
             </div>
             <div class="box-container-small">
@@ -156,12 +159,12 @@ try {
             <a href="new_post.php" class="btn nav-btn">New post</a>
         </div>
     </div>
-    <?php if (isset($_POST["RemoveProfilePicture"])){
-        Echo "Profilepicture delete";
+    <?php if (isset($_POST["RemoveProfilePicture"])) {
+        echo "Profilepicture delete";
     } ?>
 
     <?php
-    $feed = Post::getUserPosts($_SESSION["userId"]);
+
     foreach ($feed as $post) :  ?>
         <?php include("post.inc.php") ?>
     <?php endforeach; ?>

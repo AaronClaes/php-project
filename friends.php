@@ -6,8 +6,7 @@ try {
     $currentUserId = $_SESSION["userId"];
     $currentUser = $user->getUserInfo($currentUserId);
 
-    $allFollowers = Follower::getAllFollowers($_SESSION["userId"]);
-
+    $allFollowers = Follower::getAllFollowing($_SESSION["userId"]);
 } catch (\Throwable $th) {
     $error = $th->getMessage();
 }
@@ -42,12 +41,14 @@ try {
 
     <main>
         <div class="box-container">
-            <?php foreach($allFollowers as $follower): ?>
+            <?php foreach ($allFollowers as $follower) : ?>
                 <div class="profile-box">
                     <div class="profile-box-info">
-                            <img class="profile-picture-big" src="<?php echo $follower["picture"] ?>" alt="profile picture">
+                        <img class="profile-picture-big" src="<?php echo $follower["picture"] ?>" alt="profile picture">
                         <div class="profile-box-names">
-                            <a href=" other_user.php?id=<?php echo $follower["id"]?>" ><h1><?php echo htmlspecialchars($follower["username"]) ?></h1></a>
+                            <a href=" other_user.php?id=<?php echo $follower["id"] ?>">
+                                <h1><?php echo htmlspecialchars($follower["username"]) ?></h1>
+                            </a>
                         </div>
                     </div>
                     <p class="profile-box-description"><?php echo htmlspecialchars($follower["bio"]) ?></p>
